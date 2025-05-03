@@ -1,16 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameSceneManager : MonoBehaviour
 {
-    // Insert your Editor Variables in this region
     #region Editor Variables
+    [SerializeField]
+    private PlayerManager _playerManager;
+
     #endregion
 
-    // Insert your Public Variables in this region
     #region Public Variables
     #endregion
 
-    // Insert your Private Variables in this region
     #region Private Variables
     #endregion
 
@@ -18,6 +19,7 @@ public class GameSceneManager : MonoBehaviour
 
     public void Initialize()
     {
+        _playerManager.SetUp(this);
     }
 
     public void Shutdown()
@@ -26,7 +28,6 @@ public class GameSceneManager : MonoBehaviour
 
     #endregion
 
-    // Insert your Unity Methods in this region
     #region Unity Callbacks
 
     void Start()
@@ -35,4 +36,9 @@ public class GameSceneManager : MonoBehaviour
     }
 
     #endregion
+
+    public IEnumerator GameOver() 
+    {
+        yield return null;
+    }
 }

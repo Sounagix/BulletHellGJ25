@@ -16,12 +16,10 @@ public class SceneLoader : MonoBehaviour
 
     #endregion
 
-    // Insert your Public Variables in this region
     #region Public Variables
 
     #endregion
 
-    // Insert your Private Variables in this region
     #region Private Variables
 
     private GameManager _gameManager;

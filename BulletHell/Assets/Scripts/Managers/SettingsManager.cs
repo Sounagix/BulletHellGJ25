@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class SettingsManager : Manager
 {
-    // Insert your Editor Variables in this region
     #region Editor Variables
 
     [SerializeField]
@@ -15,19 +14,16 @@ public class SettingsManager : Manager
 
     #endregion
 
-    // Insert your Public Variables in this region
     #region Public Variables
 
     public static event Action<bool> OnSettingsOnOff;
 
     #endregion
 
-    // Insert your Protected Variables in this region
     #region Protected Variables
 
     #endregion
 
-    // Insert your Private Variables in this region
     #region Private Variables
 
 
@@ -63,7 +59,6 @@ public class SettingsManager : Manager
 
     #endregion
 
-    // Insert your Unity Methods in this region
     #region Unity Callbacks
 
     #endregion

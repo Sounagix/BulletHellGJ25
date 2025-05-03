@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Insert your Editor Variables in this region
     #region Editor Variables
 
     [SerializeField]
@@ -21,11 +20,9 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    // Insert your Public Variables in this region
     #region Public Variables
     #endregion
 
-    // Insert your Private Variables in this region
     #region Private Variables
 
     private static GameManager _instance;

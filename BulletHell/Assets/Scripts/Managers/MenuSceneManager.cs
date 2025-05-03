@@ -1,9 +1,8 @@
-
 using UnityEngine;
 using UnityEngine.UI;
+
 public class MenuSceneManager : Manager
 {
-    // Insert your Editor Variables in this region
     #region Editor Variables
 
     [SerializeField]
@@ -23,11 +22,9 @@ public class MenuSceneManager : Manager
 
     #endregion
 
-    // Insert your Public Variables in this region
     #region Public Variables
     #endregion
 
-    // Insert your Private Variables in this region
     #region Private Variables
 
     GameManager _gameManager;
@@ -70,7 +67,6 @@ public class MenuSceneManager : Manager
 
     #endregion
 
-    // Insert your Unity Methods in this region
     #region Unity Callbacks
 
     private void OnEnable()
