@@ -17,7 +17,8 @@ public class CustomersManager : Manager
     private AnimationCurve spawnRateCurve;
 
     private float _currentTime;
-    private float _currentSpawnRate;
+    private GameSceneManager _gameSceneManager;
+    public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
 
     public override void Initialize()
     {
@@ -27,12 +28,6 @@ public class CustomersManager : Manager
     public override void Shutdown()
     {
     }
-
-    private void Start()
-    {
-        Initialize();
-    }
-
 
     private void OnEnable()
     {
@@ -46,6 +41,9 @@ public class CustomersManager : Manager
 
     private void Update()
     {
+        if (!_gameSceneManager)
+            return;
+
         _currentTime += Time.deltaTime;
 
         float elapsedTime = Time.timeSinceLevelLoad;
@@ -60,7 +58,7 @@ public class CustomersManager : Manager
 
     private void SpawnCustomer() 
     {
-        CustomerController customer = _customerPool.GetCustomerFromPool();
+        CustomerController customer = _customerPool.GetFromPool();
         if (!customer)
             return;
 
@@ -70,6 +68,6 @@ public class CustomersManager : Manager
 
     private void ReleaseCustomer(CustomerController customer) 
     {
-        _customerPool.AddCustomerToPool(customer);
+        _customerPool.ReturnToPool(customer);
     }
 }

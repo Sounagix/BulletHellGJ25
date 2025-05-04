@@ -1,3 +1,5 @@
+using System;
+
 public enum SceneID
 {
     LoadingScene = 0,
@@ -11,4 +13,27 @@ public enum GameState
     Playing,
     Pause,
     GameOver
+}
+
+[Serializable]
+public enum InteractableType 
+{
+    Food,
+    Weapon
+}
+
+[Serializable]
+public enum WeaponType 
+{
+    Knife, 
+    Bomb,
+    Fire
+}
+
+[Serializable]
+public enum FoodType 
+{
+    Burger,
+    Fries,
+    Cake
 }

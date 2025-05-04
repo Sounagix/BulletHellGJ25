@@ -1,0 +1,16 @@
+using System;
+using UnityEngine;
+
+public class WeaponController : InteractableController
+{
+    [SerializeField]
+    private float _attackPower = 0;
+
+    public static event Action<float> OnWeaponHitPlayer;
+    protected override void OnPlayerTouched()
+    {
+        // Apply Damage to Player
+        CustomLog.Log("PLAYER DAMAGE", CustomLogColor.White, "$$$");
+        OnWeaponHitPlayer?.Invoke(_attackPower);
+    }
+}

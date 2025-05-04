@@ -1,52 +1,78 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D _rb;
 
-    [Header("Movement Factors")]
     [SerializeField]
-    private float _movementForce = 1;
+    private MovementStats _movementStats;
 
-    [SerializeField] 
-    private float _maxSpeed = 5;
+    [SerializeField]
+    private float _dashForce = 20f;
 
-    private Vector2 _movementDir;
-    private Vector2 _currentVelocity;
-    // In case we want to slow down the player, we need this
-    private float _currentMaxSpeed = 0;
+    private bool _isDashing = false;
+    private bool _dashRequested = false;
+    private Vector2 _dashDirection;
+    private PlayerManager _playerManager;
 
     #region Input Callbacks
 
-    public void OnMove(InputValue value)
+    public void OnMove(CallbackContext value)
     {
-        _movementDir = value.Get<Vector2>();
+        if (!_playerManager)
+            return;
+
+        _movementStats.MovementDir = value.ReadValue<Vector2>();
+    }
+
+    public void OnSprint()
+    {
+        if (_isDashing || _dashRequested || !_playerManager)
+            return;
+
+        _dashRequested = true;
+        _isDashing = true;
+        _dashDirection = _movementStats.MovementDir.normalized;
     }
 
     #endregion
 
     public void SetUp(PlayerManager playerManager)
     {
-        _currentMaxSpeed = _maxSpeed;
+        _playerManager = playerManager;
+        _movementStats.CurrentMaxSpeed = _movementStats.MaxSpeed;
     }
 
     private void FixedUpdate()
     {
-        if (!_rb)
+        if (!_rb || !_playerManager)
             return;
 
-        _currentVelocity = _rb.linearVelocity;
+        HandleMovementForce();
+    }
 
-        _rb.AddForce(_movementDir * _movementForce, ForceMode2D.Force);
+    private void HandleMovementForce()
+    {
+        _movementStats.CurrentVelocity = _rb.linearVelocity;
+        _rb.AddForce(_movementStats.MovementDir * _movementStats.MovementForce, ForceMode2D.Force);
 
-        if (_rb.linearVelocityX > _currentMaxSpeed)
-            _currentVelocity.x = _currentMaxSpeed;
-        if (_rb.linearVelocityY > _currentMaxSpeed)
-            _currentVelocity.y = _currentMaxSpeed;
+        if (_rb.linearVelocity.magnitude > _movementStats.CurrentMaxSpeed)
+            _rb.linearVelocity = Vector2.ClampMagnitude(_rb.linearVelocity, _movementStats.CurrentMaxSpeed);
+    }
 
-        _rb.linearVelocity = _currentVelocity;
+    // TODO: Dash
+    private void HandleDashForce()
+    {
+        if(_isDashing && _rb.linearVelocity.magnitude <= _movementStats.CurrentMaxSpeed + 0.1f) 
+        {
+            _isDashing = false;
+        }
+        else if (_dashRequested) 
+        {
+            _rb.AddForce(_dashDirection.normalized * _dashForce, ForceMode2D.Impulse);
+            _dashRequested = false;
+        }
     }
 }

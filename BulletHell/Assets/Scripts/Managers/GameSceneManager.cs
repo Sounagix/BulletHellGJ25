@@ -7,6 +7,12 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     private PlayerManager _playerManager;
 
+    [SerializeField]
+    private InteractableManager _interactableManager;
+
+    [SerializeField]
+    private CustomersManager _customersManager;
+
     #endregion
 
     #region Public Variables
@@ -19,7 +25,15 @@ public class GameSceneManager : MonoBehaviour
 
     public void Initialize()
     {
-        _playerManager.SetUp(this);
+        _playerManager.GameSceneManager = this;
+        _playerManager.Initialize();
+
+        _interactableManager.Player = _playerManager;
+        _interactableManager.GameSceneManager = this;
+        _interactableManager.Initialize();
+
+        _customersManager.GameSceneManager = this;
+        _customersManager.Initialize();
     }
 
     public void Shutdown()

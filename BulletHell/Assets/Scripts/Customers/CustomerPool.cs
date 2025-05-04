@@ -1,46 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class CustomerPool : MonoBehaviour
+public class CustomerPool : ObjectPool<CustomerController>
 {
-    [Header("Pool")]
-    [SerializeField]
-    private Transform _poolParent;
+    private List<Transform> _customerPath;
 
-    [SerializeField]
-    [Min(0)]
-    public int _poolSize;
+    public void CreateCustomerPool(List<Transform> customerPath)
+    {
+        _customerPath = customerPath;
+        CreatePool();
+    }
 
-    [SerializeField]
-    public CustomerController _customerPrefab;
-
-    private Queue<CustomerController> _pool = new(); 
-
-    public void CreateCustomerPool(List<Transform> customerPath) 
+    public override void CreatePool()
     {
         for (int i = 0; i < _poolSize; i++)
         {
-            CustomerController customer = Instantiate(_customerPrefab, _poolParent);
-            customer.SetUp(customerPath);
+            CustomerController customer = Instantiate(_prefab, _poolParent);
+            customer.SetUp(_customerPath);
             customer.gameObject.SetActive(false);
             _pool.Enqueue(customer);
         }
-    }
-
-    public CustomerController GetCustomerFromPool()
-    {
-        if (_pool.Count == 0)
-            return null;
-
-        CustomerController customer = _pool.Dequeue();
-        customer.gameObject.SetActive(true);
-        return customer;
-    }
-
-    public void AddCustomerToPool(CustomerController customer)
-    {
-        customer.gameObject.SetActive(false);
-        _pool.Enqueue(customer);
     }
 }

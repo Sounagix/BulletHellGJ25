@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour, IDamageable
+public class PlayerManager : Manager, IDamageable
 {
     #region Static/Const Variables
 
@@ -25,33 +26,45 @@ public class PlayerManager : MonoBehaviour, IDamageable
     private float _heartBeatHealthThreshHold;
 
     private GameSceneManager _gameSceneManager;
+    public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
+
     private Vector3 _initialPos;
     private Quaternion _initialRotation;
     private Vector3 _initialScale;
 
-    public void SetUp(GameSceneManager gpManager)
+    private Queue<FoodType> _inventory;
+    public Queue<FoodType> Inventory;
+
+    public override void Initialize()
     {
+        if (_isInitialized)
+            return;
+
         _damageableStats.CurrentHP = _damageableStats.MaxHP;
         _initialPos = transform.position;
         _initialRotation = transform.rotation;
         _initialScale = transform.localScale;
 
-        _gameSceneManager = gpManager;
-
         _playerController.SetUp(this/*, playerSFXController*/);
         //playerSFXController.PlaySpawnPlayer();
+
+        _isInitialized = true;
+    }
+
+    public override void Shutdown()
+    {
     }
 
     #region Unity Callbacks
 
     private void OnEnable()
     {
-        //ProjectileController.OnPlayerHit += ReceiveDamage;
+        WeaponController.OnWeaponHitPlayer += OnReceiveDamage;
     }
 
     private void OnDisable()
     {
-        //ProjectileController.OnPlayerHit -= ReceiveDamage;
+        WeaponController.OnWeaponHitPlayer -= OnReceiveDamage;
     }
 
     #endregion
@@ -81,10 +94,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         }
 
         if (_damageableStats.CurrentHP <= 0)
-        {
-            _damageableStats.CurrentHP = 0;
             StartCoroutine(_gameSceneManager.GameOver());
-        }
     }
 
     public void OnReceiveHealth(float amount)
