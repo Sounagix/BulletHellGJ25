@@ -35,7 +35,8 @@ public enum FoodType
 {
     Burger,
     Fries,
-    Cake
+    Cake,
+    Hotdog,
 }
 
 [Serializable]

@@ -6,6 +6,9 @@ public class FoodSpawnPoint : MonoBehaviour
     [SerializeField]
     private SpawnRate _spawnRateRange;
 
+    [SerializeField]
+    private float _spinSpeed;
+
     private float _currentFoodTime;
     private float _spawnFoodEveryThisSeconds;
     private InteractablePool _foodPool;
@@ -22,6 +25,8 @@ public class FoodSpawnPoint : MonoBehaviour
             return;
 
         SpawnFood();
+
+        transform.Rotate(Vector3.forward, _spinSpeed * Time.deltaTime);
     }
 
     private void SpawnFood()
