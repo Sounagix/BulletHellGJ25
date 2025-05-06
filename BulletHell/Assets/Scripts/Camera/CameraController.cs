@@ -7,13 +7,6 @@ using UnityEngine.Rendering.Universal;
 
 public class CameraController : MonoBehaviour
 {
-    [Serializable]
-    public struct Resolution
-    {
-        public float width;
-        public float height;
-    }
-
     [SerializeField]
     private float defaultSize;
 

@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class CustomerPool : ObjectPool<CustomerController>
 {
-    private List<Transform> _customerPath;
-
-    public void CreateCustomerPool(List<Transform> customerPath)
+    private Transform _playerTr;
+    public void CreateCustomerPool(Transform playerTr)
     {
-        _customerPath = customerPath;
+        _playerTr = playerTr;
         CreatePool();
     }
 
@@ -16,7 +15,7 @@ public class CustomerPool : ObjectPool<CustomerController>
         for (int i = 0; i < _poolSize; i++)
         {
             CustomerController customer = Instantiate(_prefab, _poolParent);
-            customer.SetUp(_customerPath);
+            customer.SetUp(_playerTr);
             customer.gameObject.SetActive(false);
             _pool.Enqueue(customer);
         }

@@ -10,7 +10,6 @@ public class WeaponController : InteractableController
     protected override void OnPlayerTouched()
     {
         // Apply Damage to Player
-        CustomLog.Log("PLAYER DAMAGE", CustomLogColor.White, "$$$");
         OnWeaponHitPlayer?.Invoke(_attackPower);
     }
 }

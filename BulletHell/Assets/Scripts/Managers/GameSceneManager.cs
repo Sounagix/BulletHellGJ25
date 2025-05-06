@@ -8,7 +8,7 @@ public class GameSceneManager : MonoBehaviour
     private PlayerManager _playerManager;
 
     [SerializeField]
-    private InteractableManager _interactableManager;
+    private InteractableSpawnManager _interactableManager;
 
     [SerializeField]
     private CustomersManager _customersManager;
@@ -33,6 +33,7 @@ public class GameSceneManager : MonoBehaviour
         _interactableManager.Initialize();
 
         _customersManager.GameSceneManager = this;
+        _customersManager.PlayerTr = _playerManager.transform;
         _customersManager.Initialize();
     }
 

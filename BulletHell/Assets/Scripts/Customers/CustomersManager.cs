@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class CustomersManager : Manager
 {
+    [Header("Customer Pool")]
     [SerializeField]
     private CustomerPool _customerPool;
-
-    [SerializeField]
-    private Transform _customerStartingPoint;
-
-    [SerializeField]
-    private List<Transform> _customerPath;
 
     [SerializeField]
     private AnimationCurve spawnRateCurve;
@@ -19,13 +14,41 @@ public class CustomersManager : Manager
     [SerializeField]
     private List<CustomerRenderer> _customerRenderers;
 
+    [Header("Customer Spots")]
+    [SerializeField]
+    private Transform _startingPoint;
+
+    [SerializeField]
+    private Grid _spotGrid;
+
+    [SerializeField]
+    private GameObject _customerSpotPrefab;
+
+    [SerializeField]
+    private int _spotsToCreate;
+
     private float _currentTime;
     private GameSceneManager _gameSceneManager;
     public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
+    private Queue<GameObject> _freeSpots = new();
+    private Transform _playerTr;
+    public Transform PlayerTr { set { _playerTr = value; } }
 
     public override void Initialize()
     {
-        _customerPool.CreateCustomerPool(_customerPath);
+        _customerPool.CreateCustomerPool(_playerTr);
+        InitializeCustomerSpots();
+    }
+
+    private void InitializeCustomerSpots()
+    {
+        for (int i = 0; i < _spotsToCreate; i++)
+        {
+            Vector3Int cellPosition = _spotGrid.WorldToCell(_spotGrid.transform.position) + new Vector3Int(i, 0, 0);
+            Vector3 worldPosition = _spotGrid.GetCellCenterWorld(cellPosition);
+            GameObject spot = Instantiate(_customerSpotPrefab, worldPosition, Quaternion.identity, _spotGrid.transform);
+            _freeSpots.Enqueue(spot);
+        }
     }
 
     public override void Shutdown()
@@ -35,11 +58,13 @@ public class CustomersManager : Manager
     private void OnEnable()
     {
         CustomerController.OnCustomerFinished += ReleaseCustomer;
+        CustomerController.OnCustomerUnstable += OnCustomerUnstable;
     }
 
     private void OnDisable()
     {
         CustomerController.OnCustomerFinished -= ReleaseCustomer;
+        CustomerController.OnCustomerUnstable -= OnCustomerUnstable;
     }
 
     private void Update()
@@ -61,17 +86,28 @@ public class CustomersManager : Manager
 
     private void SpawnCustomer()
     {
+        if (_freeSpots.Count == 0)
+            return;
+
         CustomerController customer = _customerPool.GetFromPool();
+
         if (!customer)
             return;
 
         CustomerRenderer renderer = _customerRenderers[UnityEngine.Random.Range(0, _customerRenderers.Count)];
-        customer.ResetCustomer(_customerStartingPoint.position, renderer);
-        customer.UpdateMoveDir();
+        GameObject spot = _freeSpots.Dequeue();
+
+        customer.ResetCustomer(_startingPoint.position, renderer, spot.transform);
+        customer.UpdateTargetPos(spot.transform.position);
     }
 
     private void ReleaseCustomer(CustomerController customer)
     {
         _customerPool.ReturnToPool(customer);
+    }
+
+    private void OnCustomerUnstable(GameObject freeSpot)
+    {
+        _freeSpots.Enqueue(freeSpot);
     }
 }

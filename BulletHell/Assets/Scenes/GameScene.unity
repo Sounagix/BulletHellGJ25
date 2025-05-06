@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 320816972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.06, y: 2.18, z: 0}
+  m_LocalPosition: {x: -13.37, y: 2.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 567028118}
-  - component: {fileID: 567028117}
+  - component: {fileID: 567028119}
   m_Layer: 0
   m_Name: InteractableManager
   m_TagString: Untagged
@@ -294,74 +294,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &567028117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567028116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91501214f29fc664cb4aa93eb82e1f67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponPool: {fileID: 1596449794}
-  _weaponSpawnRateCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.011604915
-      value: 1.5065479
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9923237
-      value: 0.69662815
-      inSlope: -2.0874949
-      outSlope: -2.0874949
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.07220873
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _weaponSpawnPoints:
-  - {fileID: 1399299366}
-  - {fileID: 1469141881}
-  _foodPool: {fileID: 320816974}
-  _foodSpawnRateCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.38113403
-      value: 3.002182
-      inSlope: -0.00551545
-      outSlope: -0.00551545
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.066248894
-    - serializedVersion: 3
-      time: 60.027317
-      value: 0.9815331
-      inSlope: -0.059245124
-      outSlope: -0.059245124
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.055456266
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _foodSpawnPoints:
-  - {fileID: 784362478}
-  - {fileID: 1930947685}
 --- !u!4 &567028118
 Transform:
   m_ObjectHideFlags: 0
@@ -377,6 +309,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &567028119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567028116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91501214f29fc664cb4aa93eb82e1f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponPool: {fileID: 1596449794}
+  _weaponSpawnPoints:
+  - {fileID: 1399299368}
+  - {fileID: 1469141883}
+  _foodPool: {fileID: 320816974}
+  _foodSpawnPoints:
+  - {fileID: 784362480}
+  - {fileID: 1930947687}
 --- !u!1 &584152302
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 784362478}
+  - component: {fileID: 784362480}
   - component: {fileID: 784362479}
   m_Layer: 0
   m_Name: FoodSpawnPoint1
@@ -912,6 +865,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &784362480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784362477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e5ffbafc8f4ef4aa1ce637775a4f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRateRange:
+    MinRate: 1
+    MaxRate: 2
 --- !u!1 &857886024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerManager: {fileID: 1466851744}
-  _interactableManager: {fileID: 567028117}
+  _interactableManager: {fileID: 567028119}
   _customersManager: {fileID: 1386490420}
 --- !u!4 &1354117303
 Transform:
@@ -1744,6 +1712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399299366}
+  - component: {fileID: 1399299368}
   - component: {fileID: 1399299367}
   m_Layer: 0
   m_Name: WeaponSpawnPoint1
@@ -1822,6 +1791,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1399299368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399299365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596cc688fa211da41b7a71a65e1ce5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRateRange:
+    MinRate: 0.5
+    MaxRate: 2
+  _spawnCount: 5
 --- !u!1 &1440887319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1469141881}
+  - component: {fileID: 1469141883}
   - component: {fileID: 1469141882}
   m_Layer: 0
   m_Name: WeaponSpawnPoint2
@@ -2258,6 +2244,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1469141883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469141880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596cc688fa211da41b7a71a65e1ce5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRateRange:
+    MinRate: 0.1
+    MaxRate: 2
+  _spawnCount: 1
 --- !u!1 &1484363418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1930947685}
+  - component: {fileID: 1930947687}
   - component: {fileID: 1930947686}
   m_Layer: 0
   m_Name: FoodSpawnPoint2
@@ -2956,6 +2959,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1930947687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930947684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e5ffbafc8f4ef4aa1ce637775a4f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnRateRange:
+    MinRate: 1
+    MaxRate: 2
 --- !u!1 &1969893324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3258,11 +3276,11 @@ SceneRoots:
   - {fileID: 567028118}
   - {fileID: 584152303}
   - {fileID: 1440887320}
-  - {fileID: 320816973}
   - {fileID: 1596449793}
+  - {fileID: 320816973}
   - {fileID: 1092703654}
-  - {fileID: 932520353}
   - {fileID: 518739388}
+  - {fileID: 932520353}
   - {fileID: 1741711562}
   - {fileID: 153822130979508564}
   - {fileID: 3789508663669352887}

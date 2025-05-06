@@ -1,13 +1,6 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public struct LifeTimeRange
-{
-    public float MinLifeTimeSec;
-    public float MaxLifeTimeSec;
-}
-
 public class InteractableController : MonoBehaviour
 {
     public static event Action<InteractableController> OnBackToThePool;
@@ -37,10 +30,14 @@ public class InteractableController : MonoBehaviour
     private float _currentLifeTime;
     private float _currentTime = 0;
     private bool _isActive = false;
+    private Quaternion _originalRotation;
+    private Vector3 _originalScale;
 
     public virtual void SetUp() 
     {
         _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
+        _originalRotation =  transform.rotation;
+        _originalScale = transform.localScale;
     }
 
     public virtual void OnInteract()
@@ -77,11 +74,14 @@ public class InteractableController : MonoBehaviour
     {
         _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
         transform.position = spawnPoint;
+        transform.rotation = _originalRotation;
+        transform.localScale = _originalScale;
+
         _currentTime = 0;
         _isActive = true;
     }
 
-    public virtual void UpdateMoveDir(Vector2 target) 
+    public virtual void UpdateTargetPosition(Vector2 target) 
     {
         _movementStats.MovementDir = target - (Vector2)transform.position;
     }

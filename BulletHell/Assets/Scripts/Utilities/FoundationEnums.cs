@@ -37,3 +37,11 @@ public enum FoodType
     Fries,
     Cake
 }
+
+[Serializable]
+public enum CustomerState
+{
+    Spawned,
+    Normal,
+    Unstable
+}

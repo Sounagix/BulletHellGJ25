@@ -140,7 +140,7 @@ MonoBehaviour:
     MaxLifeTimeSec: 6
   _rb: {fileID: 1922652757301987863}
   _movementStats:
-    _movementForce: 5
+    _movementForce: 3
     _maxSpeed: 0
     MovementDir: {x: 0, y: 0}
     CurrentVelocity: {x: 0, y: 0}
