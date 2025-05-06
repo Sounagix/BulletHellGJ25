@@ -16,6 +16,9 @@ public class CustomersManager : Manager
     [SerializeField]
     private AnimationCurve spawnRateCurve;
 
+    [SerializeField]
+    private List<CustomerRenderer> _customerRenderers;
+
     private float _currentTime;
     private GameSceneManager _gameSceneManager;
     public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
@@ -56,17 +59,18 @@ public class CustomersManager : Manager
         SpawnCustomer();
     }
 
-    private void SpawnCustomer() 
+    private void SpawnCustomer()
     {
         CustomerController customer = _customerPool.GetFromPool();
         if (!customer)
             return;
 
-        customer.ResetCustomer(_customerStartingPoint.position);
+        CustomerRenderer renderer = _customerRenderers[UnityEngine.Random.Range(0, _customerRenderers.Count)];
+        customer.ResetCustomer(_customerStartingPoint.position, renderer);
         customer.UpdateMoveDir();
     }
 
-    private void ReleaseCustomer(CustomerController customer) 
+    private void ReleaseCustomer(CustomerController customer)
     {
         _customerPool.ReturnToPool(customer);
     }

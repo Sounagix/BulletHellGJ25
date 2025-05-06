@@ -250,7 +250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.27, y: 0.84}
   m_SizeDelta: {x: 1.1536, y: 0.3645}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3423824176653715121
@@ -367,6 +367,7 @@ MonoBehaviour:
   _foodText: {fileID: 8629017131634905069}
   moveSpeed: 2
   _rb: {fileID: 6406933311773378230}
+  _renderer: {fileID: 4968655536250125638}
 --- !u!50 &6406933311773378230
 Rigidbody2D:
   serializedVersion: 5
@@ -471,8 +472,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1678692586084557711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -520,7 +521,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -8353291681111097859, guid: f7e3c7e5591e1cb4a911691ac6912585, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

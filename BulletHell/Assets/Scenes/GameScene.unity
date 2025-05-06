@@ -1713,6 +1713,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _customerRenderers:
+  - NormalState: {fileID: -8353291681111097859, guid: f7e3c7e5591e1cb4a911691ac6912585, type: 3}
+    UnstableState: {fileID: 8485336935878095667, guid: c54fff52b09f9af40abe7301417b71ea, type: 3}
+  - NormalState: {fileID: -3132435245028089860, guid: a96047cb92d178a49b8b1deb17f8c358, type: 3}
+    UnstableState: {fileID: -4464805924192486262, guid: 79f940421870088489ecc955df573e7b, type: 3}
+  - NormalState: {fileID: -7649671235843398279, guid: d875600038cef43419cea4372ba8b833, type: 3}
+    UnstableState: {fileID: -8369974821779752268, guid: 92b29556513f99b45b0761eae5e8e515, type: 3}
 --- !u!4 &1386490421
 Transform:
   m_ObjectHideFlags: 0
