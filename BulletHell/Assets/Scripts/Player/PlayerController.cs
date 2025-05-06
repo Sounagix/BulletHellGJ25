@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event System.Action OnPlayerMouseLeftClickedDown;
+    public static event System.Action OnPlayerMouseLeftClickedUp;
+
     [SerializeField]
     private Rigidbody2D _rb;
 
@@ -25,6 +29,18 @@ public class PlayerController : MonoBehaviour
             return;
 
         _movementStats.MovementDir = value.ReadValue<Vector2>();
+    }
+
+    public void OnMouseLeftDown(CallbackContext value)
+    {
+        if (!_playerManager)
+            return;
+
+        if (value.phase == InputActionPhase.Performed)
+            OnPlayerMouseLeftClickedDown?.Invoke();
+
+        if (value.phase == InputActionPhase.Canceled)
+            OnPlayerMouseLeftClickedUp?.Invoke();
     }
 
     public void OnSprint()
