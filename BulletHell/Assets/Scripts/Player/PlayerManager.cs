@@ -6,7 +6,7 @@ public class PlayerManager : Manager, IDamageable
 {
     #region Static/Const Variables
 
-    public static event Action<float, bool> OnPlayerTakeDamage;
+    public static event Action OnPlayerTakeDamage;
     public static event Action<float, bool> OnPlayerHealed;
 
     #endregion
@@ -17,7 +17,8 @@ public class PlayerManager : Manager, IDamageable
 
     [SerializeField]
     private DamageableStats _damageableStats;
-
+    public DamageableStats DamageableStats { get { return _damageableStats; }
+    }
     [SerializeField]
     private PlayerSFXController playerSFXController;
 
@@ -90,7 +91,7 @@ public class PlayerManager : Manager, IDamageable
 
         if (damage > 0)
         {
-            OnPlayerTakeDamage?.Invoke(damage, isLowHealth);
+            OnPlayerTakeDamage?.Invoke();
         }
 
         if (_damageableStats.CurrentHP <= 0)

@@ -4,7 +4,7 @@ using UnityEngine;
 public class WeaponController : InteractableController
 {
     [SerializeField]
-    private float _attackPower = 0;
+    private float _attackPower = 1;
 
     public static event Action<float> OnWeaponHitPlayer;
     protected override void OnPlayerTouched()

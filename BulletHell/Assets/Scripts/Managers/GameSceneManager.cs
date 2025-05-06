@@ -13,6 +13,9 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     private CustomersManager _customersManager;
 
+    [SerializeField]
+    private HUDManager _hudManager;
+
     #endregion
 
     #region Public Variables
@@ -35,6 +38,9 @@ public class GameSceneManager : MonoBehaviour
         _customersManager.GameSceneManager = this;
         _customersManager.PlayerTr = _playerManager.transform;
         _customersManager.Initialize();
+
+        _hudManager.Player = _playerManager;
+        _hudManager.Initialize();
     }
 
     public void Shutdown()

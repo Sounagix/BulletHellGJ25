@@ -42,8 +42,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _LifePoints: 10
-    - _MaxLifePoints: 10
+    - _LifePoints: 0
+    - _MaxLifePoints: 20
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 0.34823585, g: 1, b: 0, a: 1}
