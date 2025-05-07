@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0.854902, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -152,6 +152,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _attackPower: 1
+  _weaponsObjects:
+  - {fileID: 11400000, guid: 949b0f029d1f87f46a76e79a9a7feb63, type: 2}
+  - {fileID: 11400000, guid: a3ea19b96a54633408b5338746f3fa0f, type: 2}
+  - {fileID: 11400000, guid: b23bc06dbc8c6584abb4c596afaf8335, type: 2}
 --- !u!50 &1922652757301987863
 Rigidbody2D:
   serializedVersion: 5

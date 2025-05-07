@@ -27,7 +27,10 @@ public enum WeaponType
 {
     Knife, 
     Bomb,
-    Fire
+    Fire,
+    Fish,
+    dumbbell,
+    Sneakers,
 }
 
 [Serializable]

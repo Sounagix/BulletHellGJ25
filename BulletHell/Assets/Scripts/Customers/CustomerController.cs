@@ -138,7 +138,9 @@ public class CustomerController : MonoBehaviour
         if (_currentFoodType.Equals(foodType))
         {
             _currentState = CustomerState.Served;
+            
             // Reset customer? -> mover al customer a la salida?
+            
             Destroy(gameObject);
         }
         else
