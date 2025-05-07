@@ -44,5 +44,6 @@ public enum CustomerState
 {
     Spawned,
     Normal,
-    Unstable
+    Unstable,
+    Served,
 }

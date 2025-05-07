@@ -132,4 +132,18 @@ public class CustomerController : MonoBehaviour
 
         _foodText.text = _currentFoodType.ToString();
     }
+
+    public void GetServed(FoodType foodType)
+    {
+        if (_currentFoodType.Equals(foodType))
+        {
+            _currentState = CustomerState.Served;
+            // Reset customer? -> mover al customer a la salida?
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Aumentar niveles de inestabilidad?
+        }
+    }
 }
