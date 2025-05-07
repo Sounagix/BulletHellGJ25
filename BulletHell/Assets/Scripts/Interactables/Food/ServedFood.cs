@@ -13,4 +13,14 @@ public class ServedFood : MonoBehaviour
         _foodType = throweableFood._fOOD_tYPE;
         _spriteRenderer.sprite = throweableFood._sprite;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CustomerController cC = collision.GetComponent<CustomerController>();
+        if (cC != null)
+        {
+            cC.GetServed(_foodType);
+            Destroy(gameObject);
+        }
+    }
 }
