@@ -133,13 +133,13 @@ public class CustomerController : MonoBehaviour
         _foodText.text = _currentFoodType.ToString();
     }
 
-    public void GetServed(FoodType foodType)
+    public void DeliverFood(FoodType foodType)
     {
         if (_currentFoodType.Equals(foodType))
         {
             _currentState = CustomerState.Served;
             // Reset customer? -> mover al customer a la salida?
-            Destroy(gameObject);
+            OnCustomerFinished?.Invoke(this);
         }
         else
         {

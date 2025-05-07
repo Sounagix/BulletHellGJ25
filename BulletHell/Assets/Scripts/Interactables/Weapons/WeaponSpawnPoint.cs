@@ -25,7 +25,7 @@ public class WeaponSpawnPoint : MonoBehaviour
 
     private void Update()
     {
-        if (!_weaponPool || !_player)
+        if (!_weaponPool || !_player || _spawnCount == 0)
             return;
 
         SpawnWeapon();

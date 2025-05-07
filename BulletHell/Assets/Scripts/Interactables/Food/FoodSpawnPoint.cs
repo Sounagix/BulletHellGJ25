@@ -9,6 +9,9 @@ public class FoodSpawnPoint : MonoBehaviour
     [SerializeField]
     private float _spinSpeed;
 
+    [SerializeField]
+    private ThroweableFood[] _foodData;
+
     private float _currentFoodTime;
     private float _spawnFoodEveryThisSeconds;
     private InteractablePool _foodPool;
@@ -38,13 +41,14 @@ public class FoodSpawnPoint : MonoBehaviour
 
         _currentFoodTime = 0;
 
-        InteractableController food = _foodPool.GetFromPool();
+        FoodController food = (FoodController)_foodPool.GetFromPool();
 
-        if (!food)
+        if (!food || _foodData.Length == 0)
             return;
 
-        food.ResetObject(transform.position);
+        ThroweableFood foodSO = _foodData[Random.Range(0, _foodData.Length)];
+        food.ResetObject(transform.position, isPlayerOwner: false, foodSO);
         Vector2 randomDir = Random.insideUnitCircle.normalized;
-        food.UpdateTargetPosition(Vector2.zero);
+        food.UpdateTargetPosition(randomDir);
     }
 }

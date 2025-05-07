@@ -10,7 +10,7 @@ public class InventoryHUD : MonoBehaviour
     [SerializeField]
     private Image[] _foodImages;
 
-    public void SetUp() 
+    public void SetUp()
     {
         OnReset();
     }
@@ -41,12 +41,12 @@ public class InventoryHUD : MonoBehaviour
         for (int i = _numOfFoodInInventory - 1; i > 0; i--)
         {
             Image image = _foodImages[i];
-            image.color = new Color(1, 1, 1, 1);
+            image.gameObject.SetActive(true);
             image.sprite = _foodImages[i - 1].sprite;
 
         }
         _foodImages[0].sprite = sprite;
-        _foodImages[0].color = new Color(1, 1, 1, 1);
+        _foodImages[0].gameObject.SetActive(true);
     }
 
     private void RemoveLastImg()
@@ -57,8 +57,7 @@ public class InventoryHUD : MonoBehaviour
         }
 
         Image image = _foodImages[_numOfFoodInInventory - 1];
-        image.color = new Color(1, 1, 1, 0);
-        image.sprite = null;
+        image.gameObject.SetActive(false);
         _numOfFoodInInventory--;
     }
 
@@ -66,10 +65,7 @@ public class InventoryHUD : MonoBehaviour
     {
         _numOfFoodInInventory = 0;
 
-        foreach (Image image in _foodImages) 
-        {
-            image.color = new Color(1, 1, 1, 0);
-            image.sprite = null;
-        }
+        foreach (Image image in _foodImages)
+            image.gameObject.SetActive(false);
     }
 }

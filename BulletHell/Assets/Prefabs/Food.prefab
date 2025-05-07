@@ -53,8 +53,8 @@ MonoBehaviour:
     MaxLifeTimeSec: 6
   _rb: {fileID: 6103012013203368869}
   _movementStats:
-    _movementForce: 1
-    _maxSpeed: 3
+    MovementForce: 3
+    _maxSpeed: 0
     MovementDir: {x: 0, y: 0}
     CurrentVelocity: {x: 0, y: 0}
     CurrentMaxSpeed: 0
@@ -64,11 +64,7 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 2048
-  _foodObjects:
-  - {fileID: 11400000, guid: 391c2d53856478c4cbbfe86af1c33f7a, type: 2}
-  - {fileID: 11400000, guid: c2c4c92f7ef89b649b5cac37d0c2514b, type: 2}
-  - {fileID: 11400000, guid: 4d15991feb4476f469e48ed65e0cb5b2, type: 2}
-  - {fileID: 11400000, guid: 659c5c2cd73b65c498dd40c2da267e26, type: 2}
+  _spriteRenderer: {fileID: 3142213787491780875}
 --- !u!50 &6103012013203368869
 Rigidbody2D:
   serializedVersion: 5

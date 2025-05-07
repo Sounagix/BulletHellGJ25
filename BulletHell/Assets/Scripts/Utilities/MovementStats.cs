@@ -5,8 +5,7 @@ using UnityEngine;
 public struct MovementStats
 {
     [SerializeField]
-    private float _movementForce;
-    public float MovementForce { get { return _movementForce; } }
+    public float MovementForce;
 
     [SerializeField]
     private float _maxSpeed;

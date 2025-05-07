@@ -3,20 +3,16 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
+    [SerializeField]
     private LineRenderer _lineRenderer;
 
+    [SerializeField]
+    private float _projectileForce;
+
+    [SerializeField]
+    private InteractablePool _foodPool;
+
     private bool _active = false;
-
-    [SerializeField]
-    private ServedFood _foodPrefab;
-
-    [SerializeField]
-    private float _projectileSpeed;
-
-    private void Awake()
-    {
-        _lineRenderer = GetComponent<LineRenderer>();
-    }
 
     private void OnEnable()
     {
@@ -31,7 +27,6 @@ public class PlayerGun : MonoBehaviour
         PlayerController.OnPlayerMouseLeftClickedUp -= OnMouseLeftClickedUp;
         InventoryManager.EventShootFood -= OnShootFood;
     }
-
 
     private void Update()
     {
@@ -56,11 +51,13 @@ public class PlayerGun : MonoBehaviour
         _lineRenderer.enabled = true;
     }
 
-    private void OnShootFood(ThroweableFood food)
+    private void OnShootFood(ThroweableFood throweableFood)
     {
-        GameObject currentFood = Instantiate(_foodPrefab.gameObject, transform.position, Quaternion.identity);
+        FoodController food = (FoodController)_foodPool.GetFromPool();
+        food.ResetObject(transform.position, isPlayerOwner: true, throweableFood);
+
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = (mousePos - transform.position).normalized;
-        currentFood.GetComponent<ServedFood>().SetUp(food, dir, _projectileSpeed);
+        food.UpdateTargetPosition(mousePos);
+        food.UpdateProjectileForce(_projectileForce);
     }
 }
