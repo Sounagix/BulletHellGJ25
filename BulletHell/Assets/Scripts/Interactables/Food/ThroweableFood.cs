@@ -4,5 +4,5 @@ using UnityEngine;
 public class ThroweableFood : ThroweableObject
 {
     [SerializeField]
-    public FoodType _fOOD_tYPE;
+    public FoodType FoodType;
 }

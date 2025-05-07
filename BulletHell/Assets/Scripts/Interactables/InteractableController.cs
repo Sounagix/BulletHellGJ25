@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InteractableController : MonoBehaviour
+public abstract class InteractableController : MonoBehaviour
 {
     public static event Action<InteractableController> OnBackToThePool;
 
@@ -19,13 +19,13 @@ public class InteractableController : MonoBehaviour
     [SerializeField]
     private MovementStats _movementStats;
 
-    [SerializeField] 
+    [SerializeField]
     LayerMask _borderLayer;
-    
-    [SerializeField] 
+
+    [SerializeField]
     LayerMask _playerLayer;
 
-    public MovementStats MovementStats { get { return _movementStats; } }
+    public MovementStats MovementStats { get { return _movementStats; } set { _movementStats = value; } }
 
     private float _currentLifeTime;
     private float _currentTime = 0;
@@ -33,14 +33,14 @@ public class InteractableController : MonoBehaviour
     private Quaternion _originalRotation;
     private Vector3 _originalScale;
 
-    public virtual void SetUp() 
+    public virtual void SetUp()
     {
         _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
-        _originalRotation =  transform.rotation;
+        _originalRotation = transform.rotation;
         _originalScale = transform.localScale;
     }
 
-    public virtual void OnInteract()
+    protected virtual void OnInteract()
     {
         // Back to the pool
         _isActive = false;
@@ -49,15 +49,14 @@ public class InteractableController : MonoBehaviour
 
     #region Unity Callbacks
 
-    public virtual void Update() 
+    public virtual void Update()
     {
         _currentTime += Time.deltaTime;
         if (_currentTime < _currentLifeTime || !_isActive)
             return;
 
         // Return to the pool
-        _isActive = false;
-        OnBackToThePool?.Invoke(this);
+        OnInteract();
     }
 
     private void FixedUpdate()
@@ -70,7 +69,7 @@ public class InteractableController : MonoBehaviour
     }
 
     #endregion
-    public virtual void ResetObject(Vector2 spawnPoint) 
+    public virtual void ResetObject(Vector2 spawnPoint)
     {
         _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
         transform.position = spawnPoint;
@@ -81,18 +80,23 @@ public class InteractableController : MonoBehaviour
         _isActive = true;
     }
 
-    public virtual void UpdateTargetPosition(Vector2 target) 
+    public virtual void UpdateTargetPosition(Vector2 target)
     {
         _movementStats.MovementDir = target - (Vector2)transform.position;
+    }
+
+    public virtual void UpdateProjectileForce(float newForce)
+    {
+        _movementStats.MovementForce = newForce;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         int mask = 1 << collision.gameObject.layer;
-        if((mask & _playerLayer) != 0) 
+        if ((mask & _playerLayer) != 0)
         {
             OnPlayerTouched();
-            OnBackToThePool?.Invoke(this);
+            OnInteract();
         }
     }
 
@@ -108,12 +112,9 @@ public class InteractableController : MonoBehaviour
         else if ((mask & _playerLayer) != 0)
         {
             OnPlayerTouched();
-            OnBackToThePool?.Invoke(this);
+            OnInteract();
         }
     }
 
-    protected virtual void OnPlayerTouched() 
-    {
-        
-    }
+    protected abstract void OnPlayerTouched();
 }
