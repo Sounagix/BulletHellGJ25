@@ -2,17 +2,18 @@ using NUnit.Framework;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class InventoryHUD : MonoBehaviour
 {
     private int _numOfFoodInInventory = 0;
 
     [SerializeField]
-    private UnityEngine.UI.Image[] _foodImages;
+    private Image[] _foodImages;
 
-    [SerializeField]
-    private Sprite _emptySlotImg;
+    public void SetUp() 
+    {
+        OnReset();
+    }
 
     private void OnEnable()
     {
@@ -39,9 +40,13 @@ public class InventoryHUD : MonoBehaviour
     {
         for (int i = _numOfFoodInInventory - 1; i > 0; i--)
         {
-            _foodImages[i].sprite = _foodImages[i - 1].sprite;
+            Image image = _foodImages[i];
+            image.color = new Color(1, 1, 1, 1);
+            image.sprite = _foodImages[i - 1].sprite;
+
         }
         _foodImages[0].sprite = sprite;
+        _foodImages[0].color = new Color(1, 1, 1, 1);
     }
 
     private void RemoveLastImg()
@@ -51,7 +56,20 @@ public class InventoryHUD : MonoBehaviour
             _foodImages[i].sprite = _foodImages[i + 1].sprite;
         }
 
-        _foodImages[_numOfFoodInInventory - 1].sprite = _emptySlotImg;
+        Image image = _foodImages[_numOfFoodInInventory - 1];
+        image.color = new Color(1, 1, 1, 0);
+        image.sprite = null;
         _numOfFoodInInventory--;
+    }
+
+    public void OnReset()
+    {
+        _numOfFoodInInventory = 0;
+
+        foreach (Image image in _foodImages) 
+        {
+            image.color = new Color(1, 1, 1, 0);
+            image.sprite = null;
+        }
     }
 }

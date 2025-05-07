@@ -6,7 +6,7 @@ public class PlayerManager : Manager, IDamageable
 {
     #region Static/Const Variables
 
-    public static event Action OnPlayerTakeDamage;
+    public static event Action<float> OnPlayerTakeDamage;
     public static event Action<float, bool> OnPlayerHealed;
 
     #endregion
@@ -20,7 +20,7 @@ public class PlayerManager : Manager, IDamageable
     public DamageableStats DamageableStats { get { return _damageableStats; }
     }
     [SerializeField]
-    private PlayerSFXController playerSFXController;
+    private PlayerSFXController _playerSFXController;
 
     [SerializeField]
     [Range(0, 1)]
@@ -91,7 +91,7 @@ public class PlayerManager : Manager, IDamageable
 
         if (damage > 0)
         {
-            OnPlayerTakeDamage?.Invoke();
+            OnPlayerTakeDamage?.Invoke(_damageableStats.CurrentHP);
         }
 
         if (_damageableStats.CurrentHP <= 0)
@@ -120,8 +120,8 @@ public class PlayerManager : Manager, IDamageable
 
     public void StartDeathAnimation()
     {
-        playerSFXController.StopHeartBeat();
-        playerSFXController.PlayPlayerDeathSFX();
+        _playerSFXController.StopHeartBeat();
+        _playerSFXController.PlayPlayerDeathSFX();
     }
 
     public float HPPercentage()
