@@ -151,7 +151,7 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 2048
-  _attackPower: 0
+  _attackPower: 1
 --- !u!50 &1922652757301987863
 Rigidbody2D:
   serializedVersion: 5
