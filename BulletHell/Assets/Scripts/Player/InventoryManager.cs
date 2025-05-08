@@ -31,6 +31,7 @@ public class InventoryManager : MonoBehaviour
         if (_foodStack.Count < _maxNumFood)
         {
             _foodStack.Push(throweableFood);
+            GlowOnPick.OnGlowActive?.Invoke();
         }
     }
 

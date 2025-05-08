@@ -25,6 +25,12 @@ public abstract class InteractableController : MonoBehaviour
     [SerializeField]
     LayerMask _playerLayer;
 
+    [SerializeField]
+    protected Gradient _trailColor;
+
+    [SerializeField]
+    private TrailRenderer _trailRenderer;
+
     public MovementStats MovementStats { get { return _movementStats; } set { _movementStats = value; } }
 
     private float _currentLifeTime;
@@ -38,6 +44,7 @@ public abstract class InteractableController : MonoBehaviour
         _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
         _originalRotation = transform.rotation;
         _originalScale = transform.localScale;
+        _trailRenderer.colorGradient = _trailColor;
     }
 
     protected virtual void OnInteract()

@@ -83,6 +83,9 @@ public class PlayerManager : Manager, IDamageable
 
     public void OnReceiveDamage(float damage)
     {
+        Shaker.ShakeCam?.Invoke();
+        PTCManager.OnEventPTCCreate?.Invoke(PTCType.PlayerDamaged, transform.position);
+
         _damageableStats.CurrentHP = Mathf.Max(0, _damageableStats.CurrentHP - damage);
         bool isLowHealth = _damageableStats.CurrentHP <= _damageableStats.MaxHP * _heartBeatHealthThreshHold;
 

@@ -39,4 +39,14 @@ public class FoodController : InteractableController
             OnInteract();
         }
     }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if (collision.gameObject.CompareTag("Border"))
+        {
+            PTCManager.OnEventPTCCreate?.Invoke(PTCType.BorderCollision, transform.position);
+        }
+    }
 }
