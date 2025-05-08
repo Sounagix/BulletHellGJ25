@@ -64,6 +64,7 @@ public class FoodController : InteractableController
             ReturnToThePool();
         }
     }
+
     #endregion
 
     public void ResetObject(Vector2 spawnPoint, bool isPlayerOwner, ThroweableFood food, bool wasChangeable = false)

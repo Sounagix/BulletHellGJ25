@@ -37,6 +37,7 @@ public class GameSceneManager : MonoBehaviour
 
         _customersManager.GameSceneManager = this;
         _customersManager.PlayerTr = _playerManager.transform;
+        _customersManager.FoodData = _interactableManager.FoodData;
         _customersManager.Initialize();
 
         _hudManager.Player = _playerManager;

@@ -129,12 +129,12 @@ TextureImporter:
       name: croissant_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 43
-        width: 242
-        height: 166
+        x: 0
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: be11d04086575b94fbab20666d978daf
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      croissant_0: -3877866709460508296
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

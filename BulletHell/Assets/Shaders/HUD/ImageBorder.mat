@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HealthBar
-  m_Shader: {fileID: 4800000, guid: b94550d8b404d6f4d971c31ce8cd9047, type: 3}
+  m_Name: ImageBorder
+  m_Shader: {fileID: 4800000, guid: 01145e3600e9e27498b531a652fae619, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -42,11 +42,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _LifePoints: 20
-    - _MaxLifePoints: 20
+    - _Width: 0.065
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.34823585, g: 1, b: 0, a: 1}
+    - _BorderColor: {r: 1, g: 0.8393313, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

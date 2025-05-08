@@ -129,12 +129,12 @@ TextureImporter:
       name: taco_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 56
-        width: 229
-        height: 156
+        x: 0
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 04e93d1c8e5714b4bb84eef2751db0f4
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      taco_0: 2069420720813572178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
