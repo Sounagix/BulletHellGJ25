@@ -253,8 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactableType: 1
   _lifeTime:
-    MinLifeTimeSec: 3
-    MaxLifeTimeSec: 6
+    Min: 5
+    Max: 10
   _rb: {fileID: 1922652757301987863}
   _movementStats:
     MovementForce: 3

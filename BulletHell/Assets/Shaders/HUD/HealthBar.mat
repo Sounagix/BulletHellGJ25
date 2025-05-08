@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _LifePoints: 0
+    - _LifePoints: 1
     - _MaxLifePoints: 20
     - _ZWrite: 0
     m_Colors:

@@ -32,7 +32,6 @@ public class GameSceneManager : MonoBehaviour
         _playerManager.Initialize();
 
         _interactableManager.Player = _playerManager;
-        _interactableManager.GameSceneManager = this;
         _interactableManager.Initialize();
 
         _customersManager.GameSceneManager = this;

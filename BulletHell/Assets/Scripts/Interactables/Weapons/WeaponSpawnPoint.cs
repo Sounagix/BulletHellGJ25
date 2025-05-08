@@ -6,13 +6,13 @@ using UnityEngine;
 public class WeaponSpawnPoint : MonoBehaviour
 {
     [SerializeField]
-    private SpawnRate _spawnRateRange;
+    private float _spawnEveryThisSeconds;
 
     [SerializeField]
     private float _spawnCount = 1;
 
     private float _currentWeaponTime;
-    private float _spawnWeaponEveryThisSeconds;
+    //private float _spawnWeaponEveryThisSeconds;
     private InteractablePool _weaponPool;
     private PlayerManager _player;
     private ThroweableWeapon[] _weaponData;
@@ -21,7 +21,7 @@ public class WeaponSpawnPoint : MonoBehaviour
         _weaponData = weaponData;
         _weaponPool = weaponPool;
         _player = player;
-        _spawnWeaponEveryThisSeconds = UnityEngine.Random.Range(_spawnRateRange.MinRate, _spawnRateRange.MaxRate);
+        //_spawnWeaponEveryThisSeconds = UnityEngine.Random.Range(_spawnRateRange.Min, _spawnRateRange.Max);
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class WeaponSpawnPoint : MonoBehaviour
     {
         _currentWeaponTime += Time.deltaTime;
 
-        if (_currentWeaponTime < _spawnWeaponEveryThisSeconds)
+        if (_currentWeaponTime < _spawnEveryThisSeconds)
             return;
 
         _currentWeaponTime = 0;

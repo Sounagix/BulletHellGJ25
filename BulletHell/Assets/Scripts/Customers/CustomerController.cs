@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class CustomerController : MonoBehaviour
 {
     public static event Action<CustomerController> OnCustomerFinished;
     public static event Action<GameObject> OnCustomerUnstable;
-    public static event Action<Transform> OnCustomerThrowProjectil;
+    public static event Action<Transform, float> OnCustomerThrowProjectil;
 
     [Header("Physics")]
     [SerializeField]
@@ -23,18 +21,34 @@ public class CustomerController : MonoBehaviour
 
     [Header("Logic")]
     [SerializeField]
-    private PatienceRange _patienceRange;
+    private RangeFloat _patienceRange;
+
+    [Header("Projectiles")]
+    [SerializeField]
+    private RangeFloat _shootRateRange;
 
     [SerializeField]
-    private float _shootRate;
+    private RangeFloat _projectileForceRange;
 
+    // Transform
     private Quaternion _originalRotation;
     private Vector3 _originalScale;
     private CustomerState _currentState = CustomerState.Spawned;
+    // Spots
     private Transform _spotToWait;
+    // Patience
     private float _patienceSeconds = 0;
     private float _currentPatienceTime = 0;
+    // Food
     private ThroweableFood _desiredFood;
+    // WayPoints
+    private List<Transform> _waypoints = new();
+    private Transform _currentWayPoint;
+    private int _currentWapointIndex;
+    private float _proximityWayPoint = 0.1f;
+    // Projectiles
+    private float _currentProjectileForce = 0;
+    private float _currentShootRate = 0;
 
     public void SetUp(Transform player)
     {
@@ -50,11 +64,20 @@ public class CustomerController : MonoBehaviour
         _rb.linearVelocity = movementStats.MovementDir * movementStats.MovementForce;
     }
 
-    private void HandleMovement()
+    private void HandleMoveDir()
     {
-        //UpdateTargetPos(_player.position);
-        //Vector2 diff = transform.position - _player.position;
-        //float distanceFromPlayer = diff.sqrMagnitude;
+        if (_currentState != CustomerState.Unstable
+            || _waypoints == null || _waypoints.Count == 0) return;
+
+        if (Vector2.Distance(transform.position, _currentWayPoint.position) > _proximityWayPoint)
+            return;
+
+        _currentWapointIndex++;
+        if (_currentWapointIndex >= _waypoints.Count)
+            _currentWapointIndex = 0;
+
+        _currentWayPoint = _waypoints[_currentWapointIndex];
+        UpdateTargetPos(_currentWayPoint.position);
     }
 
     public void UpdateTargetPos(Vector2 target)
@@ -62,7 +85,8 @@ public class CustomerController : MonoBehaviour
         movementStats.MovementDir = (target - (Vector2)transform.position).normalized;
     }
 
-    public void ResetCustomer(Vector2 startingPoint, ThroweableFood desiredFood, CustomerRenderer customerRenderer, Transform spotToWait)
+    public void ResetCustomer(Vector2 startingPoint, ThroweableFood desiredFood, CustomerRenderer customerRenderer,
+        Transform spotToWait, List<Transform> waypoints)
     {
         // State
         _currentState = CustomerState.Spawned;
@@ -74,16 +98,24 @@ public class CustomerController : MonoBehaviour
         _spotToWait = spotToWait;
         // Patience
         _currentPatienceTime = 0;
-        _patienceSeconds = UnityEngine.Random.Range(_patienceRange.MinPatience, _patienceRange.MaxPatience);
+        _patienceSeconds = UnityEngine.Random.Range(_patienceRange.Min, _patienceRange.Max);
         // Select food
         _desiredFood = desiredFood;
         // Renderer
         _customerGraphics.SetUp(customerRenderer, desiredFood._sprite, _patienceSeconds);
+        // Way Points
+        _waypoints = waypoints;
+        _currentWayPoint = waypoints[0];
+        _currentWapointIndex = 0;
+        // Projectiles
+        _currentProjectileForce = UnityEngine.Random.Range(_projectileForceRange.Min, _projectileForceRange.Max);
+        _currentShootRate = UnityEngine.Random.Range(_shootRateRange.Min, _shootRateRange.Max);
     }
 
     private void Update()
     {
         HandlePatience();
+        HandleMoveDir();
     }
 
     private void HandlePatience()
@@ -96,10 +128,14 @@ public class CustomerController : MonoBehaviour
         if (_currentPatienceTime < _patienceSeconds)
             return;
 
+        // Update State
         _customerGraphics.TurnUnstable();
         _currentState = CustomerState.Unstable;
+        // Update Movement
+        UpdateTargetPos(_currentWayPoint.position);
+        // Invoke Callbacks
         OnCustomerUnstable?.Invoke(_spotToWait.gameObject);
-        InvokeRepeating(nameof(ThrowProjectile), 0, _shootRate);
+        InvokeRepeating(nameof(ThrowProjectile), 0, _currentShootRate);
     }
 
     private void ThrowProjectile()
@@ -107,14 +143,13 @@ public class CustomerController : MonoBehaviour
         if (!_currentState.Equals(CustomerState.Unstable))
             return;
 
-        OnCustomerThrowProjectil?.Invoke(transform);
+        OnCustomerThrowProjectil?.Invoke(transform, _currentProjectileForce);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_currentState == CustomerState.Spawned && _spotToWait != null && other.transform == _spotToWait)
         {
-
             _currentState = CustomerState.Normal;
             transform.position = other.transform.position;
             _rb.linearVelocity *= 0;

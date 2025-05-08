@@ -12,7 +12,7 @@ public abstract class InteractableController : MonoBehaviour
 
     [SerializeField]
     [Tooltip("[Min, Max]")]
-    private LifeTimeRange _lifeTime;
+    private RangeFloat _lifeTime;
 
     [SerializeField]
     protected Rigidbody2D _rb;
@@ -21,7 +21,7 @@ public abstract class InteractableController : MonoBehaviour
     protected MovementStats _movementStats;
 
     [SerializeField]
-    LayerMask _borderLayer;
+    protected LayerMask _borderLayer;
 
     [SerializeField]
     LayerMask _playerLayer;
@@ -45,7 +45,7 @@ public abstract class InteractableController : MonoBehaviour
 
     public virtual void SetUp()
     {
-        _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
+        _currentLifeTime = UnityEngine.Random.Range(_lifeTime.Min, _lifeTime.Max);
         _originalRotation = transform.rotation;
         _originalScale = transform.localScale;
         _trailRenderer.colorGradient = _trailColor;
@@ -70,6 +70,7 @@ public abstract class InteractableController : MonoBehaviour
         _currentTime += Time.deltaTime;
         if (_isChangeable && _currentLifeTime >= _timeToChangeRange)
         {
+            Debug.Log("Change Object");
             ReturnToThePool(changeObject: true);
             return;
         }
@@ -124,9 +125,9 @@ public abstract class InteractableController : MonoBehaviour
     protected void ResetObject(Vector2 spawnPoint, bool wasChangeable)
     {
         // Life time and Change Time
-        _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
-        _isChangeable = !wasChangeable && UnityEngine.Random.value > 0.7f;
-        _timeToChangeRange = UnityEngine.Random.Range(0, _currentLifeTime);
+        _currentLifeTime = UnityEngine.Random.Range(_lifeTime.Min, _lifeTime.Max);
+        _isChangeable = !wasChangeable && UnityEngine.Random.value > 0.8f;
+        _timeToChangeRange = UnityEngine.Random.Range(_lifeTime.Min, _currentLifeTime);
         // Transform reset
         transform.position = spawnPoint;
         transform.rotation = _originalRotation;

@@ -59,9 +59,11 @@ public class FoodController : InteractableController
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Border"))
+        int mask = 1 << collision.gameObject.layer;
+        if ((mask & _borderLayer.value) != 0)
         {
             ReturnToThePool();
+            PTCManager.OnEventPTCCreate?.Invoke(PTCType.BorderCollision, transform.position);
         }
     }
 

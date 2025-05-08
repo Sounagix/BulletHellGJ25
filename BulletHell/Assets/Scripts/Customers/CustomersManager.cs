@@ -14,6 +14,9 @@ public class CustomersManager : Manager
     [SerializeField]
     private List<CustomerRenderer> _customerRenderers;
 
+    [SerializeField]
+    private List<Transform> _customerWayPoints;
+
     [Header("Customer Spots")]
     [SerializeField]
     private Transform _startingPoint;
@@ -41,9 +44,14 @@ public class CustomersManager : Manager
     private ThroweableFood[] _foodData;
     public ThroweableFood[] FoodData {  set { _foodData = value; } }
 
+    private List<Transform> _reverseCustomerWayPoints;
+
     public override void Initialize()
     {
         _customerPool.CreateCustomerPool(_playerTr);
+        _reverseCustomerWayPoints = new(_customerWayPoints);
+        _reverseCustomerWayPoints.Reverse();
+
         InitializeCustomerSpots();
     }
 
@@ -106,7 +114,9 @@ public class CustomersManager : Manager
 
 
         ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, _foodData.Length)];
-        customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform);
+        bool isReversed = UnityEngine.Random.value > 0.5f;
+        customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform, 
+            isReversed ? _reverseCustomerWayPoints : _customerWayPoints);
         customer.UpdateTargetPos(spot.transform.position);
     }
 

@@ -522,9 +522,14 @@ MonoBehaviour:
     CurrentMaxSpeed: 0
   _customerGraphics: {fileID: 9111897791171329924}
   _patienceRange:
-    MinPatience: 4
-    MaxPatience: 8
-  _shootRate: 2
+    Min: 6
+    Max: 10
+  _shootRateRange:
+    Min: 3
+    Max: 7
+  _projectileForceRange:
+    Min: 1
+    Max: 2
 --- !u!50 &6406933311773378230
 Rigidbody2D:
   serializedVersion: 5

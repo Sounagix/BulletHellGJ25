@@ -16,10 +16,10 @@ TagManager:
   - CustomerSpot
   - Weapon
   - Food
-  - Border
+  - OutterBorder
   - Player
   - ServedFood
-  - 
+  - InnerBorder
   - 
   - 
   - 

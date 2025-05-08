@@ -4,7 +4,7 @@ using UnityEngine;
 public class FoodSpawnPoint : MonoBehaviour
 {
     [SerializeField]
-    private SpawnRate _spawnRateRange;
+    private RangeFloat _spawnRateRange;
 
     private float _currentFoodTime;
     private float _spawnFoodEveryThisSeconds;
@@ -15,7 +15,7 @@ public class FoodSpawnPoint : MonoBehaviour
     {
         _foodData = foodData;
         _foodPool = foodPool;
-        _spawnFoodEveryThisSeconds = UnityEngine.Random.Range(_spawnRateRange.MinRate, _spawnRateRange.MaxRate);
+        _spawnFoodEveryThisSeconds = UnityEngine.Random.Range(_spawnRateRange.Min, _spawnRateRange.Max);
     }
 
     private void Update()

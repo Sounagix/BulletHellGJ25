@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _dashForce = 20f;
 
+    [SerializeField]
+    protected LayerMask _borderLayer;
+
     private bool _isDashing = false;
     private bool _dashRequested = false;
     private Vector2 _dashDirection;
@@ -94,6 +97,22 @@ public class PlayerController : MonoBehaviour
         {
             _rb.AddForce(_dashDirection.normalized * _dashForce, ForceMode2D.Impulse);
             _dashRequested = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        int mask = 1 << collision.gameObject.layer;
+
+        if ((mask & _borderLayer.value) != 0)
+        {
+            Vector2 normal = (transform.position - collision.transform.position).normalized;
+            Vector2 dir = -_movementStats.MovementDir;
+            dir *= 20;
+
+            _rb.AddForce(dir, ForceMode2D.Impulse);
+
+            PTCManager.OnEventPTCCreate?.Invoke(PTCType.BorderCollision, transform.position);
         }
     }
 }

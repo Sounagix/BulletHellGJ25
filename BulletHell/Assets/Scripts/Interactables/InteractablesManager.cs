@@ -27,9 +27,6 @@ public class InteractableSpawnManager : Manager
     private PlayerManager _player;
     public PlayerManager Player { set { _player = value; } }
 
-    private GameSceneManager _gameSceneManager;
-    public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
-
     public override void Initialize()
     {
         _weaponPool.CreatePool();
@@ -108,7 +105,7 @@ public class InteractableSpawnManager : Manager
         // Copy some stats here
     }
 
-    private void OnCustomerThrowProjectile(Transform customer)
+    private void OnCustomerThrowProjectile(Transform customer, float force)
     {
         WeaponController currentWeapon = (WeaponController)_weaponPool.GetFromPool();
         if (!currentWeapon)
@@ -116,7 +113,7 @@ public class InteractableSpawnManager : Manager
 
         ThroweableWeapon weponSO = _weaponData[Random.Range(0, _weaponData.Length)];
         currentWeapon.ResetObject(customer.position, weponSO, wasChangeable: true);
-
         currentWeapon.UpdateTargetPosition(_player.transform.position);
+        currentWeapon.UpdateProjectileForce(force);
     }
 }
