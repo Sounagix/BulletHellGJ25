@@ -15,9 +15,10 @@ public class WeaponSpawnPoint : MonoBehaviour
     private float _spawnWeaponEveryThisSeconds;
     private InteractablePool _weaponPool;
     private PlayerManager _player;
-
-    public void SetUp(InteractablePool weaponPool, PlayerManager player)
+    private ThroweableWeapon[] _weaponData;
+    public void SetUp(InteractablePool weaponPool, PlayerManager player, ThroweableWeapon[] weaponData)
     {
+        _weaponData = weaponData;
         _weaponPool = weaponPool;
         _player = player;
         _spawnWeaponEveryThisSeconds = UnityEngine.Random.Range(_spawnRateRange.MinRate, _spawnRateRange.MaxRate);
@@ -60,27 +61,29 @@ public class WeaponSpawnPoint : MonoBehaviour
     {
         for (int i = 0; i < _spawnCount; i++)
         {
-            InteractableController weapon = _weaponPool.GetFromPool();
+            WeaponController weapon = (WeaponController)_weaponPool.GetFromPool();
             if (!weapon)
                 continue;
 
             Vector2 targetPos = GetTargetPos(i);
 
-            weapon.ResetObject(transform.position);
+            ThroweableWeapon weaponSO = _weaponData[UnityEngine.Random.Range(0, _weaponData.Length)];
+            weapon.ResetObject(transform.position, weaponSO);
             weapon.UpdateTargetPosition(targetPos);
         }
     }
 
     private void SpawnWeaponTargetPlayer() 
     {
-        InteractableController weapon = _weaponPool.GetFromPool();
+        WeaponController weapon = (WeaponController)_weaponPool.GetFromPool();
 
         if (!weapon)
             return;
 
         Vector2 spawnPos = (Vector2)transform.position;
 
-        weapon.ResetObject(spawnPos);
+        ThroweableWeapon weaponSO = _weaponData[UnityEngine.Random.Range(0, _weaponData.Length)];
+        weapon.ResetObject(transform.position, weaponSO);
         weapon.UpdateTargetPosition(_player.transform.position);
     }
 }

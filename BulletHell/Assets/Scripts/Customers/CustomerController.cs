@@ -7,6 +7,7 @@ public class CustomerController : MonoBehaviour
 {
     public static event Action<CustomerController> OnCustomerFinished;
     public static event Action<GameObject> OnCustomerUnstable;
+    public static event Action<Transform> OnCustomerThrowProjectil;
 
     [SerializeField]
     private TextMeshProUGUI _foodText;
@@ -25,9 +26,6 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField]
     private float _rangeFromPlayer = 5f;
-
-    [SerializeField]
-    private ThroweableWeapon[] _weponData;
 
     [SerializeField]
     private float _cadence;
@@ -125,15 +123,8 @@ public class CustomerController : MonoBehaviour
     {
         if (!_currentState.Equals(CustomerState.Unstable))
             return;
-        var currentWeapon = _weaponPool.GetFromPool();
-        if (currentWeapon)
-        {
-            currentWeapon.SetUp();
-            ThroweableWeapon weponSO = _weponData[UnityEngine.Random.Range(0, _weponData.Length)];
-            (currentWeapon as WeaponController).ResetObject(transform.position, weponSO);
-            Vector2 dir = _player.position - transform.position;
-            currentWeapon.UpdateTargetPosition(dir.normalized);
-        }
+
+        OnCustomerThrowProjectil?.Invoke(transform);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

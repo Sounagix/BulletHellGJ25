@@ -3,25 +3,42 @@ using UnityEngine;
 
 public class FoodController : InteractableController
 {
-    public static event Action OnCustomerReceivesFood;
-
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
     private ThroweableFood _food;
     private bool _isPlayerOwner = false;
-
+    private bool _isSpawned = false;
     protected override void OnPlayerTouched()
     {
         InventoryManager.EventAddFoodToInventory?.Invoke(_food);
     }
 
-    public void ResetObject(Vector2 spawnPoint, bool isPlayerOwner, ThroweableFood food)
+    #region Unity Callbacks
+
+    public override void Update()
     {
-        base.ResetObject(spawnPoint);
-        _food = food;
-        _spriteRenderer.sprite = food._sprite;
-        _isPlayerOwner = isPlayerOwner;
+        if (_isPlayerOwner)
+            return;
+     
+        // If player is the owner, the update won't be applied here
+        // The food will return to the pool just by collisions
+        base.Update();
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (!_rb && !isActive)
+            return;
+
+        if (_isPlayerOwner)
+            base.FixedUpdate();
+        else if (_isSpawned)
+        {
+            Vector2 dir = _movementStats.MovementForce * _movementStats.MovementDir;
+            _rb.AddForce(dir, ForceMode2D.Impulse);
+            _isSpawned = false;
+        }
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +53,18 @@ public class FoodController : InteractableController
         if (customer != null)
         {
             customer.DeliverFood(_food.FoodType);
-            OnInteract();
+            ReturnToThePool();
         }
+    }
+
+    #endregion
+
+    public void ResetObject(Vector2 spawnPoint, bool isPlayerOwner, ThroweableFood food, bool wasChangeable = false)
+    {
+        base.ResetObject(spawnPoint, wasChangeable);
+        _food = food;
+        _spriteRenderer.sprite = food._sprite;
+        _isPlayerOwner = isPlayerOwner;
+        _isSpawned = true;
     }
 }
