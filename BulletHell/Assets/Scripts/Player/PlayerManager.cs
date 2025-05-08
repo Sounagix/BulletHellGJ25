@@ -26,6 +26,9 @@ public class PlayerManager : Manager, IDamageable
     [Range(0, 1)]
     private float _heartBeatHealthThreshHold;
 
+    [SerializeField]
+    private Animator _animator;
+
     private GameSceneManager _gameSceneManager;
     public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
 
@@ -33,8 +36,12 @@ public class PlayerManager : Manager, IDamageable
     private Quaternion _initialRotation;
     private Vector3 _initialScale;
 
+
+
     private Queue<FoodType> _inventory;
     public Queue<FoodType> Inventory;
+
+    
 
     public override void Initialize()
     {
@@ -77,6 +84,12 @@ public class PlayerManager : Manager, IDamageable
         _damageableStats.CurrentHP = _damageableStats.MaxHP;
         transform.SetPositionAndRotation(_initialPos, _initialRotation);
         transform.localScale = _initialScale;
+    }
+
+    private void Update()
+    {
+        _animator.SetFloat("velX", _playerController.GetVelocity().x);
+        _animator.SetFloat("velY", _playerController.GetVelocity().y);
     }
 
     #region IDamageable

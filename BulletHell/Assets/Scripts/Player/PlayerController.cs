@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour
             _rb.linearVelocity = Vector2.ClampMagnitude(_rb.linearVelocity, _movementStats.CurrentMaxSpeed);
     }
 
+    public Vector2 GetVelocity()
+    {
+        return _rb.linearVelocity;
+    }
+
     // TODO: Dash
     private void HandleDashForce()
     {

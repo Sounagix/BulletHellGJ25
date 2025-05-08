@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FishAndChips
   m_EditorClassIdentifier: 
   _objectName: Fish and Chips
-  _sprite: {fileID: -482350879392675706, guid: b9c27fec838d7bc4886da57a6d784dad, type: 3}
+  _sprite: {fileID: 21300000, guid: b9c27fec838d7bc4886da57a6d784dad, type: 3}
   FoodType: 6
