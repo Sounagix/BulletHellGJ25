@@ -10,6 +10,12 @@ public class FoodSpawnPoint : MonoBehaviour
     private float _spawnFoodEveryThisSeconds;
     private InteractablePool _foodPool;
     private ThroweableFood[] _foodData;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponentInChildren<Animator>();
+    }
 
     public void SetUp(InteractablePool foodPool, ThroweableFood[] foodData)
     {
@@ -40,6 +46,7 @@ public class FoodSpawnPoint : MonoBehaviour
         if (!food || _foodData.Length == 0)
             return;
 
+        _animator.SetTrigger("Spawn");
         ThroweableFood foodSO = _foodData[Random.Range(0, _foodData.Length)];
         food.ResetObject(transform.position, isPlayerOwner: false, foodSO);
         Vector2 randomDir = Random.insideUnitCircle.normalized;

@@ -522,8 +522,8 @@ MonoBehaviour:
     CurrentMaxSpeed: 0
   _customerGraphics: {fileID: 9111897791171329924}
   _patienceRange:
-    Min: 6
-    Max: 10
+    Min: 20
+    Max: 25
   _shootRateRange:
     Min: 3
     Max: 7

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -14,14 +15,24 @@ public class PlayerController : MonoBehaviour
     private MovementStats _movementStats;
 
     [SerializeField]
-    private float _dashForce = 20f;
+    private float _dashCooldown;
+
+    [SerializeField]
+    private float _dashDuration;
+
+    [SerializeField]
+    private float _dashDistance;
+
+    [SerializeField]
+    private TrailRenderer _trailRenderer;
+
+    private Coroutine _dashCoroutine;
 
     [SerializeField]
     protected LayerMask _borderLayer;
 
     private bool _isDashing = false;
     private bool _dashRequested = false;
-    private Vector2 _dashDirection;
     private PlayerManager _playerManager;
 
     #region Input Callbacks
@@ -53,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
         _dashRequested = true;
         _isDashing = true;
-        _dashDirection = _movementStats.MovementDir.normalized;
     }
 
     #endregion
@@ -62,6 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerManager = playerManager;
         _movementStats.CurrentMaxSpeed = _movementStats.MaxSpeed;
+        _trailRenderer.emitting = false;
     }
 
     private void FixedUpdate()
@@ -86,18 +97,37 @@ public class PlayerController : MonoBehaviour
         return _rb.linearVelocity;
     }
 
-    // TODO: Dash
-    private void HandleDashForce()
+    public void HandleDash(CallbackContext value)
     {
-        if(_isDashing && _rb.linearVelocity.magnitude <= _movementStats.CurrentMaxSpeed + 0.1f) 
+        if (_dashCoroutine == null)
         {
-            _isDashing = false;
+            _dashCoroutine = StartCoroutine(DashCoroutine());
         }
-        else if (_dashRequested) 
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        _trailRenderer.emitting = true;
+        Vector2 startPos = transform.position;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dashDir = _movementStats.MovementDir.normalized;
+        Vector2 targetPos = startPos + dashDir * _dashDistance;
+
+        float elapsed = 0f;
+
+        while (elapsed < _dashDuration)
         {
-            _rb.AddForce(_dashDirection.normalized * _dashForce, ForceMode2D.Impulse);
-            _dashRequested = false;
+            elapsed += Time.deltaTime;
+            float t = elapsed / _dashDuration;
+            transform.position = Vector2.Lerp(startPos, targetPos, t);
+            yield return null;
         }
+
+        transform.position = targetPos; 
+
+        yield return new WaitForSeconds(_dashCooldown);
+        _dashCoroutine = null;
+        _trailRenderer.emitting = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
