@@ -7,31 +7,13 @@ public class WeaponController : InteractableController
     private float _attackPower = 1;
 
     [SerializeField]
-    private ThroweableWeapon[] _weaponsObjects;
-
     private SpriteRenderer _spriteRenderer;
-
-    private ThroweableWeapon _weapon;
-
-    private int _index;
 
     public static event Action<float> OnWeaponHitPlayer;
 
-    private void Awake()
+    public void ResetObject(Vector2 spawnPoint, ThroweableWeapon weapon, bool wasChangeable = false)
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
-        _index = UnityEngine.Random.Range(0, _weaponsObjects.Length);
-        _spriteRenderer.sprite = _weaponsObjects[_index]._sprite;
-    }
-
-    public void ResetObject(Vector2 spawnPoint, ThroweableWeapon weapon)
-    {
-        base.ResetObject(spawnPoint);
-        _weapon = weapon;
+        base.ResetObject(spawnPoint, wasChangeable);
         _spriteRenderer.sprite = weapon._sprite;
     }
 

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EmptySlot
-  m_Shader: {fileID: 4800000, guid: b00f0bde6355ad348a0142036e1a3938, type: 3}
+  m_Name: BorderNeon
+  m_Shader: {fileID: 4800000, guid: d5a26e2735909da48abcd41768d4a262, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -42,11 +42,17 @@ Material:
     m_Ints: []
     m_Floats:
     - _CutoffFactor: 0.491
+    - _EdgeThickness: 3.35
     - _EnableExternalAlpha: 0
-    - _Radius: 0.423
+    - _GlowStrength: 1.46
+    - _GlowWidth: 0.59
+    - _Speed: 0.26
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.77724934, b: 1, a: 1}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.8811816, g: 1, b: 0, a: 0.24705882}
+    - _EdgeColor: {r: 0.08144447, g: 0.8930817, b: 0.8930817, a: 1}
+    - _NeonColor: {r: 0, g: 0.24796388, b: 1, a: 0.22745098}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

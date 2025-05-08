@@ -6,18 +6,14 @@ public class FoodSpawnPoint : MonoBehaviour
     [SerializeField]
     private SpawnRate _spawnRateRange;
 
-    [SerializeField]
-    private float _spinSpeed;
-
-    [SerializeField]
-    private ThroweableFood[] _foodData;
-
     private float _currentFoodTime;
     private float _spawnFoodEveryThisSeconds;
     private InteractablePool _foodPool;
+    private ThroweableFood[] _foodData;
 
-    public void SetUp(InteractablePool foodPool)
+    public void SetUp(InteractablePool foodPool, ThroweableFood[] foodData)
     {
+        _foodData = foodData;
         _foodPool = foodPool;
         _spawnFoodEveryThisSeconds = UnityEngine.Random.Range(_spawnRateRange.MinRate, _spawnRateRange.MaxRate);
     }
@@ -28,8 +24,6 @@ public class FoodSpawnPoint : MonoBehaviour
             return;
 
         SpawnFood();
-
-        transform.Rotate(Vector3.forward, _spinSpeed * Time.deltaTime);
     }
 
     private void SpawnFood()
