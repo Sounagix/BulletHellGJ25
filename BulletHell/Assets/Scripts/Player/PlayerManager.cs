@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -147,6 +148,9 @@ public class PlayerManager : Manager, IDamageable
 
         return _damageableStats.CurrentHP / _damageableStats.MaxHP;
     }
+
+
+
 
     #endregion
 }
