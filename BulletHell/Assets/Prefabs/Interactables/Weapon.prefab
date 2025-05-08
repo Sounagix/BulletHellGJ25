@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 26b0b3c8b645e8c4487387b048ead37e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,14 +215,14 @@ GameObject:
   - component: {fileID: 6237898342654158666}
   - component: {fileID: 5423890133019072365}
   - component: {fileID: 1922652757301987863}
-  - component: {fileID: 7381754224618296199}
+  - component: {fileID: 7183630207282206682}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6237898342654158666
 Transform:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3215115, y: 2.6576343, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2571910371312844225}
@@ -300,10 +300,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _trailRenderer: {fileID: 2749550768938160100}
   _attackPower: 1
-  _weaponsObjects:
-  - {fileID: 11400000, guid: 949b0f029d1f87f46a76e79a9a7feb63, type: 2}
-  - {fileID: 11400000, guid: a3ea19b96a54633408b5338746f3fa0f, type: 2}
-  - {fileID: 11400000, guid: b23bc06dbc8c6584abb4c596afaf8335, type: 2}
+  _spriteRenderer: {fileID: 6614533751715689400}
 --- !u!50 &1922652757301987863
 Rigidbody2D:
   serializedVersion: 5
@@ -331,8 +328,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &7381754224618296199
-CapsuleCollider2D:
+--- !u!58 &7183630207282206682
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -366,5 +363,4 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_Radius: 1

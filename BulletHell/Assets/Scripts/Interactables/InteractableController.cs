@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class InteractableController : MonoBehaviour
 {
     public static event Action<InteractableController> OnBackToThePool;
+    public static event Action<Transform> OnInteractableChange;
 
     [SerializeField]
     private InteractableType _interactableType;
@@ -14,10 +15,10 @@ public abstract class InteractableController : MonoBehaviour
     private LifeTimeRange _lifeTime;
 
     [SerializeField]
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
 
     [SerializeField]
-    private MovementStats _movementStats;
+    protected MovementStats _movementStats;
 
     [SerializeField]
     LayerMask _borderLayer;
@@ -35,9 +36,12 @@ public abstract class InteractableController : MonoBehaviour
 
     private float _currentLifeTime;
     private float _currentTime = 0;
-    private bool _isActive = false;
     private Quaternion _originalRotation;
     private Vector3 _originalScale;
+    private bool _isChangeable = false;
+    private float _timeToChangeRange;
+
+    protected bool isActive = false;
 
     public virtual void SetUp()
     {
@@ -47,10 +51,15 @@ public abstract class InteractableController : MonoBehaviour
         _trailRenderer.colorGradient = _trailColor;
     }
 
-    protected virtual void OnInteract()
+    protected virtual void ReturnToThePool(bool changeObject = false)
     {
+        if (changeObject)
+        {
+            OnInteractableChange?.Invoke(transform);
+        }
+
         // Back to the pool
-        _isActive = false;
+        isActive = false;
         OnBackToThePool?.Invoke(this);
     }
 
@@ -59,42 +68,26 @@ public abstract class InteractableController : MonoBehaviour
     public virtual void Update()
     {
         _currentTime += Time.deltaTime;
-        if (_currentTime < _currentLifeTime || !_isActive)
+        if (_isChangeable && _currentLifeTime >= _timeToChangeRange)
+        {
+            ReturnToThePool(changeObject: true);
+            return;
+        }
+
+        if (_currentTime < _currentLifeTime || !isActive)
             return;
 
         // Return to the pool
-        OnInteract();
+        ReturnToThePool();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        if (!_rb && !_isActive)
+        if (!_rb && !isActive)
             return;
 
         Vector2 dir = _movementStats.MovementDir;
         _rb.linearVelocity = _movementStats.MovementForce * _movementStats.MovementDir;
-    }
-
-    #endregion
-    public virtual void ResetObject(Vector2 spawnPoint)
-    {
-        _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
-        transform.position = spawnPoint;
-        transform.rotation = _originalRotation;
-        transform.localScale = _originalScale;
-
-        _currentTime = 0;
-        _isActive = true;
-    }
-
-    public virtual void UpdateTargetPosition(Vector2 target)
-    {
-        _movementStats.MovementDir = target - (Vector2)transform.position;
-    }
-
-    public virtual void UpdateProjectileForce(float newForce)
-    {
-        _movementStats.MovementForce = newForce;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -103,7 +96,7 @@ public abstract class InteractableController : MonoBehaviour
         if ((mask & _playerLayer) != 0)
         {
             OnPlayerTouched();
-            OnInteract();
+            ReturnToThePool();
         }
     }
 
@@ -119,9 +112,40 @@ public abstract class InteractableController : MonoBehaviour
         else if ((mask & _playerLayer) != 0)
         {
             OnPlayerTouched();
-            OnInteract();
+            ReturnToThePool();
         }
     }
+
+    #endregion
+
+    #region Public
+
+    protected void ResetObject(Vector2 spawnPoint, bool wasChangeable)
+    {
+        // Life time and Change Time
+        _currentLifeTime = UnityEngine.Random.Range(_lifeTime.MinLifeTimeSec, _lifeTime.MaxLifeTimeSec);
+        _isChangeable = !wasChangeable && UnityEngine.Random.value > 0.7f;
+        _timeToChangeRange = UnityEngine.Random.Range(0, _currentLifeTime);
+        // Transform reset
+        transform.position = spawnPoint;
+        transform.rotation = _originalRotation;
+        transform.localScale = _originalScale;
+        // Others
+        _currentTime = 0;
+        isActive = true;
+    }
+
+    public virtual void UpdateTargetPosition(Vector2 target)
+    {
+        _movementStats.MovementDir = target - (Vector2)transform.position;
+    }
+
+    public virtual void UpdateProjectileForce(float newForce)
+    {
+        _movementStats.MovementForce = newForce;
+    }
+
+    #endregion
 
     protected abstract void OnPlayerTouched();
 }
