@@ -29,6 +29,9 @@ public class CustomersManager : Manager
 
     private float _currentTime;
     private GameSceneManager _gameSceneManager;
+
+    [SerializeField]
+    private InteractablePool _weaponPool;
     public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
     private Queue<GameObject> _freeSpots = new();
     private Transform _playerTr;
@@ -97,7 +100,7 @@ public class CustomersManager : Manager
         CustomerRenderer renderer = _customerRenderers[UnityEngine.Random.Range(0, _customerRenderers.Count)];
         GameObject spot = _freeSpots.Dequeue();
 
-        customer.ResetCustomer(_startingPoint.position, renderer, spot.transform);
+        customer.ResetCustomer(_startingPoint.position, renderer, spot.transform,_weaponPool);
         customer.UpdateTargetPos(spot.transform.position);
     }
 

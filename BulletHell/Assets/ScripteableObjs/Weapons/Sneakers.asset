@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Sneakers
   _sprite: {fileID: 21300000, guid: 6df7941362d8e4c408003c5dace2fb7c, type: 3}
-  _wEAPON_tYPE: 0
+  _wEAPON_tYPE: 5

@@ -26,6 +26,12 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     private float _rangeFromPlayer = 5f;
 
+    [SerializeField]
+    private ThroweableWeapon[] _weponData;
+
+    [SerializeField]
+    private float _cadence;
+
     private Quaternion _originalRotation;
     private Vector3 _originalScale;
     private FoodType _currentFoodType;
@@ -35,6 +41,7 @@ public class CustomerController : MonoBehaviour
     private float _patienceSeconds = 0;
     private float _currentPatienceTime = 0;
     private Transform _player;
+    private InteractablePool _weaponPool;
 
     public void SetUp(Transform player)
     {
@@ -69,7 +76,7 @@ public class CustomerController : MonoBehaviour
         movementStats.MovementDir = (target - (Vector2)transform.position).normalized;
     }
 
-    public void ResetCustomer(Vector2 startingPoint, CustomerRenderer customerRenderer, Transform spotToWait)
+    public void ResetCustomer(Vector2 startingPoint, CustomerRenderer customerRenderer, Transform spotToWait, InteractablePool weaponPool)
     {
         // State
         _currentState = CustomerState.Spawned;
@@ -87,6 +94,8 @@ public class CustomerController : MonoBehaviour
         _patienceSeconds = UnityEngine.Random.Range(_patienceRange.MinPatience, _patienceRange.MaxPatience);
         // Select food
         SelectFood();
+        // Weapon
+        _weaponPool = weaponPool;
     }
 
     private void Update()
@@ -109,6 +118,22 @@ public class CustomerController : MonoBehaviour
         _renderer.sprite = _currentCustomerRenderer.UnstableState;
         _currentState = CustomerState.Unstable;
         OnCustomerUnstable?.Invoke(_spotToWait.gameObject);
+        InvokeRepeating(nameof(ThrowProjectile), 0, _cadence);
+    }
+
+    private void ThrowProjectile()
+    {
+        if (!_currentState.Equals(CustomerState.Unstable))
+            return;
+        var currentWeapon = _weaponPool.GetFromPool();
+        if (currentWeapon)
+        {
+            currentWeapon.SetUp();
+            ThroweableWeapon weponSO = _weponData[UnityEngine.Random.Range(0, _weponData.Length)];
+            (currentWeapon as WeaponController).ResetObject(transform.position, weponSO);
+            Vector2 dir = _player.position - transform.position;
+            currentWeapon.UpdateTargetPosition(dir.normalized);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

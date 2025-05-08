@@ -366,8 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _foodText: {fileID: 8629017131634905069}
   movementStats:
-    _movementForce: 2
-    _maxSpeed: 0
+    MovementForce: 1
+    _maxSpeed: 2
     MovementDir: {x: 0, y: 0}
     CurrentVelocity: {x: 0, y: 0}
     CurrentMaxSpeed: 0
@@ -377,6 +377,12 @@ MonoBehaviour:
     MinPatience: 4
     MaxPatience: 8
   _rangeFromPlayer: 10
+  _weponData:
+  - {fileID: 11400000, guid: 949b0f029d1f87f46a76e79a9a7feb63, type: 2}
+  - {fileID: 11400000, guid: a3ea19b96a54633408b5338746f3fa0f, type: 2}
+  - {fileID: 11400000, guid: b23bc06dbc8c6584abb4c596afaf8335, type: 2}
+  - {fileID: 11400000, guid: 0719a9f62cb859943a107dbabf64ede8, type: 2}
+  _cadence: 2
 --- !u!50 &6406933311773378230
 Rigidbody2D:
   serializedVersion: 5

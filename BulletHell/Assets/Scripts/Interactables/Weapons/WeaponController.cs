@@ -11,6 +11,8 @@ public class WeaponController : InteractableController
 
     private SpriteRenderer _spriteRenderer;
 
+    private ThroweableWeapon _weapon;
+
     private int _index;
 
     public static event Action<float> OnWeaponHitPlayer;
@@ -24,6 +26,13 @@ public class WeaponController : InteractableController
     {
         _index = UnityEngine.Random.Range(0, _weaponsObjects.Length);
         _spriteRenderer.sprite = _weaponsObjects[_index]._sprite;
+    }
+
+    public void ResetObject(Vector2 spawnPoint, ThroweableWeapon weapon)
+    {
+        base.ResetObject(spawnPoint);
+        _weapon = weapon;
+        _spriteRenderer.sprite = weapon._sprite;
     }
 
     protected override void OnPlayerTouched()

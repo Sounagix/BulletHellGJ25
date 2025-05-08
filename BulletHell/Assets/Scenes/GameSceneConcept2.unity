@@ -706,6 +706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableSpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2587584394696915597, guid: 32a0cbc4af994ff4aae3f63409b734ab, type: 3}
+      propertyPath: _spawnCount
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -820,6 +824,18 @@ PrefabInstance:
     - target: {fileID: 1196046025594215907, guid: 32a0cbc4af994ff4aae3f63409b734ab, type: 3}
       propertyPath: m_Name
       value: InteractableSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587584394696915597, guid: 32a0cbc4af994ff4aae3f63409b734ab, type: 3}
+      propertyPath: _spawnCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587584394696915597, guid: 32a0cbc4af994ff4aae3f63409b734ab, type: 3}
+      propertyPath: _spawnRateRange.MaxRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587584394696915597, guid: 32a0cbc4af994ff4aae3f63409b734ab, type: 3}
+      propertyPath: _spawnRateRange.MinRate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2721,6 +2737,7 @@ MonoBehaviour:
   _spotGrid: {fileID: 1036754135}
   _customerSpotPrefab: {fileID: 613850517814334784, guid: a9c0e0ddcd10ea74ba11b58d43690e7d, type: 3}
   _spotsToCreate: 5
+  _weaponPool: {fileID: 1596449794}
 --- !u!4 &1386490421
 Transform:
   m_ObjectHideFlags: 0
