@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,64 +10,51 @@ public class CustomerController : MonoBehaviour
     public static event Action<GameObject> OnCustomerUnstable;
     public static event Action<Transform> OnCustomerThrowProjectil;
 
-    [SerializeField]
-    private TextMeshProUGUI _foodText;
-
-    [SerializeField]
-    private MovementStats movementStats;
-
+    [Header("Physics")]
     [SerializeField]
     private Rigidbody2D _rb;
 
     [SerializeField]
-    private SpriteRenderer _renderer;
+    private MovementStats movementStats;
 
+    [Header("Graphics")]
+    [SerializeField]
+    private CustomerGraphics _customerGraphics;
+
+    [Header("Logic")]
     [SerializeField]
     private PatienceRange _patienceRange;
 
     [SerializeField]
-    private float _rangeFromPlayer = 5f;
-
-    [SerializeField]
-    private float _cadence;
+    private float _shootRate;
 
     private Quaternion _originalRotation;
     private Vector3 _originalScale;
-    private FoodType _currentFoodType;
-    private CustomerRenderer _currentCustomerRenderer;
     private CustomerState _currentState = CustomerState.Spawned;
     private Transform _spotToWait;
     private float _patienceSeconds = 0;
     private float _currentPatienceTime = 0;
-    private Transform _player;
-    private InteractablePool _weaponPool;
+    private ThroweableFood _desiredFood;
 
     public void SetUp(Transform player)
     {
         _originalRotation = transform.rotation;
         _originalScale = transform.localScale;
-        _player = player;
     }
 
     private void FixedUpdate()
     {
-        if (!_player || _currentState == CustomerState.Normal)
+        if (_currentState == CustomerState.Normal)
             return;
 
-        if(_currentState == CustomerState.Unstable)
-        {
-            UpdateTargetPos(_player.position);
-            Vector2 diff = transform.position - _player.position;
-            float distanceFromPlayer = diff.sqrMagnitude;
-
-            if (distanceFromPlayer < _rangeFromPlayer)
-            {
-                _rb.linearVelocity *= 0;
-                return;
-            }
-        }
-
         _rb.linearVelocity = movementStats.MovementDir * movementStats.MovementForce;
+    }
+
+    private void HandleMovement()
+    {
+        //UpdateTargetPos(_player.position);
+        //Vector2 diff = transform.position - _player.position;
+        //float distanceFromPlayer = diff.sqrMagnitude;
     }
 
     public void UpdateTargetPos(Vector2 target)
@@ -74,7 +62,7 @@ public class CustomerController : MonoBehaviour
         movementStats.MovementDir = (target - (Vector2)transform.position).normalized;
     }
 
-    public void ResetCustomer(Vector2 startingPoint, CustomerRenderer customerRenderer, Transform spotToWait, InteractablePool weaponPool)
+    public void ResetCustomer(Vector2 startingPoint, ThroweableFood desiredFood, CustomerRenderer customerRenderer, Transform spotToWait)
     {
         // State
         _currentState = CustomerState.Spawned;
@@ -82,41 +70,36 @@ public class CustomerController : MonoBehaviour
         transform.position = startingPoint;
         transform.rotation = _originalRotation;
         transform.localScale = _originalScale;
-        // Renderer
-        _currentCustomerRenderer = customerRenderer;
-        _renderer.sprite = _currentCustomerRenderer.NormalState;
         // Spot
         _spotToWait = spotToWait;
         // Patience
         _currentPatienceTime = 0;
         _patienceSeconds = UnityEngine.Random.Range(_patienceRange.MinPatience, _patienceRange.MaxPatience);
         // Select food
-        SelectFood();
-        // Weapon
-        _weaponPool = weaponPool;
+        _desiredFood = desiredFood;
+        // Renderer
+        _customerGraphics.SetUp(customerRenderer, desiredFood._sprite, _patienceSeconds);
     }
 
     private void Update()
     {
-        if (!_player)
-            return;
-
         HandlePatience();
     }
 
-    private void HandlePatience() 
+    private void HandlePatience()
     {
         if (_currentState != CustomerState.Normal)
             return;
 
         _currentPatienceTime += Time.deltaTime;
+        _customerGraphics.UpdatePatienceBar(Time.deltaTime);
         if (_currentPatienceTime < _patienceSeconds)
             return;
 
-        _renderer.sprite = _currentCustomerRenderer.UnstableState;
+        _customerGraphics.TurnUnstable();
         _currentState = CustomerState.Unstable;
         OnCustomerUnstable?.Invoke(_spotToWait.gameObject);
-        InvokeRepeating(nameof(ThrowProjectile), 0, _cadence);
+        InvokeRepeating(nameof(ThrowProjectile), 0, _shootRate);
     }
 
     private void ThrowProjectile()
@@ -138,25 +121,17 @@ public class CustomerController : MonoBehaviour
         }
     }
 
-    private void SelectFood()
-    {
-        if (!_foodText)
-            return;
-
-        FoodType[] values = (FoodType[])Enum.GetValues(typeof(FoodType));
-        _currentFoodType = values[UnityEngine.Random.Range(0, values.Length)];
-
-        _foodText.text = _currentFoodType.ToString();
-    }
-
     public void DeliverFood(FoodType foodType)
     {
-        if (_currentFoodType.Equals(foodType))
+        if (_desiredFood.FoodType.Equals(foodType))
         {
             _currentState = CustomerState.Served;
-            
-            // Reset customer? -> mover al customer a la salida?
-            OnCustomerFinished?.Invoke(this);
+            if (IsInvoking(nameof(ThrowProjectile)))
+                CancelInvoke(nameof(ThrowProjectile));
+            _customerGraphics.FadeOut(() => OnCustomerFinished?.Invoke(this));
+            // Walk away
+            Vector2 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
+            UpdateTargetPos(randomDir);
         }
         else
         {

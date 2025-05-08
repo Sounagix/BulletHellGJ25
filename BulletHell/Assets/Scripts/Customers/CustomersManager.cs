@@ -34,8 +34,12 @@ public class CustomersManager : Manager
     private InteractablePool _weaponPool;
     public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
     private Queue<GameObject> _freeSpots = new();
+
     private Transform _playerTr;
     public Transform PlayerTr { set { _playerTr = value; } }
+
+    private ThroweableFood[] _foodData;
+    public ThroweableFood[] FoodData {  set { _foodData = value; } }
 
     public override void Initialize()
     {
@@ -100,7 +104,9 @@ public class CustomersManager : Manager
         CustomerRenderer renderer = _customerRenderers[UnityEngine.Random.Range(0, _customerRenderers.Count)];
         GameObject spot = _freeSpots.Dequeue();
 
-        customer.ResetCustomer(_startingPoint.position, renderer, spot.transform,_weaponPool);
+
+        ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, _foodData.Length)];
+        customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform);
         customer.UpdateTargetPos(spot.transform.position);
     }
 
