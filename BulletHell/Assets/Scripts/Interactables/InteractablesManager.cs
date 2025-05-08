@@ -114,7 +114,7 @@ public class InteractableSpawnManager : Manager
             return;
 
         ThroweableWeapon weponSO = _weaponData[Random.Range(0, _weaponData.Length)];
-        currentWeapon.ResetObject(customer.position, weponSO);
+        currentWeapon.ResetObject(customer.position, weponSO, wasChangeable: true);
 
         currentWeapon.UpdateTargetPosition(_player.transform.position);
     }

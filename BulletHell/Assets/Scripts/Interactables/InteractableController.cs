@@ -108,6 +108,7 @@ public abstract class InteractableController : MonoBehaviour
         {
             Vector2 normal = collision.GetContact(0).normal;
             _movementStats.MovementDir = Vector2.Reflect(_movementStats.MovementDir, normal).normalized;
+            PTCManager.OnEventPTCCreate?.Invoke(PTCType.BorderCollision, transform.position);
         }
         else if ((mask & _playerLayer) != 0)
         {
