@@ -1087,9 +1087,14 @@ MonoBehaviour:
   - {fileID: 602283543}
   - {fileID: 569360696}
   _weaponData:
+  - {fileID: 11400000, guid: 576df8d4eb7df4c419d3e883e5468cae, type: 2}
   - {fileID: 11400000, guid: 949b0f029d1f87f46a76e79a9a7feb63, type: 2}
+  - {fileID: 11400000, guid: 58909443fb7e5264e8fade6e19aa6ff7, type: 2}
   - {fileID: 11400000, guid: a3ea19b96a54633408b5338746f3fa0f, type: 2}
+  - {fileID: 11400000, guid: e9cb7e7ef4c7caa4d9879aeba76a1ab9, type: 2}
   - {fileID: 11400000, guid: b23bc06dbc8c6584abb4c596afaf8335, type: 2}
+  - {fileID: 11400000, guid: d3b16186b47573040991b4de98a049ef, type: 2}
+  - {fileID: 11400000, guid: 763fa83dc5f31ca4c869d807ed31c718, type: 2}
   - {fileID: 11400000, guid: 0719a9f62cb859943a107dbabf64ede8, type: 2}
   _foodPool: {fileID: 320816974}
   _foodSpawnPoints:
@@ -1098,8 +1103,13 @@ MonoBehaviour:
   _foodData:
   - {fileID: 11400000, guid: 391c2d53856478c4cbbfe86af1c33f7a, type: 2}
   - {fileID: 11400000, guid: 4d15991feb4476f469e48ed65e0cb5b2, type: 2}
+  - {fileID: 11400000, guid: 6f0abdad9ce717a40beb7ea913665ace, type: 2}
+  - {fileID: 11400000, guid: d701b4d4f492d204c90b3c20eb81c0cb, type: 2}
   - {fileID: 11400000, guid: 659c5c2cd73b65c498dd40c2da267e26, type: 2}
   - {fileID: 11400000, guid: c2c4c92f7ef89b649b5cac37d0c2514b, type: 2}
+  - {fileID: 11400000, guid: e40f8b67c48475e46820cb68671bdea2, type: 2}
+  - {fileID: 11400000, guid: 13738f1cd2dd341448107b96eff84a7c, type: 2}
+  - {fileID: 11400000, guid: 57355d2bc0e155548ba98b314e0d8345, type: 2}
 --- !u!1001 &569360693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5319,7 +5329,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 89.15
+  m_fontSize: 66.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

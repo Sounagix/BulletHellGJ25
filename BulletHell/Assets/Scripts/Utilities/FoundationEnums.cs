@@ -31,6 +31,11 @@ public enum WeaponType
     Fish,
     dumbbell,
     Sneakers,
+    Hand,
+    Eye,
+    Ball,
+    Proteine,
+    Pen,
 }
 
 [Serializable]
@@ -40,6 +45,11 @@ public enum FoodType
     Fries,
     Cake,
     Hotdog,
+    Croissant,
+    Pizza,
+    FishAndChips,
+    Taco,
+    Paella,
 }
 
 [Serializable]
