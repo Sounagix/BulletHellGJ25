@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: eb511861c6639ff4a8d5009955ca6322
+guid: 8ca0f25d345535e4da70e3c952b01b0f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5285745804921287842
-    second: papas_0
+      213: -2575541412169291247
+    second: chefWalkingFront3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: papas_0
+      name: chefWalkingFront3_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 0
-        width: 250
-        height: 250
+        width: 53
+        height: 148
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a43853fdcdba5940800000000000000
-      internalID: 5285745804921287842
+      spriteID: 11a675f3bb6d14cd0800000000000000
+      internalID: -2575541412169291247
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cff2879253d36ce4597e47abe8a4b423
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      papas_0: 5285745804921287842
+      chefWalkingFront3_0: -2575541412169291247
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3e0e719bcb43a3c4ab76429f0c510af7
+guid: 542830c8b0d0df348b6a26762fbae81b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 207324555359950837
-    second: Pizza 1_0
+      213: 7677758062038316033
+    second: walkingR1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pizza 1_0
+      name: walkingR1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 40
         y: 0
-        width: 250
-        height: 250
+        width: 40
+        height: 146
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f7127ba59090e200800000000000000
-      internalID: 207324555359950837
+      spriteID: 1047f276740ec8a60800000000000000
+      internalID: 7677758062038316033
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e4e29d60021aab742895c2e72d99a937
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pizza 1_0: 207324555359950837
+      walkingR1_0: 7677758062038316033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

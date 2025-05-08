@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cake
   m_EditorClassIdentifier: 
   _objectName: Cake
-  _sprite: {fileID: 8732635013323328055, guid: 36858f3313f0e7745b2c25b1014044e8, type: 3}
-  _fOOD_tYPE: 2
+  _sprite: {fileID: 21300000, guid: 36858f3313f0e7745b2c25b1014044e8, type: 3}
+  FoodType: 2

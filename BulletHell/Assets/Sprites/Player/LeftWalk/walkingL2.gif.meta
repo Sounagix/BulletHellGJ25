@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: eb511861c6639ff4a8d5009955ca6322
+guid: 05b7643f51afa6748b07b0732c89f6cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5285745804921287842
-    second: papas_0
+      213: 197700542789446055
+    second: walkingL2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: papas_0
+      name: walkingL2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 19
         y: 0
-        width: 250
-        height: 250
+        width: 70
+        height: 149
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a43853fdcdba5940800000000000000
-      internalID: 5285745804921287842
+      spriteID: 7a9edd0a89f5eb200800000000000000
+      internalID: 197700542789446055
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cff2879253d36ce4597e47abe8a4b423
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      papas_0: 5285745804921287842
+      walkingL2_0: 197700542789446055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
