@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LevelSceneManager : MonoBehaviour
 {
+    public static Action RequestLoadScene;
+
     [SerializeField]
     private Level[] _levelData;
 
@@ -70,12 +72,19 @@ public class LevelSceneManager : MonoBehaviour
         }
     }
 
+    public void ResetLevel()
+    {
+        _currentNumOfClientsServed = 0;
+        _index = 0;
+        _currentLevel = _levelData[_index];
+    }
+
     private void NextLevel()
     {
         _index++;
         _currentNumOfClientsServed = 0;
         _currentLevel = _levelData[_index];
-        GameManager.Instance.ChangeScene((int)SceneID.Game);
+        RequestLoadScene?.Invoke();
     }
 
     public bool CanSpawnCustomer()

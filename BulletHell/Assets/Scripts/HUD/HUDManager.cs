@@ -61,6 +61,9 @@ public class HUDManager : Manager
         {
             ShowIndicationsTextInHUD();
         }
+        _currentCustomersCounter = 0;
+        _customersCounter.text = _currentCustomersCounter.ToString() + "/" + LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe.ToString();
+
     }
 
     public override void Shutdown()

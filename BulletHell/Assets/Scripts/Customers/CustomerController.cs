@@ -6,7 +6,7 @@ using UnityEngine;
 public class CustomerController : MonoBehaviour
 {
     public static event Action<CustomerController> OnCustomerFinished;
-    public static event Action<GameObject> OnCustomerUnstable;
+    public static event Action<GameObject> OnReleaseSpot;
     public static event Action<Transform, float> OnCustomerThrowProjectil;
 
     [Header("Physics")]
@@ -160,7 +160,8 @@ public class CustomerController : MonoBehaviour
         // Update Movement
         UpdateTargetPos(_currentWayPoint.position);
         // Invoke Callbacks
-        OnCustomerUnstable?.Invoke(_spotToWait.gameObject);
+        OnReleaseSpot?.Invoke(_spotToWait.gameObject);
+        _spotToWait = null;
         InvokeRepeating(nameof(ThrowProjectile), 0, _currentShootRate);
     }
 
@@ -176,6 +177,8 @@ public class CustomerController : MonoBehaviour
     {
         if (_desiredFood.FoodType.Equals(foodType))
         {
+            if (_spotToWait)
+                OnReleaseSpot?.Invoke(_spotToWait.gameObject);
             TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.FEED_CUSTOMER);
             MasterAudioManager.Instance.PlayOneShot(CLIENT_SOUND.CORRECT_DELIVERY, transform);
             StatisticsManager.OnPlayerDeliverFood?.Invoke(foodType);

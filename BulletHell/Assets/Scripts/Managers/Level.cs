@@ -6,4 +6,6 @@ public class Level : ScriptableObject
     public int _maxFoodsToSpawn;
 
     public int _numOfCLientsToServe;
+
+    public AnimationCurve _custumerSpawnRate;
 }

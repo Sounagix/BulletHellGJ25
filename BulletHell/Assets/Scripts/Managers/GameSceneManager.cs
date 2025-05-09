@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -50,6 +51,16 @@ public class GameSceneManager : MonoBehaviour
     #endregion
 
     #region Unity Callbacks
+    private void OnEnable()
+    {
+        LevelSceneManager.RequestLoadScene += OnRequestLoadScene;
+    }
+
+    private void OnDisable()
+    {
+        LevelSceneManager.RequestLoadScene -= OnRequestLoadScene;
+    }
+
 
     void Start()
     {
@@ -57,6 +68,17 @@ public class GameSceneManager : MonoBehaviour
     }
 
     #endregion
+
+    private void OnRequestLoadScene()
+    {
+        StartCoroutine(ResetGame());
+    }
+
+    public IEnumerator ResetGame()
+    {
+        GameManager.Instance.ChangeScene((int)SceneID.Game);
+        yield return null;
+    }
 
     public IEnumerator GameOver() 
     {

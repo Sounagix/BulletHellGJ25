@@ -55,6 +55,7 @@ public class CustomersManager : Manager
         _reverseCustomerWayPoints = new(_customerWayPoints);
         _reverseCustomerWayPoints.Reverse();
         _numOfCustomersToServe = LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe;
+        spawnRateCurve = LevelSceneManager.Instance.GetCurrentLevel()._custumerSpawnRate;
         InitializeCustomerSpots();
     }
 
@@ -76,7 +77,7 @@ public class CustomersManager : Manager
     private void OnEnable()
     {
         CustomerController.OnCustomerFinished += ReleaseCustomer;
-        CustomerController.OnCustomerUnstable += OnCustomerUnstable;
+        CustomerController.OnReleaseSpot += OnReleaseSpot;
         InventoryManager.OnInventoryUpdated += OnInventoryUpdated;
 
     }
@@ -84,7 +85,7 @@ public class CustomersManager : Manager
     private void OnDisable()
     {
         CustomerController.OnCustomerFinished -= ReleaseCustomer;
-        CustomerController.OnCustomerUnstable -= OnCustomerUnstable;
+        CustomerController.OnReleaseSpot -= OnReleaseSpot;
         InventoryManager.OnInventoryUpdated -= OnInventoryUpdated;
     }
 
@@ -107,7 +108,7 @@ public class CustomersManager : Manager
 
     private void SpawnCustomer()
     {
-        if (_freeSpots.Count == 0 && !LevelSceneManager.Instance.CanSpawnCustomer())
+        if (_freeSpots.Count == 0 || !LevelSceneManager.Instance.CanSpawnCustomer())
             return;
 
         CustomerController customer = _customerPool.GetFromPool();
@@ -132,7 +133,7 @@ public class CustomersManager : Manager
         _customerPool.ReturnToPool(customer);
     }
 
-    private void OnCustomerUnstable(GameObject freeSpot)
+    private void OnReleaseSpot(GameObject freeSpot)
     {
         _freeSpots.Enqueue(freeSpot);
     }

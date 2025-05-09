@@ -17,13 +17,19 @@ public class GameOverManager : MonoBehaviour
     private TextMeshProUGUI _totalTimesPlayerDamagedText;
 
     [SerializeField]
-    private Button _playerAgaiButton;
+    private Button _playerAgaiButton, _backMenuButton;
 
     private void Start()
     {
         _playerAgaiButton.onClick.AddListener(() =>
         {
             GameManager.Instance.ChangeScene((int)SceneID.Game);
+        });
+
+        _backMenuButton.onClick.AddListener(() =>
+        {
+            LevelSceneManager.Instance.ResetLevel();
+            GameManager.Instance.ChangeScene((int)SceneID.Menu);
         });
 
         var statistics = StatisticsManager.Instance;

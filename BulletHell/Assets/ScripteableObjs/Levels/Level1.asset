@@ -12,5 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3725d43f17f0dbf41a7c64454ae09a6d, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  _maxFoodsToSpawn: 1
+  _maxFoodsToSpawn: 2
   _numOfCLientsToServe: 7
+  _custumerSpawnRate:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.15237427
+      value: 3.9079895
+      inSlope: -0.0026524963
+      outSlope: -0.0026524963
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.10175983
+    - serializedVersion: 3
+      time: 70.07649
+      value: 1.0202997
+      inSlope: -0.114518456
+      outSlope: -0.114518456
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.038499895
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
