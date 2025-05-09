@@ -168,7 +168,7 @@ public class CustomerController : MonoBehaviour
     {
         if (!_currentState.Equals(CustomerState.Unstable))
             return;
-
+        MasterAudioManager.Instance.PlayOneShot(THROWEABLE_SOUND.THROW, transform);
         OnCustomerThrowProjectil?.Invoke(transform, _currentProjectileForce);
     }
 

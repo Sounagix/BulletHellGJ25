@@ -52,6 +52,7 @@ public class PlayerGun : MonoBehaviour
 
     private void OnShootFood(ThroweableFood throweableFood)
     {
+        MasterAudioManager.Instance.PlayOneShot(THROWEABLE_SOUND.THROW, transform);
         FoodController food = (FoodController)_foodPool.GetFromPool();
         food.ResetObject(transform.position, isPlayerOwner: true, throweableFood);
 

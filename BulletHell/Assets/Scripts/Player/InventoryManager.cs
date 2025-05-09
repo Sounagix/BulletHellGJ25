@@ -40,6 +40,7 @@ public class InventoryManager : MonoBehaviour
             GlowOnPick.OnGlowActive?.Invoke();
             TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.COLLECT_FOOD);
             StatisticsManager.OnPlayerPickFood?.Invoke(throweableFood.FoodType);
+            MasterAudioManager.Instance.PlayOneShot(THROWEABLE_SOUND.PICK, transform);
         }
     }
 

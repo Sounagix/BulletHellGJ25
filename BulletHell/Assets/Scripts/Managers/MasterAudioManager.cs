@@ -10,7 +10,6 @@ public enum PLAYER_SOUNDS
     HEAL,
     WALK,
     TAKE_FOOD,
-
 }
 
 public enum CLIENT_SOUND : int
@@ -26,6 +25,8 @@ public enum THROWEABLE_SOUND : int
     THROW,
     BOUNCE,
     DAMAGE,
+    PICK,
+    POP,
 }
 
 public class MasterAudioManager : MonoBehaviour
@@ -51,7 +52,7 @@ public class MasterAudioManager : MonoBehaviour
     [Header("Throweable´s sounds")]
 
     [SerializeField]
-    private EventReference _bounceSound;
+    private EventReference _bounceSound, _throw, _pick, _pop;
 
     [Header("OST")]
     [SerializeField]
@@ -119,11 +120,18 @@ public class MasterAudioManager : MonoBehaviour
         switch (cLIENT_SOUND)
         {
             case THROWEABLE_SOUND.THROW:
+                eventReference = _throw;
                 break;
             case THROWEABLE_SOUND.BOUNCE:
                 eventReference = _bounceSound;
                 break;
             case THROWEABLE_SOUND.DAMAGE:
+                break;
+            case THROWEABLE_SOUND.PICK:
+                eventReference = _pick;
+                break;
+            case THROWEABLE_SOUND.POP:
+                eventReference = _pop;
                 break;
         }
         emitter.Play(eventReference, target.position);
