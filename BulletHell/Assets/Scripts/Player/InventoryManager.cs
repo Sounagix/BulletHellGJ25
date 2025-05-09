@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static Action<ThroweableFood> EventAddFoodToInventory;
-
-    public static Action EventRemoveFromInventory;
-
+    /// <summary>
+    /// This event when interacting with food. It doesn't mean the food will be added
+    /// </summary>
+    public static Action<ThroweableFood> OnTryToAddFoodToInventory;
+    /// <summary>
+    /// This event is thrown when the food has been successfully added to the inventory
+    /// </summary>
+    public static Action<FoodType> OnInventoryUpdated;
+    public static Action OnRemoveFoodFromInventory;
     public static Action<ThroweableFood> EventShootFood;
 
     public static int _maxNumFood = 5;
@@ -16,13 +21,13 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventAddFoodToInventory += AddToInventory;
+        OnTryToAddFoodToInventory += AddToInventory;
         PlayerController.OnPlayerMouseLeftClickedUp += PopInventory;
     }
 
     private void OnDisable()
     {
-        EventAddFoodToInventory -= AddToInventory;
+        OnTryToAddFoodToInventory -= AddToInventory;
         PlayerController.OnPlayerMouseLeftClickedUp -= PopInventory;
     }
 
@@ -31,6 +36,7 @@ public class InventoryManager : MonoBehaviour
         if (_foodStack.Count < _maxNumFood)
         {
             _foodStack.Push(throweableFood);
+            OnInventoryUpdated?.Invoke(throweableFood.FoodType);
             GlowOnPick.OnGlowActive?.Invoke();
         }
     }
@@ -39,11 +45,13 @@ public class InventoryManager : MonoBehaviour
     {
         if (_foodStack.Count > 0)
         {
-            ThroweableFood current = _foodStack.Pop();
-            if (current != null)
+            ThroweableFood currFood = _foodStack.Pop();
+            if (currFood != null)
             {
-                EventShootFood?.Invoke(current);
-                EventRemoveFromInventory?.Invoke();
+                FoodType foodType = _foodStack.Count == 0 ? FoodType.None : _foodStack.Peek().FoodType;
+                OnInventoryUpdated?.Invoke(foodType);
+                OnRemoveFoodFromInventory?.Invoke();
+                EventShootFood?.Invoke(currFood);
             }
         }
     }

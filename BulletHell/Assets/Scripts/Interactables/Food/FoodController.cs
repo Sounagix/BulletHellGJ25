@@ -11,7 +11,7 @@ public class FoodController : InteractableController
     private bool _isSpawned = false;
     protected override void OnPlayerTouched()
     {
-        InventoryManager.EventAddFoodToInventory?.Invoke(_food);
+        InventoryManager.OnTryToAddFoodToInventory?.Invoke(_food);
     }
 
     #region Unity Callbacks

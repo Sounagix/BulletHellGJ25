@@ -70,7 +70,6 @@ public abstract class InteractableController : MonoBehaviour
         _currentTime += Time.deltaTime;
         if (_isChangeable && _currentLifeTime >= _timeToChangeRange)
         {
-            Debug.Log("Change Object");
             ReturnToThePool(changeObject: true);
             return;
         }

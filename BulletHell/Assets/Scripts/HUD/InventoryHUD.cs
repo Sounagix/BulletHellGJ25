@@ -17,14 +17,14 @@ public class InventoryHUD : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryManager.EventAddFoodToInventory += AddFoodToHUD;
-        InventoryManager.EventRemoveFromInventory += RemoveLastImg;
+        InventoryManager.OnTryToAddFoodToInventory += AddFoodToHUD;
+        InventoryManager.OnRemoveFoodFromInventory += RemoveLastImg;
     }
 
     private void OnDisable()
     {
-        InventoryManager.EventAddFoodToInventory -= AddFoodToHUD;
-        InventoryManager.EventRemoveFromInventory -= RemoveLastImg;
+        InventoryManager.OnTryToAddFoodToInventory -= AddFoodToHUD;
+        InventoryManager.OnRemoveFoodFromInventory -= RemoveLastImg;
     }
 
     private void AddFoodToHUD(ThroweableFood food)

@@ -42,10 +42,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Width: 0.1
+    - _Width: 0.05
     - _ZWrite: 0
     m_Colors:
-    - _BorderColor: {r: 1, g: 0.8614484, b: 0, a: 1}
+    - _BorderColor: {r: 0.95686275, g: 1, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

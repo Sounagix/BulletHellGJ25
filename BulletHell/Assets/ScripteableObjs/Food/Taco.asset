@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Taco
   _sprite: {fileID: 2069420720813572178, guid: 5a73fac98805dff4fa8344a1ea974720, type: 3}
-  FoodType: 7
+  FoodType: 8
