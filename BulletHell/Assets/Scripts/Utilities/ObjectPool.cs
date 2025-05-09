@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     protected Transform _poolParent;
-    
-    [SerializeField, Min(0)] 
+
+    [SerializeField, Min(0)]
     protected int _poolSize;
 
-    [SerializeField] 
+    [SerializeField]
     protected T _prefab;
 
     protected Queue<T> _pool = new();

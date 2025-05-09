@@ -9,7 +9,7 @@ public enum PTCType
 
 public class PTCManager : MonoBehaviour
 {
-    public static Action <PTCType, Vector2> OnEventPTCCreate;
+    public static Action<PTCType, Vector2> OnEventPTCCreate;
 
     [SerializeField]
     private Transform _ptcPool;

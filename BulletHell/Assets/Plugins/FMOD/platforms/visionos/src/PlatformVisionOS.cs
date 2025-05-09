@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using System;
 
 #if UNITY_VISIONOS && !UNITY_EDITOR
 namespace FMOD
@@ -38,19 +37,19 @@ namespace FMODUnity
         internal override string DisplayName { get { return "visionOS"; } }
         internal override void DeclareRuntimePlatforms(Settings settings)
         {
-            #if UNITY_VISIONOS
+#if UNITY_VISIONOS
             settings.DeclareRuntimePlatform(RuntimePlatform.VisionOS, this);
-            #endif
+#endif
         }
 
 #if UNITY_EDITOR
         internal override IEnumerable<BuildTarget> GetBuildTargets()
         {
-            #if UNITY_VISIONOS
+#if UNITY_VISIONOS
             yield return BuildTarget.VisionOS;
-            #else
+#else
             yield return BuildTarget.NoTarget;
-            #endif
+#endif
         }
 
         internal override Legacy.Platform LegacyIdentifier { get { return Legacy.Platform.None; } }
@@ -62,16 +61,16 @@ namespace FMODUnity
 
         protected override IEnumerable<FileRecord> GetBinaryFiles(BuildTarget buildTarget, bool allVariants, string suffix)
         {
-            #if UNITY_VISIONOS
+#if UNITY_VISIONOS
             if (allVariants || PlayerSettings.VisionOS.sdkVersion == VisionOSSdkVersion.Device)
-            #endif
+#endif
             {
                 yield return new FileRecord(string.Format("libfmodstudio{0}_xros.a", suffix));
             }
 
-            #if UNITY_VISIONOS
+#if UNITY_VISIONOS
             if (allVariants || PlayerSettings.VisionOS.sdkVersion == VisionOSSdkVersion.Simulator)
-            #endif
+#endif
             {
                 yield return new FileRecord(string.Format("libfmodstudio{0}_xrsimulator.a", suffix));
             }
@@ -79,16 +78,16 @@ namespace FMODUnity
 
         protected override IEnumerable<FileRecord> GetOptionalBinaryFiles(BuildTarget buildTarget, bool allVariants)
         {
-            #if UNITY_VISIONOS
+#if UNITY_VISIONOS
             if (allVariants || PlayerSettings.VisionOS.sdkVersion == VisionOSSdkVersion.Device)
-            #endif
+#endif
             {
                 yield return new FileRecord("libresonanceaudio_xros.a");
             }
 
-            #if UNITY_VISIONOS
+#if UNITY_VISIONOS
             if (allVariants || PlayerSettings.VisionOS.sdkVersion == VisionOSSdkVersion.Simulator)
-            #endif
+#endif
             {
                 yield return new FileRecord("libresonanceaudio_xrsimulator.a");
             }

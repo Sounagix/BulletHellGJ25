@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 public class InteractablePool : ObjectPool<InteractableController>
 {
     public override void CreatePool()

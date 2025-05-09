@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -91,7 +89,7 @@ public class HUDManager : Manager
     private IEnumerator ShowIndicationsText()
     {
         _indicationsText.gameObject.SetActive(true);
-        _indicationsText.text = _fistIndecationString + " " 
+        _indicationsText.text = _fistIndecationString + " "
             + LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe.ToString() + " "
             + _secondIndicationsString;
         yield return new WaitForSeconds(_timeToShowIndications);

@@ -13,7 +13,7 @@ public enum PLAYER_SOUNDS
 
 }
 
-public enum  CLIENT_SOUND : int
+public enum CLIENT_SOUND : int
 {
     NEW_CLIENT,
     CORRECT_DELIVERY,

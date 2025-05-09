@@ -1,5 +1,4 @@
-﻿using FMOD.Studio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -143,7 +142,8 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
             public static UpdateTask Create(UpdateTaskType type, string name, string description,
                 Action execute, Func<bool> checkComplete)
             {
-                return new UpdateTask() {
+                return new UpdateTask()
+                {
                     Type = type,
                     Name = name,
                     Description = description,
@@ -269,7 +269,7 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
                 descriptionStyle = new GUIStyle(titleStyle);
                 descriptionStyle.fontStyle = FontStyle.Normal;
                 descriptionStyle.alignment = TextAnchor.MiddleLeft;
-                descriptionStyle.margin = new RectOffset(5,0,0,0);
+                descriptionStyle.margin = new RectOffset(5, 0, 0, 0);
 
                 titleLeftStyle = new GUIStyle(descriptionStyle);
                 titleLeftStyle.fontStyle = FontStyle.Bold;
@@ -359,16 +359,16 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
         {
             switch (currentPage)
             {
-                case PAGES.Welcome:                         break;
-                case PAGES.Updating: CheckUpdatesComplete();break;
-                case PAGES.Linking:     CheckStudioLinked();break;
-                case PAGES.Listener:    CheckListeners();   break;
-                case PAGES.UnityAudio:                      break;
-                case PAGES.UnitySources:CheckSources();     break;
-                case PAGES.SourceControl:                   break;
-                case PAGES.End:                             break;
-                case PAGES.Max:                             break;
-                default:                                    break;
+                case PAGES.Welcome: break;
+                case PAGES.Updating: CheckUpdatesComplete(); break;
+                case PAGES.Linking: CheckStudioLinked(); break;
+                case PAGES.Listener: CheckListeners(); break;
+                case PAGES.UnityAudio: break;
+                case PAGES.UnitySources: CheckSources(); break;
+                case PAGES.SourceControl: break;
+                case PAGES.End: break;
+                case PAGES.Max: break;
+                default: break;
             }
         }
 
@@ -1018,7 +1018,7 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
 
         protected override TreeViewItem BuildRoot()
         {
-            var root = new TreeViewItem (-1, -1);
+            var root = new TreeViewItem(-1, -1);
 
             CreateItems(root, Resources.FindObjectsOfTypeAll<AudioSource>());
             showAlternatingRowBackgrounds = true;
@@ -1058,16 +1058,16 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
                 switch (PrefabUtility.GetPrefabAssetType(go))
                 {
                     case PrefabAssetType.NotAPrefab:
-                    icon = (Texture2D)EditorGUIUtility.IconContent(goIcon).image;
+                        icon = (Texture2D)EditorGUIUtility.IconContent(goIcon).image;
                         break;
                     case PrefabAssetType.Regular:
-                    icon = (Texture2D)EditorGUIUtility.IconContent(prefabIcon).image;
+                        icon = (Texture2D)EditorGUIUtility.IconContent(prefabIcon).image;
                         break;
                     case PrefabAssetType.Model:
-                    icon = (Texture2D)EditorGUIUtility.IconContent(prefabModelIcon).image;
+                        icon = (Texture2D)EditorGUIUtility.IconContent(prefabModelIcon).image;
                         break;
                     case PrefabAssetType.Variant:
-                    icon = (Texture2D)EditorGUIUtility.IconContent(prefabVariantIcon).image;
+                        icon = (Texture2D)EditorGUIUtility.IconContent(prefabVariantIcon).image;
                         break;
                 }
             }
@@ -1079,7 +1079,7 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
             const string sceneIcon = "SceneAsset Icon";
             const string folderIcon = "Folder Icon";
 
-            public SceneItem(Scene scene) : base (scene.GetHashCode())
+            public SceneItem(Scene scene) : base(scene.GetHashCode())
             {
                 m_scene = scene;
                 if (m_scene.IsValid())
@@ -1097,7 +1097,7 @@ Assets/Plugins/FMOD/**/Info.plist text eol=lf";
 
         private void CreateItems(TreeViewItem root, AudioSource[] audioSources)
         {
-            for(int i = 0; i < audioSources.Length; i++)
+            for (int i = 0; i < audioSources.Length; i++)
             {
                 AudioSource audioSource = audioSources[i];
 

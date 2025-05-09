@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        transform.position = targetPos; 
+        transform.position = targetPos;
 
         yield return new WaitForSeconds(_dashCooldown);
         _dashCoroutine = null;

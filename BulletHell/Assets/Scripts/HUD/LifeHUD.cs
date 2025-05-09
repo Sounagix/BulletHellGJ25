@@ -13,7 +13,7 @@ public class LifeHUD : MonoBehaviour
         if (!_lifeShaderMaterial || !_lifeShaderMaterial.HasProperty(LIFE_SHADER_PARAM)
             || !_lifeShaderMaterial.HasProperty(MAX_LIFE_SHADER_PARAM))
             return;
-     
+
         _lifeShaderMaterial.SetFloat(LIFE_SHADER_PARAM, maxHP);
         _lifeShaderMaterial.SetFloat(MAX_LIFE_SHADER_PARAM, maxHP);
     }
@@ -36,7 +36,7 @@ public class LifeHUD : MonoBehaviour
         _lifeShaderMaterial.SetFloat(LIFE_SHADER_PARAM, currentLife);
     }
 
-    public void OnReset(float maxHP) 
+    public void OnReset(float maxHP)
     {
         if (!_lifeShaderMaterial || !_lifeShaderMaterial.HasProperty(LIFE_SHADER_PARAM)
         || !_lifeShaderMaterial.HasProperty(MAX_LIFE_SHADER_PARAM))

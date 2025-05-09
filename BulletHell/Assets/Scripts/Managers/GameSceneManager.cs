@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -80,7 +79,7 @@ public class GameSceneManager : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator GameOver() 
+    public IEnumerator GameOver()
     {
         GameManager.Instance.ChangeScene((int)SceneID.GameOver);
         yield return null;

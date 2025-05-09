@@ -41,7 +41,7 @@ public class WeaponSpawnPoint : MonoBehaviour
 
         _currentWeaponTime = 0;
 
-        if(_spawnCount > 1)
+        if (_spawnCount > 1)
             SpawnMultipleWeapons();
         else
             SpawnWeaponTargetPlayer();
@@ -57,7 +57,7 @@ public class WeaponSpawnPoint : MonoBehaviour
         return spawnPos;
     }
 
-    private void SpawnMultipleWeapons() 
+    private void SpawnMultipleWeapons()
     {
         for (int i = 0; i < _spawnCount; i++)
         {
@@ -73,7 +73,7 @@ public class WeaponSpawnPoint : MonoBehaviour
         }
     }
 
-    private void SpawnWeaponTargetPlayer() 
+    private void SpawnWeaponTargetPlayer()
     {
         WeaponController weapon = (WeaponController)_weaponPool.GetFromPool();
 

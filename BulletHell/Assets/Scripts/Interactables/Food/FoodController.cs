@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class FoodController : InteractableController
@@ -20,7 +19,7 @@ public class FoodController : InteractableController
     {
         if (_isPlayerOwner)
             return;
-     
+
         // If player is the owner, the update won't be applied here
         // The food will return to the pool just by collisions
         base.Update();

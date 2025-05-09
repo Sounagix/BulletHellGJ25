@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +17,9 @@ public class PlayerManager : Manager, IDamageable
 
     [SerializeField]
     private DamageableStats _damageableStats;
-    public DamageableStats DamageableStats { get { return _damageableStats; }
+    public DamageableStats DamageableStats
+    {
+        get { return _damageableStats; }
     }
     [SerializeField]
     private PlayerSFXController _playerSFXController;
@@ -42,7 +43,7 @@ public class PlayerManager : Manager, IDamageable
     private Queue<FoodType> _inventory;
     public Queue<FoodType> Inventory;
 
-    
+
 
     public override void Initialize()
     {

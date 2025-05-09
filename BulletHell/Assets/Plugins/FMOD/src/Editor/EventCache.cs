@@ -55,7 +55,7 @@ namespace FMODUnity
         {
             if (SerializableEventsDict.Count == 0)
             {
-                SerializableEventsDict = EditorEventsDict.Select(item => new DictionaryEntry { key = item.Key, index = item.Value}).ToList();
+                SerializableEventsDict = EditorEventsDict.Select(item => new DictionaryEntry { key = item.Key, index = item.Value }).ToList();
             }
         }
 
@@ -76,7 +76,8 @@ namespace FMODUnity
             EditorEventsDict.Clear();
             int index = 0;
 
-            EditorEvents.ForEach((eventRef) => {
+            EditorEvents.ForEach((eventRef) =>
+            {
                 if (!EditorEventsDict.ContainsKey(eventRef.Path))
                 {
                     EditorEventsDict.Add(eventRef.Path, index);

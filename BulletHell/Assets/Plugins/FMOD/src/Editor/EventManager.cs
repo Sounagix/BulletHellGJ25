@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEditor.Build;
 using System.Reflection;
+using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FMODUnity
@@ -474,7 +474,8 @@ namespace FMODUnity
                                 eventRef.Parameters.Add(paramRef);
                             }
 
-                            InitializeParamRef(paramRef, param, (labelIndex) => {
+                            InitializeParamRef(paramRef, param, (labelIndex) =>
+                            {
                                 string label;
                                 eventDesc.getParameterLabelByIndex(paramIndex, labelIndex, out label);
                                 return label;
@@ -507,7 +508,8 @@ namespace FMODUnity
                                 eventCache.EditorParameters.Add(paramRef);
                             }
 
-                            InitializeParamRef(paramRef, param, (index) => {
+                            InitializeParamRef(paramRef, param, (index) =>
+                            {
                                 string label;
                                 EditorUtils.System.getParameterLabelByID(param.id, index, out label);
                                 return label;
@@ -568,18 +570,21 @@ namespace FMODUnity
 
         static EventManager()
         {
-            BuildStatusWatcher.OnBuildStarted += () => {
+            BuildStatusWatcher.OnBuildStarted += () =>
+            {
                 BuildTargetChanged();
                 CopyToStreamingAssets(EditorUserBuildSettings.activeBuildTarget);
             };
-            BuildStatusWatcher.OnBuildEnded += () => {
+            BuildStatusWatcher.OnBuildEnded += () =>
+            {
                 UpdateBankStubAssets(EditorUserBuildSettings.activeBuildTarget);
             };
         }
 
         public static void Startup()
         {
-            EventReference.GuidLookupDelegate = (path) => {
+            EventReference.GuidLookupDelegate = (path) =>
+            {
                 EditorEventRef editorEventRef = EventFromPath(path);
 
                 return (editorEventRef != null) ? editorEventRef.Guid : new FMOD.GUID();
@@ -1247,7 +1252,7 @@ namespace FMODUnity
 
         public class ActiveBuildTargetListener : IActiveBuildTargetChanged
         {
-            public int callbackOrder{ get { return 0; } }
+            public int callbackOrder { get { return 0; } }
             public void OnActiveBuildTargetChanged(BuildTarget previousTarget, BuildTarget newTarget)
             {
                 BuildTargetChanged();

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using System;
 
 #if UNITY_TVOS && !UNITY_EDITOR
 namespace FMOD

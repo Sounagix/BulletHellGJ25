@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public interface IDamageable
 {
     public void OnReceiveDamage(float damage);

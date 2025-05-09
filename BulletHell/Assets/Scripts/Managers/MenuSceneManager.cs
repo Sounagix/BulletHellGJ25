@@ -45,8 +45,8 @@ public class MenuSceneManager : Manager
         UIHelper.AddListenerToButton(settingsButton, SettingsButtonAction);
 
 #if UNITY_WEBGL
-            if (quitGameButton)
-                quitGameButton.gameObject.SetActive(false);
+        if (quitGameButton)
+            quitGameButton.gameObject.SetActive(false);
 #else
         UIHelper.AddListenerToButton(quitGameButton, QuitGameButtonAction);
 #endif

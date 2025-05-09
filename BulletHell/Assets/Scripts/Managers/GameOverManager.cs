@@ -1,12 +1,12 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _presicionText;
-    
+
     [SerializeField]
     private TextMeshProUGUI _totalDishesDeliveredCorrectlyText;
 

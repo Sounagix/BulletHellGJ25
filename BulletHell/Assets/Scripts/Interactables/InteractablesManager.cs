@@ -22,7 +22,7 @@ public class InteractableSpawnManager : Manager
 
     [SerializeField]
     private ThroweableFood[] _foodData;
-    public ThroweableFood[] FoodData {  get { return _foodData; } }
+    public ThroweableFood[] FoodData { get { return _foodData; } }
 
     private PlayerManager _player;
     public PlayerManager Player { set { _player = value; } }

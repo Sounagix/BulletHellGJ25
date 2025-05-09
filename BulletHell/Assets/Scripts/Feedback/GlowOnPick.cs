@@ -6,16 +6,16 @@ public class GlowOnPick : MonoBehaviour
 {
     public static Action OnGlowActive;
 
-    [SerializeField] 
+    [SerializeField]
     private Material _normalMat;
 
-    [SerializeField] 
+    [SerializeField]
     private Material _glowMat;
 
-    [SerializeField] 
+    [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
-    [SerializeField] 
+    [SerializeField]
     private float _glowDuration = 1.5f;
 
     private Coroutine _glowCoroutine;

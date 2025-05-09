@@ -1,9 +1,5 @@
-using System;
 using UnityEngine;
-using System.Threading.Tasks;
-using System.Collections;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class CameraController : MonoBehaviour
 {
@@ -50,7 +46,7 @@ public class CameraController : MonoBehaviour
         cam.orthographicSize = defaultSize * (baseAspect / screenAspect);
 
         // Adjust the walls based on the camera's orthographic size
-        float cameraHeight = cam.orthographicSize * 2; 
+        float cameraHeight = cam.orthographicSize * 2;
         float cameraWidth = cameraHeight * screenAspect;
 
         // Move the walls based on the camera's visible width and height in world units

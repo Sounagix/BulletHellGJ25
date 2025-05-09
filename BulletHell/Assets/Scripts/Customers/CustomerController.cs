@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CustomerController : MonoBehaviour
@@ -195,7 +194,7 @@ public class CustomerController : MonoBehaviour
             HandlePatience(time: 1f);
             MasterAudioManager.Instance.PlayOneShot(CLIENT_SOUND.INCORRECT_DELIVERY, transform);
         }
-    
+
     }
 
     private void OnHighlightCustomer(FoodType foodType)

@@ -17,17 +17,17 @@ public enum GameState
 }
 
 [Serializable]
-public enum InteractableType 
+public enum InteractableType
 {
     Food,
     Weapon
 }
 
 [Serializable]
-public enum WeaponType 
+public enum WeaponType
 {
     None,
-    Knife, 
+    Knife,
     Bomb,
     Fire,
     Fish,
@@ -42,7 +42,7 @@ public enum WeaponType
 }
 
 [Serializable]
-public enum FoodType 
+public enum FoodType
 {
     None,
     Burger,

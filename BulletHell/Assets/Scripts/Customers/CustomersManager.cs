@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +41,7 @@ public class CustomersManager : Manager
     public Transform PlayerTr { set { _playerTr = value; } }
 
     private ThroweableFood[] _foodData;
-    public ThroweableFood[] FoodData {  set { _foodData = value; } }
+    public ThroweableFood[] FoodData { set { _foodData = value; } }
 
     private List<Transform> _reverseCustomerWayPoints;
     private FoodType _currentInventoryType = FoodType.None;
@@ -123,7 +122,7 @@ public class CustomersManager : Manager
         ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, LevelSceneManager.Instance.GetCurrentLevel()._maxFoodsToSpawn)];
         bool isReversed = UnityEngine.Random.value > 0.5f;
 
-        customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform, 
+        customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform,
             isReversed ? _reverseCustomerWayPoints : _customerWayPoints, _currentInventoryType);
         customer.UpdateTargetPos(spot.transform.position);
     }
@@ -138,7 +137,7 @@ public class CustomersManager : Manager
         _freeSpots.Enqueue(freeSpot);
     }
 
-    private void OnInventoryUpdated(FoodType foodType) 
+    private void OnInventoryUpdated(FoodType foodType)
     {
         _currentInventoryType = foodType;
     }

@@ -1,4 +1,3 @@
-using FMOD;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -12,7 +11,7 @@ public class CustomerGraphics : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer _renderer;
-    
+
     [SerializeField]
     private SpriteRenderer _highlightedRenderer;
 
@@ -70,7 +69,7 @@ public class CustomerGraphics : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    public void OnHighlightCustomer(bool isHighlighted) 
+    public void OnHighlightCustomer(bool isHighlighted)
     {
         _highlightedRenderer.gameObject.SetActive(isHighlighted);
     }

@@ -1,6 +1,4 @@
-using FMOD.Studio;
 using FMODUnity;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -57,13 +55,13 @@ public class PlayerSFXController : MonoBehaviour
     {
         if (movementSFX)
             movementSFX.Stop();
-        if(playerDeathSFX)
+        if (playerDeathSFX)
             playerDeathSFX.Play();
     }
 
     public void PlaySpawnPlayer()
     {
-        if(spawnPlayerSFX)
+        if (spawnPlayerSFX)
             spawnPlayerSFX.Play();
     }
 
@@ -74,7 +72,7 @@ public class PlayerSFXController : MonoBehaviour
 
         isHeartBeatPlaying = true;
 
-        if(heartBeatSFX)
+        if (heartBeatSFX)
             heartBeatSFX.Play();
     }
 
@@ -85,7 +83,7 @@ public class PlayerSFXController : MonoBehaviour
 
         isHeartBeatPlaying = false;
 
-        if(heartBeatSFX)
+        if (heartBeatSFX)
             heartBeatSFX.Stop();
     }
 }
