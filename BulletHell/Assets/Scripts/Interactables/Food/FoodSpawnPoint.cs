@@ -47,7 +47,7 @@ public class FoodSpawnPoint : MonoBehaviour
             return;
 
         _animator.SetTrigger("Spawn");
-        ThroweableFood foodSO = _foodData[Random.Range(0, _foodData.Length)];
+        ThroweableFood foodSO = _foodData[Random.Range(0, LevelSceneManager.Instance.GetCurrentLevel()._maxFoodsToSpawn)];
         food.ResetObject(transform.position, isPlayerOwner: false, foodSO);
         Vector2 randomDir = Random.insideUnitCircle.normalized;
         food.UpdateTargetPosition(randomDir);

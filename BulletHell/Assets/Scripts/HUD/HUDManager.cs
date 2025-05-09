@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 
 public class HUDManager : Manager
@@ -11,8 +15,32 @@ public class HUDManager : Manager
     [SerializeField]
     private TimeHUD _timeHUD;
 
+    [SerializeField]
+    private TextMeshProUGUI _indicationsText;
+
+    [SerializeField]
+    private TextMeshProUGUI _customersCounter;
+
+    [SerializeField]
+    private string _fistIndecationString, _secondIndicationsString;
+
+    [SerializeField]
+    private float _timeToShowIndications;
+
+    private int _currentCustomersCounter = 0;
+
     private PlayerManager _player;
     public PlayerManager Player { set { _player = value; } }
+
+    private void OnEnable()
+    {
+        StatisticsManager.OnPlayerDeliverFood += OnUpdateCustomersCounter;
+    }
+
+    private void OnDisable()
+    {
+        StatisticsManager.OnPlayerDeliverFood -= OnUpdateCustomersCounter;
+    }
 
     public override void Initialize()
     {
@@ -24,10 +52,24 @@ public class HUDManager : Manager
         _timeHUD.SetUp();
 
         _isInitialized = true;
+
+    }
+
+    private void Start()
+    {
+        if (!LevelSceneManager.Instance.IsTutorialActive())
+        {
+            ShowIndicationsTextInHUD();
+        }
     }
 
     public override void Shutdown()
     {
+    }
+
+    public void ShowIndicationsTextInHUD()
+    {
+        StartCoroutine(ShowIndicationsText());
     }
 
     public void OnReset()
@@ -36,4 +78,22 @@ public class HUDManager : Manager
         _inventoryHUD.OnReset();
         _timeHUD.OnReset();
     }
+
+    private void OnUpdateCustomersCounter(FoodType type)
+    {
+        _currentCustomersCounter++;
+        _customersCounter.text = _currentCustomersCounter.ToString() + "/" + LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe.ToString();
+    }
+
+    private IEnumerator ShowIndicationsText()
+    {
+        _indicationsText.gameObject.SetActive(true);
+        _indicationsText.text = _fistIndecationString + " " 
+            + LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe.ToString() + " "
+            + _secondIndicationsString;
+        yield return new WaitForSeconds(_timeToShowIndications);
+        _indicationsText.gameObject.SetActive(false);
+    }
+
+
 }

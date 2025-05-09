@@ -26,8 +26,7 @@ public enum InteractableType
 [Serializable]
 public enum WeaponType 
 {
-    None, 
-
+    None,
     Knife, 
     Bomb,
     Fire,
@@ -39,13 +38,13 @@ public enum WeaponType
     Ball,
     Proteine,
     Pen,
+
 }
 
 [Serializable]
 public enum FoodType 
 {
     None,
-
     Burger,
     Fries,
     Cake,

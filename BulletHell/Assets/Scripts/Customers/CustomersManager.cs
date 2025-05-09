@@ -47,12 +47,14 @@ public class CustomersManager : Manager
     private List<Transform> _reverseCustomerWayPoints;
     private FoodType _currentInventoryType = FoodType.None;
 
+    private int _numOfCustomersToServe = 0;
+
     public override void Initialize()
     {
         _customerPool.CreateCustomerPool(_playerTr);
         _reverseCustomerWayPoints = new(_customerWayPoints);
         _reverseCustomerWayPoints.Reverse();
-
+        _numOfCustomersToServe = LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe;
         InitializeCustomerSpots();
     }
 
@@ -105,7 +107,7 @@ public class CustomersManager : Manager
 
     private void SpawnCustomer()
     {
-        if (_freeSpots.Count == 0)
+        if (_freeSpots.Count == 0 && !LevelSceneManager.Instance.CanSpawnCustomer())
             return;
 
         CustomerController customer = _customerPool.GetFromPool();
@@ -117,7 +119,7 @@ public class CustomersManager : Manager
         GameObject spot = _freeSpots.Dequeue();
 
 
-        ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, _foodData.Length)];
+        ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, LevelSceneManager.Instance.GetCurrentLevel()._maxFoodsToSpawn)];
         bool isReversed = UnityEngine.Random.value > 0.5f;
 
         customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform, 

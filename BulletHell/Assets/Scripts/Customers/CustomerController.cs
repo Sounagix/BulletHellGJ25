@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CustomerController : MonoBehaviour
@@ -87,6 +88,7 @@ public class CustomerController : MonoBehaviour
             _currentState = CustomerState.Normal;
             transform.position = other.transform.position;
             _rb.linearVelocity *= 0;
+            MasterAudioManager.Instance.PlayOneShot(CLIENT_SOUND.NEW_CLIENT, transform);
         }
     }
 
@@ -175,6 +177,7 @@ public class CustomerController : MonoBehaviour
         if (_desiredFood.FoodType.Equals(foodType))
         {
             TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.FEED_CUSTOMER);
+            MasterAudioManager.Instance.PlayOneShot(CLIENT_SOUND.CORRECT_DELIVERY, transform);
             StatisticsManager.OnPlayerDeliverFood?.Invoke(foodType);
             _currentState = CustomerState.Served;
             if (IsInvoking(nameof(ThrowProjectile)))
@@ -187,7 +190,9 @@ public class CustomerController : MonoBehaviour
         else if (_currentState.Equals(CustomerState.Normal))
         {
             HandlePatience(time: 1f);
+            MasterAudioManager.Instance.PlayOneShot(CLIENT_SOUND.INCORRECT_DELIVERY, transform);
         }
+    
     }
 
     private void OnHighlightCustomer(FoodType foodType)

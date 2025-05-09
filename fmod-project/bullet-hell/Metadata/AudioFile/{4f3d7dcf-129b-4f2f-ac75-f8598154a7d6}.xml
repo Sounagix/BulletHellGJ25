@@ -2,16 +2,16 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{4f3d7dcf-129b-4f2f-ac75-f8598154a7d6}">
 		<property name="assetPath">
-			<value>bell.wav</value>
+			<value>Clients/Bell/bell.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>
 		</property>
 		<property name="channelCount">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<property name="length">
-			<value>3.9999479166666667</value>
+			<value>20.736354166666668</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{94131936-2e02-4ded-95e2-d3ee51328358}</destination>

@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
+        MasterAudioManager.Instance.PlayOneShot(PLAYER_SOUNDS.DASH, transform);
         _trailRenderer.emitting = true;
         Vector2 startPos = transform.position;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

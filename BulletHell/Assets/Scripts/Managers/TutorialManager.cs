@@ -19,6 +19,12 @@ public class TutorialManager : MonoBehaviour
     public static Action<TUTORIAL> OnTutorialUpdate;
 
     [SerializeField]
+    private HUDManager _hudManager;
+
+    [SerializeField]
+    private GameObject _tutorialPanel;
+
+    [SerializeField]
     private TMPro.TextMeshProUGUI _tutorialText;
 
     [SerializeField]
@@ -67,8 +73,12 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        _tutorialText.text = _tutorialEnterText;
-        SetUpButton();
+        if (LevelSceneManager.Instance.IsTutorialActive())
+        {
+            _tutorialPanel.SetActive(true);
+            _tutorialText.text = _tutorialEnterText;
+            SetUpButton();
+        }
     }
 
     private void SetUpButton()
@@ -85,7 +95,8 @@ public class TutorialManager : MonoBehaviour
             delegate ()
             {
                 _tutorialText.transform.parent.gameObject.SetActive(false);
-                // startGame
+                LevelSceneManager.Instance.DeactiveTutorial();
+                _hudManager.ShowIndicationsTextInHUD();
             });
     }
 
@@ -125,5 +136,7 @@ public class TutorialManager : MonoBehaviour
     private void EndOfTutorial()
     {
         _tutorialText.transform.parent.gameObject.SetActive(false);
+        LevelSceneManager.Instance.DeactiveTutorial();
+        _hudManager.ShowIndicationsTextInHUD();
     }
 }
