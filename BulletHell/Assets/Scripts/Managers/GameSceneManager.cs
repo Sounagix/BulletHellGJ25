@@ -60,6 +60,7 @@ public class GameSceneManager : MonoBehaviour
 
     public IEnumerator GameOver() 
     {
+        GameManager.Instance.ChangeScene((int)SceneID.GameOver);
         yield return null;
     }
 }

@@ -32,6 +32,8 @@ public class InventoryManager : MonoBehaviour
         {
             _foodStack.Push(throweableFood);
             GlowOnPick.OnGlowActive?.Invoke();
+            TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.COLLECT_FOOD);
+            StatisticsManager.OnPlayerPickFood?.Invoke(throweableFood.FoodType);
         }
     }
 

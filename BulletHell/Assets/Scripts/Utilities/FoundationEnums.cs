@@ -5,6 +5,7 @@ public enum SceneID
     LoadingScene = 0,
     Menu = 1,
     Game = 2,
+    GameOver = 3,
 }
 
 public enum GameState

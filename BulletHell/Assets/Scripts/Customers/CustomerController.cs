@@ -160,6 +160,8 @@ public class CustomerController : MonoBehaviour
     {
         if (_desiredFood.FoodType.Equals(foodType))
         {
+            TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.FEED_CUSTOMER);
+            StatisticsManager.OnPlayerDeliverFood?.Invoke(foodType);
             _currentState = CustomerState.Served;
             if (IsInvoking(nameof(ThrowProjectile)))
                 CancelInvoke(nameof(ThrowProjectile));
