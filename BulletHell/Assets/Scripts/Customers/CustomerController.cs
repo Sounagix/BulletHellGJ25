@@ -56,6 +56,7 @@ public class CustomerController : MonoBehaviour
         _originalScale = transform.localScale;
     }
 
+    #region Unity Callbacks
     private void FixedUpdate()
     {
         if (_currentState == CustomerState.Normal)
@@ -63,6 +64,33 @@ public class CustomerController : MonoBehaviour
 
         _rb.linearVelocity = movementStats.MovementDir * movementStats.MovementForce;
     }
+
+    private void Update()
+    {
+        HandlePatience(Time.deltaTime);
+        HandleMoveDir();
+    }
+
+    private void OnEnable()
+    {
+        InventoryManager.OnInventoryUpdated += OnHighlightCustomer;
+    }
+
+    private void OnDisable()
+    {
+        InventoryManager.OnInventoryUpdated -= OnHighlightCustomer;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_currentState == CustomerState.Spawned && _spotToWait != null && other.transform == _spotToWait)
+        {
+            _currentState = CustomerState.Normal;
+            transform.position = other.transform.position;
+            _rb.linearVelocity *= 0;
+        }
+    }
+
+    #endregion
 
     private void HandleMoveDir()
     {
@@ -86,7 +114,7 @@ public class CustomerController : MonoBehaviour
     }
 
     public void ResetCustomer(Vector2 startingPoint, ThroweableFood desiredFood, CustomerRenderer customerRenderer,
-        Transform spotToWait, List<Transform> waypoints)
+        Transform spotToWait, List<Transform> waypoints, FoodType currentInventoryType)
     {
         // State
         _currentState = CustomerState.Spawned;
@@ -110,21 +138,17 @@ public class CustomerController : MonoBehaviour
         // Projectiles
         _currentProjectileForce = UnityEngine.Random.Range(_projectileForceRange.Min, _projectileForceRange.Max);
         _currentShootRate = UnityEngine.Random.Range(_shootRateRange.Min, _shootRateRange.Max);
+        // Highlight Customer
+        OnHighlightCustomer(currentInventoryType);
     }
 
-    private void Update()
-    {
-        HandlePatience();
-        HandleMoveDir();
-    }
-
-    private void HandlePatience()
+    private void HandlePatience(float time)
     {
         if (_currentState != CustomerState.Normal)
             return;
 
-        _currentPatienceTime += Time.deltaTime;
-        _customerGraphics.UpdatePatienceBar(Time.deltaTime);
+        _currentPatienceTime += time;
+        _customerGraphics.UpdatePatienceBar(time);
         if (_currentPatienceTime < _patienceSeconds)
             return;
 
@@ -146,16 +170,6 @@ public class CustomerController : MonoBehaviour
         OnCustomerThrowProjectil?.Invoke(transform, _currentProjectileForce);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (_currentState == CustomerState.Spawned && _spotToWait != null && other.transform == _spotToWait)
-        {
-            _currentState = CustomerState.Normal;
-            transform.position = other.transform.position;
-            _rb.linearVelocity *= 0;
-        }
-    }
-
     public void DeliverFood(FoodType foodType)
     {
         if (_desiredFood.FoodType.Equals(foodType))
@@ -170,9 +184,17 @@ public class CustomerController : MonoBehaviour
             Vector2 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
             UpdateTargetPos(randomDir);
         }
-        else
+        else if (_currentState.Equals(CustomerState.Normal))
         {
-            // Aumentar niveles de inestabilidad?
+            HandlePatience(time: 1f);
         }
+    }
+
+    private void OnHighlightCustomer(FoodType foodType)
+    {
+        if (_currentState == CustomerState.Served)
+            return;
+
+        _customerGraphics.OnHighlightCustomer(_desiredFood.FoodType.Equals(foodType));
     }
 }

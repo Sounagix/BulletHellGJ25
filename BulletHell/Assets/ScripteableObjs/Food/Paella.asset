@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectName: Paella
   _sprite: {fileID: 21300000, guid: 3690a58e6f2a5a74ab07bb3d42124bb4, type: 3}
-  FoodType: 8
+  FoodType: 9

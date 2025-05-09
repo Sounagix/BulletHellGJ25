@@ -45,6 +45,7 @@ public class CustomersManager : Manager
     public ThroweableFood[] FoodData {  set { _foodData = value; } }
 
     private List<Transform> _reverseCustomerWayPoints;
+    private FoodType _currentInventoryType = FoodType.None;
 
     public override void Initialize()
     {
@@ -74,12 +75,15 @@ public class CustomersManager : Manager
     {
         CustomerController.OnCustomerFinished += ReleaseCustomer;
         CustomerController.OnCustomerUnstable += OnCustomerUnstable;
+        InventoryManager.OnInventoryUpdated += OnInventoryUpdated;
+
     }
 
     private void OnDisable()
     {
         CustomerController.OnCustomerFinished -= ReleaseCustomer;
         CustomerController.OnCustomerUnstable -= OnCustomerUnstable;
+        InventoryManager.OnInventoryUpdated -= OnInventoryUpdated;
     }
 
     private void Update()
@@ -115,8 +119,9 @@ public class CustomersManager : Manager
 
         ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, _foodData.Length)];
         bool isReversed = UnityEngine.Random.value > 0.5f;
+
         customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform, 
-            isReversed ? _reverseCustomerWayPoints : _customerWayPoints);
+            isReversed ? _reverseCustomerWayPoints : _customerWayPoints, _currentInventoryType);
         customer.UpdateTargetPos(spot.transform.position);
     }
 
@@ -128,5 +133,10 @@ public class CustomersManager : Manager
     private void OnCustomerUnstable(GameObject freeSpot)
     {
         _freeSpots.Enqueue(freeSpot);
+    }
+
+    private void OnInventoryUpdated(FoodType foodType) 
+    {
+        _currentInventoryType = foodType;
     }
 }
