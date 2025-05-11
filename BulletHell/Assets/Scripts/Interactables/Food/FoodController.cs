@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FoodController : InteractableController
 {
+    [Header("Food Controller")]
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
 

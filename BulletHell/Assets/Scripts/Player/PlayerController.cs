@@ -148,4 +148,19 @@ public class PlayerController : MonoBehaviour
             PTCManager.OnEventPTCCreate?.Invoke(PTCType.BorderCollision, transform.position);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        int mask = 1 << collision.gameObject.layer;
+
+        if ((mask & _borderLayer.value) != 0)
+        {
+            Vector2 dir = (Vector2.zero - (Vector2)transform.position).normalized;
+            dir *= 20;
+
+            _rb.AddForce(dir, ForceMode2D.Impulse);
+
+            PTCManager.OnEventPTCCreate?.Invoke(PTCType.BorderCollision, transform.position);
+        }
+    }
 }

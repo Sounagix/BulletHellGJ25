@@ -18,15 +18,29 @@ public class CustomerGraphics : MonoBehaviour
     [SerializeField]
     private Slider _patienceSlider;
 
-    private CustomerRenderer _currentCustomerRenderer;
+    [Header("Increase Size Animation")]
+    [SerializeField]
+    private float _sizeIncrease;
 
-    public void SetUp(CustomerRenderer customerRenderer, Sprite food, float maxPatience)
+    [SerializeField]
+    private float _increaseInThisSeconds;
+
+    //private CustomerRenderer _currentCustomerRenderer;
+
+    private Vector3 _originalScale;
+    private Color _originalColor;
+    private CustomerController _customerController;
+
+    public void SetUp(CustomerController controller)
     {
-        // Customer Renderer
-        _currentCustomerRenderer = customerRenderer;
-        _highlightedRenderer.sprite = _renderer.sprite = _currentCustomerRenderer.NormalState;
+        _originalColor = _renderer.color;
+        _customerController = controller;
+    }
+
+    public void ResetCustomer(/*CustomerRenderer customerRenderer,*/ Sprite food, float maxPatience) 
+    {
+        _highlightedRenderer.sprite = _renderer.sprite;
         _highlightedRenderer.gameObject.SetActive(false);
-        // Food & Patience
         _foodSprite.sprite = food;
         _patienceSlider.maxValue = maxPatience;
         _patienceSlider.value = maxPatience;
@@ -34,8 +48,24 @@ public class CustomerGraphics : MonoBehaviour
 
     public void TurnUnstable()
     {
-        _highlightedRenderer.sprite = _renderer.sprite = _currentCustomerRenderer.UnstableState;
+        //_highlightedRenderer.sprite = _renderer.sprite = _currentCustomerRenderer.UnstableState;
         _patienceSlider.gameObject.SetActive(false);
+        StartCoroutine(IncreaseSize(_customerController.transform.localScale * _sizeIncrease, _increaseInThisSeconds));
+    }
+
+    private IEnumerator IncreaseSize(Vector3 targetScale, float duration)
+    {
+        Vector3 initialScale = _customerController.transform.localScale;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            _customerController.transform.localScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _customerController.transform.localScale = targetScale; // Asegura que llegue exactamente al tamaño final
     }
 
     public void UpdatePatienceBar(float _currentPatienceTime)

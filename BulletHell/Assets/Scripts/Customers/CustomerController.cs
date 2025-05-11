@@ -54,6 +54,7 @@ public class CustomerController : MonoBehaviour
     {
         _originalRotation = transform.rotation;
         _originalScale = transform.localScale;
+        _customerGraphics.SetUp(this);
     }
 
     #region Unity Callbacks
@@ -114,7 +115,7 @@ public class CustomerController : MonoBehaviour
         movementStats.MovementDir = (target - (Vector2)transform.position).normalized;
     }
 
-    public void ResetCustomer(Vector2 startingPoint, ThroweableFood desiredFood, CustomerRenderer customerRenderer,
+    public void ResetCustomer(Vector2 startingPoint, ThroweableFood desiredFood, /*CustomerRenderer customerRenderer,*/
         Transform spotToWait, List<Transform> waypoints, FoodType currentInventoryType)
     {
         // State
@@ -131,7 +132,7 @@ public class CustomerController : MonoBehaviour
         // Select food
         _desiredFood = desiredFood;
         // Renderer
-        _customerGraphics.SetUp(customerRenderer, desiredFood._sprite, _patienceSeconds);
+        _customerGraphics.ResetCustomer(/*customerRenderer,*/ desiredFood._sprite, _patienceSeconds);
         // Way Points
         _waypoints = waypoints;
         _currentWayPoint = waypoints[0];

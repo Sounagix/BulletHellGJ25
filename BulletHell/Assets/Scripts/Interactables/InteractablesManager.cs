@@ -86,7 +86,7 @@ public class InteractableSpawnManager : Manager
     {
         //TODO: Trigger Glitch Effect here on the new object
         InteractableController objectToSpawn;
-        bool isWeapon = UnityEngine.Random.value > 0.5f;
+        bool isWeapon = UnityEngine.Random.value > 0.6f;
         if (isWeapon)
         {
             objectToSpawn = _weaponPool.GetFromPool();
@@ -103,6 +103,7 @@ public class InteractableSpawnManager : Manager
         }
 
         // Copy some stats here
+        objectToSpawn.EnableGlitchEffect();
     }
 
     private void OnCustomerThrowProjectile(Transform customer, float force)

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WeaponController : InteractableController
 {
+    [Header("Weapon Controller")]
     [SerializeField]
     private float _attackPower = 1;
 

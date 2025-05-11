@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class InteractableController : MonoBehaviour
@@ -10,6 +11,7 @@ public abstract class InteractableController : MonoBehaviour
     private InteractableType _interactableType;
     public InteractableType InteractableType { get { return _interactableType; } }
 
+    [Header("Attributes")]
     [SerializeField]
     [Tooltip("[Min, Max]")]
     private RangeFloat _lifeTime;
@@ -20,17 +22,25 @@ public abstract class InteractableController : MonoBehaviour
     [SerializeField]
     protected MovementStats _movementStats;
 
+    [Header("Layers to hanlde")]
     [SerializeField]
     protected LayerMask _borderLayer;
 
     [SerializeField]
     LayerMask _playerLayer;
 
+    [Header("Effects")]
     [SerializeField]
     protected Gradient _trailColor;
 
     [SerializeField]
     private TrailRenderer _trailRenderer;
+
+    [SerializeField]
+    private SpriteRenderer _glitchRenderer;
+
+    [SerializeField]
+    private float _glitchFadeOutDuration;
 
     public MovementStats MovementStats { get { return _movementStats; } set { _movementStats = value; } }
 
@@ -40,6 +50,7 @@ public abstract class InteractableController : MonoBehaviour
     private Vector3 _originalScale;
     private bool _isChangeable = false;
     private float _timeToChangeRange;
+    private Color _glitchOriginalColor;
 
     protected bool isActive = false;
 
@@ -49,6 +60,7 @@ public abstract class InteractableController : MonoBehaviour
         _originalRotation = transform.rotation;
         _originalScale = transform.localScale;
         _trailRenderer.colorGradient = _trailColor;
+        _glitchOriginalColor = _glitchRenderer.color;
     }
 
     protected virtual void ReturnToThePool(bool changeObject = false)
@@ -68,7 +80,7 @@ public abstract class InteractableController : MonoBehaviour
     public virtual void Update()
     {
         _currentTime += Time.deltaTime;
-        if (_isChangeable && _currentLifeTime >= _timeToChangeRange)
+        if (_isChangeable && _currentTime >= _timeToChangeRange)
         {
             ReturnToThePool(changeObject: true);
             return;
@@ -77,7 +89,6 @@ public abstract class InteractableController : MonoBehaviour
         if (_currentTime < _currentLifeTime || !isActive)
             return;
 
-        // Return to the pool
         ReturnToThePool();
     }
 
@@ -126,8 +137,10 @@ public abstract class InteractableController : MonoBehaviour
     {
         // Life time and Change Time
         _currentLifeTime = UnityEngine.Random.Range(_lifeTime.Min, _lifeTime.Max);
-        _isChangeable = !wasChangeable && UnityEngine.Random.value > 0.8f;
-        _timeToChangeRange = UnityEngine.Random.Range(_lifeTime.Min, _currentLifeTime);
+        _isChangeable = !wasChangeable && UnityEngine.Random.value > 0.6f;
+        if (_isChangeable)
+            _timeToChangeRange = UnityEngine.Random.Range(_lifeTime.Min, _currentLifeTime);
+
         // Transform reset
         transform.position = spawnPoint;
         transform.rotation = _originalRotation;
@@ -135,6 +148,9 @@ public abstract class InteractableController : MonoBehaviour
         // Others
         _currentTime = 0;
         isActive = true;
+        // Glitch Renderer
+        _glitchRenderer.gameObject.SetActive(false);
+        _glitchRenderer.color = _glitchOriginalColor;
     }
 
     public virtual void UpdateTargetPosition(Vector2 target)
@@ -146,6 +162,19 @@ public abstract class InteractableController : MonoBehaviour
     {
         _movementStats.MovementForce = newForce;
     }
+
+    public void EnableGlitchEffect()
+    {
+        _glitchRenderer.gameObject.SetActive(true);
+        StartCoroutine(GlitchFadeOut());
+    }
+
+    private IEnumerator GlitchFadeOut()
+    {
+        yield return new WaitForSeconds(_glitchFadeOutDuration);
+        _glitchRenderer.gameObject.SetActive(false);
+    }
+
 
     #endregion
 

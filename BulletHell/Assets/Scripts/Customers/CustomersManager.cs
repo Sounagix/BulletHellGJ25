@@ -10,8 +10,8 @@ public class CustomersManager : Manager
     [SerializeField]
     private AnimationCurve spawnRateCurve;
 
-    [SerializeField]
-    private List<CustomerRenderer> _customerRenderers;
+    //[SerializeField]
+    //private List<CustomerRenderer> _customerRenderers;
 
     [SerializeField]
     private List<Transform> _customerWayPoints;
@@ -115,14 +115,14 @@ public class CustomersManager : Manager
         if (!customer)
             return;
 
-        CustomerRenderer renderer = _customerRenderers[UnityEngine.Random.Range(0, _customerRenderers.Count)];
+        //CustomerRenderer renderer = _customerRenderers[UnityEngine.Random.Range(0, _customerRenderers.Count)];
         GameObject spot = _freeSpots.Dequeue();
 
 
         ThroweableFood foodSO = _foodData[UnityEngine.Random.Range(0, LevelSceneManager.Instance.GetCurrentLevel()._maxFoodsToSpawn)];
         bool isReversed = UnityEngine.Random.value > 0.5f;
 
-        customer.ResetCustomer(_startingPoint.position, foodSO, renderer, spot.transform,
+        customer.ResetCustomer(_startingPoint.position, foodSO, /*renderer,*/ spot.transform,
             isReversed ? _reverseCustomerWayPoints : _customerWayPoints, _currentInventoryType);
         customer.UpdateTargetPos(spot.transform.position);
     }
