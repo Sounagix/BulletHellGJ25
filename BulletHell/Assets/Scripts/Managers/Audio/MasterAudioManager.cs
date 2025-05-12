@@ -1,4 +1,5 @@
 using FMODUnity;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,11 @@ public class MasterAudioManager : MonoBehaviour
     [SerializeField]
     private EventReference _ostSong, _mainMenuSong, _gameOverSong, _tutorialSong;
 
+    [SerializeField]
+    private float _inititalVolume = 0.5f;
+
+    private float _currentVolumen = 0.0f;
+
     private FMODAudioEmitter _gameplaySongEmmiter;
     private FMODAudioEmitter _mainMenuSongEmmiter;
     private FMODAudioEmitter _gameoverEmmiter;
@@ -78,6 +84,7 @@ public class MasterAudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeEmitters();
+            _currentVolumen = _inititalVolume;
         }
         else
         {
@@ -140,11 +147,13 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _incorrectDeliverySound;
                 break;
         }
-        emitter.Play(eventReference, target.position);
+        emitter.Play(eventReference, target.position, _currentVolumen);
     }
 
     public void PlayOneShot(OST_SOUND oST_SOUND, Transform target)
     {
+        FMOD.Studio.Bus masterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
+        masterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); // o .IMMEDIATE
         FMODAudioEmitter emitter = GetNextAvailableEmitter();
         EventReference eventReference = new EventReference();
         switch (oST_SOUND)
@@ -174,7 +183,7 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _gameOverSong;
                 break;
         }
-        emitter.Play(eventReference, target.position);
+        emitter.Play(eventReference, target.position, _currentVolumen);
     }
 
     private void StopOtherOST(OST_SOUND oST_SOUND)
@@ -273,7 +282,7 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _pop;
                 break;
         }
-        emitter.Play(eventReference, target.position);
+        emitter.Play(eventReference, target.position, _currentVolumen);
     }
 
     public void PlayOneShot(PLAYER_SOUNDS cLIENT_SOUND, Transform target)
@@ -297,7 +306,7 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _takeDamage;
                 break;
         }
-        emitter.Play(eventReference, target.position);
+        emitter.Play(eventReference, target.position, _currentVolumen);
     }
 
     public void GamePlaySongNextLevel()

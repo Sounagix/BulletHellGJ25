@@ -65,6 +65,7 @@ public class GameSceneManager : Manager
         GameManager.Instance.ChangeCursorTexture(_gameState);
 
         _isInitialized = true;
+        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.OST, transform);
     }
 
     public override void Shutdown()

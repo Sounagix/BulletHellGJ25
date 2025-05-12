@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Legacy;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,6 +27,7 @@ public class MenuSceneManager : Manager
 
     [SerializeField]
     private Button _tutorialButton;
+
 
     [SerializeField]
     private TextMeshProUGUI _tutorialText;
@@ -165,4 +168,5 @@ public class MenuSceneManager : Manager
         GameManager.IsTutorialActive = isTutorialActive;
         EventSystem.current.SetSelectedGameObject(null);
     }
+
 }

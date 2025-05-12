@@ -6,10 +6,11 @@ public class FMODAudioEmitter : MonoBehaviour
 {
     private EventInstance instance;
 
-    public void Play(EventReference sound, Vector3 position)
+    public void Play(EventReference sound, Vector3 position, float volumen)
     {
         instance = RuntimeManager.CreateInstance(sound);
         instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
+        instance.setVolume(volumen);
         instance.start();
         instance.release();
     }

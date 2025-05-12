@@ -1131,6 +1131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 835100035155803441, guid: 6ffa4b0657b23d042a4509d9a53548f0, type: 3}
+      propertyPath: _inititalVolume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 835100035155803441, guid: 6ffa4b0657b23d042a4509d9a53548f0, type: 3}
       propertyPath: _gameOverSong.Path
       value: event:/OST/GameOver
       objectReference: {fileID: 0}

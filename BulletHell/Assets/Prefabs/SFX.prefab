@@ -140,11 +140,11 @@ MonoBehaviour:
     Path: event:/OST/MainMenu
   _gameOverSong:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1858940239
+      Data2: 1251856198
+      Data3: 725381261
+      Data4: -151890846
+    Path: event:/OST/GameOver
   _tutorialSong:
     Guid:
       Data1: -1590378995
@@ -152,3 +152,4 @@ MonoBehaviour:
       Data3: 1326159496
       Data4: 1630455636
     Path: event:/OST/Tutorial
+  _inititalVolume: 0.5
