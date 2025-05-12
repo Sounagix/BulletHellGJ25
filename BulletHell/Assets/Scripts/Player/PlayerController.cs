@@ -58,6 +58,11 @@ public class PlayerController : MonoBehaviour
             OnPlayerMouseLeftClickedUp?.Invoke();
     }
 
+    public void OnPause(CallbackContext context)
+    {
+        _playerManager.PauseGame();
+    }
+
     public void OnSprint()
     {
         if (_isDashing || _dashRequested || !_playerManager)

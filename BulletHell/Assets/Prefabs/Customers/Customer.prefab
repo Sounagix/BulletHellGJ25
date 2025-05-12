@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8318122020245566582
 Transform:
   m_ObjectHideFlags: 0
@@ -698,8 +698,8 @@ MonoBehaviour:
     CurrentMaxSpeed: 0
   _customerGraphics: {fileID: 9111897791171329924}
   _patienceRange:
-    Min: 1
-    Max: 2
+    Min: 15
+    Max: 25
   _shootRateRange:
     Min: 3
     Max: 7

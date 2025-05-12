@@ -35,7 +35,7 @@ public class MenuSceneManager : Manager
 
     public override void Initialize()
     {
-        if (base._isInitialized)
+        if (_isInitialized)
             return;
 
         _gameManager = GameManager.Instance;

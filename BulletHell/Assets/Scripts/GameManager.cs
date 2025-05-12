@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public void ChangeCursorTexture(GameState state)
+    {
+        StartCoroutine(CursorManager.ChangeCursorTexture(state));
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR

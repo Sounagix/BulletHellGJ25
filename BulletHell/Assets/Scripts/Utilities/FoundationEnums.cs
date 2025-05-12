@@ -10,7 +10,7 @@ public enum SceneID
 
 public enum GameState
 {
-    MainMenu,
+    Opening,
     Playing,
     Pause,
     GameOver

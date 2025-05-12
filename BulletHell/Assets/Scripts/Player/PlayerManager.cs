@@ -38,12 +38,8 @@ public class PlayerManager : Manager, IDamageable
     private Quaternion _initialRotation;
     private Vector3 _initialScale;
 
-
-
     private Queue<FoodType> _inventory;
     public Queue<FoodType> Inventory;
-
-
 
     public override void Initialize()
     {
@@ -151,8 +147,13 @@ public class PlayerManager : Manager, IDamageable
         return _damageableStats.CurrentHP / _damageableStats.MaxHP;
     }
 
-
-
-
     #endregion
+
+    public void PauseGame() 
+    {
+        if (!_gameSceneManager || _gameSceneManager.GameState != GameState.Playing)
+            return;
+
+        _gameSceneManager.PauseGame();
+    }
 }
