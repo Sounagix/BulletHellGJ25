@@ -150,25 +150,25 @@ public class MasterAudioManager : MonoBehaviour
         switch (oST_SOUND)
         {
             case OST_SOUND.OST:
-                if (_gameplaySongEmmiter) break;
+                if (_gameplaySongEmmiter && !_gameplaySongEmmiter.IsPlaying()) break;
                 StopOtherOST(OST_SOUND.OST);
                 eventReference = _ostSong;
                 _gameplaySongEmmiter = emitter;
                 break;
             case OST_SOUND.MAIN_MENU:
-                if (_mainMenuSongEmmiter) break;
+                if (_mainMenuSongEmmiter && !_mainMenuSongEmmiter.IsPlaying()) break;
                 StopOtherOST(OST_SOUND.MAIN_MENU);
                 _mainMenuSongEmmiter = emitter;
                 eventReference = _mainMenuSong;
                 break;
             case OST_SOUND.TUTORIAL:
-                if (_tutorialEmmiter) break;
+                if (_tutorialEmmiter && !_tutorialEmmiter.IsPlaying()) break;
                 StopOtherOST(OST_SOUND.TUTORIAL);
                 _tutorialEmmiter = emitter;
                 eventReference = _tutorialSong;
                 break;
             case OST_SOUND.GAME_OVER:
-                if (_gameoverEmmiter) break;
+                if (_gameoverEmmiter && !_gameoverEmmiter.IsPlaying()) break;
                 StopOtherOST(OST_SOUND.GAME_OVER);
                 _gameoverEmmiter = emitter;
                 eventReference = _gameOverSong;

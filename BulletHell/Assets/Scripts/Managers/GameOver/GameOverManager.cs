@@ -21,6 +21,7 @@ public class GameOverManager : MonoBehaviour
 
     private void Start()
     {
+        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.GAME_OVER, transform);
         _playerAgaiButton.onClick.AddListener(() =>
         {
             LevelSceneManager.Instance.ResetCurrentLevel();
