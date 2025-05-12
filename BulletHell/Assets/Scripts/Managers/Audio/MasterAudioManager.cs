@@ -67,11 +67,6 @@ public class MasterAudioManager : MonoBehaviour
     [SerializeField]
     private EventReference _ostSong, _mainMenuSong, _gameOverSong, _tutorialSong;
 
-    [SerializeField]
-    private float _inititalVolume = 0.5f;
-
-    private float _currentVolumen = 0.0f;
-
     private FMODAudioEmitter _gameplaySongEmmiter;
     private FMODAudioEmitter _mainMenuSongEmmiter;
     private FMODAudioEmitter _gameoverEmmiter;
@@ -84,7 +79,6 @@ public class MasterAudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeEmitters();
-            _currentVolumen = _inititalVolume;
         }
         else
         {
@@ -147,7 +141,8 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _incorrectDeliverySound;
                 break;
         }
-        emitter.Play(eventReference, target.position, _currentVolumen);
+
+        emitter.Play(eventReference, target.position, AudioManager.SFXVolume);
     }
 
     public void PlayOneShot(OST_SOUND oST_SOUND, Transform target)
@@ -183,7 +178,7 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _gameOverSong;
                 break;
         }
-        emitter.Play(eventReference, target.position, _currentVolumen);
+        emitter.Play(eventReference, target.position, AudioManager.MusicVolume);
     }
 
     private void StopOtherOST(OST_SOUND oST_SOUND)
@@ -282,7 +277,7 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _pop;
                 break;
         }
-        emitter.Play(eventReference, target.position, _currentVolumen);
+        emitter.Play(eventReference, target.position, AudioManager.SFXVolume);
     }
 
     public void PlayOneShot(PLAYER_SOUNDS cLIENT_SOUND, Transform target)
@@ -306,25 +301,7 @@ public class MasterAudioManager : MonoBehaviour
                 eventReference = _takeDamage;
                 break;
         }
-        emitter.Play(eventReference, target.position, _currentVolumen);
-    }
-
-    public void GamePlaySongNextLevel()
-    {
-        if (_gameoverEmmiter && _gameplaySongEmmiter.IsPlaying())
-        {
-            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndSlowLoop", 1);
-            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndFastLoop", 0);
-        }
-    }
-
-    public void GamePlaySongLowLevel()
-    {
-        if (_gameoverEmmiter && _gameplaySongEmmiter.IsPlaying())
-        {
-            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndSlowLoop", 0);
-            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndFastLoop", 1);
-        }
+        emitter.Play(eventReference, target.position, AudioManager.SFXVolume);
     }
 
     //public void PlayOneShotAttached(EventReference sound, GameObject target)

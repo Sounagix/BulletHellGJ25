@@ -347,10 +347,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelData:
   - {fileID: 11400000, guid: e461d12c1cccf824882092513ef6f268, type: 2}
-  - {fileID: 11400000, guid: bef74f65313b70a44a510311f0085bb5, type: 2}
   - {fileID: 11400000, guid: 4cd5cee3979187b4a9751f44e9730118, type: 2}
   - {fileID: 11400000, guid: 1115db5e53e1ef64480b8ff888120fb9, type: 2}
   - {fileID: 11400000, guid: efb894a2452ae9e4981092961cff3825, type: 2}
+  - {fileID: 11400000, guid: bef74f65313b70a44a510311f0085bb5, type: 2}
 --- !u!4 &61816858
 Transform:
   m_ObjectHideFlags: 0
@@ -1468,7 +1468,6 @@ MonoBehaviour:
       Data3: 1326159496
       Data4: 1630455636
     Path: event:/OST/Tutorial
-  _inititalVolume: 0.5
 --- !u!114 &416814119
 MonoBehaviour:
   m_ObjectHideFlags: 0

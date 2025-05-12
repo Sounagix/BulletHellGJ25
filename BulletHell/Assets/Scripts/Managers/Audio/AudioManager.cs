@@ -19,8 +19,11 @@ public class AudioManager : MonoBehaviour
     private static FMOD.Studio.Bus sfxBus;
 
     private static AudioManager Instance;
+
     private static float musicVolume;
+    public static float MusicVolume { get { return musicVolume; } }
     private static float sfxVolume;
+    public static float SFXVolume { get { return sfxVolume; } }
 
     public static AudioManager GetInstance()
     {
