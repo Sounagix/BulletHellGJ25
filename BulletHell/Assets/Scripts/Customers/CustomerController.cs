@@ -138,8 +138,8 @@ public class CustomerController : MonoBehaviour
         _currentWayPoint = waypoints[0];
         _currentWapointIndex = 0;
         // Projectiles
-        _currentProjectileForce = UnityEngine.Random.Range(_projectileForceRange.Min, _projectileForceRange.Max);
-        _currentShootRate = UnityEngine.Random.Range(_shootRateRange.Min, _shootRateRange.Max);
+        _currentProjectileForce = LevelSceneManager.Instance.GetShootForce();
+        _currentShootRate = LevelSceneManager.Instance.GetShootRate();
         // Highlight Customer
         OnHighlightCustomer(currentInventoryType);
     }

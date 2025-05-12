@@ -75,9 +75,14 @@ public class TutorialManager : MonoBehaviour
     {
         if (LevelSceneManager.Instance.IsTutorialActive())
         {
+            MasterAudioManager.Instance.PlayOneShot(OST_SOUND.TUTORIAL, transform);
             _tutorialPanel.SetActive(true);
             _tutorialText.text = _tutorialEnterText;
             SetUpButton();
+        }
+        else
+        {
+            MasterAudioManager.Instance.PlayOneShot(OST_SOUND.OST, transform);
         }
     }
 

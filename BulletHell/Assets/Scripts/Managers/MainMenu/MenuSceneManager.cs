@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,6 +54,9 @@ public class MenuSceneManager : Manager
         InitializeManagers();
 
         base._isInitialized = true;
+
+        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.MAIN_MENU, transform);
+
     }
 
     public override void Shutdown()
@@ -104,6 +108,8 @@ public class MenuSceneManager : Manager
         else
             _settingsManager.Initialize();
     }
+
+    
 
     private void StartGameButtonAction()
     {

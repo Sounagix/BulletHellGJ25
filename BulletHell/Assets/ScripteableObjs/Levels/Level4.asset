@@ -18,23 +18,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.15237427
-      value: 3.9079895
-      inSlope: -0.0026524963
-      outSlope: -0.0026524963
+      time: 0.10006714
+      value: 2.0028229
+      inSlope: -0.28663003
+      outSlope: -0.28663003
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.10175983
+      outWeight: 0.14592531
     - serializedVersion: 3
-      time: 70.07649
-      value: 1.0202997
-      inSlope: -0.114518456
-      outSlope: -0.114518456
+      time: 9.389847
+      value: 1.0475214
+      inSlope: 0.023262087
+      outSlope: 0.023262087
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.038499895
+      inWeight: 0.97344136
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _minShootRate: 1
+  _maxShootRate: 2.5
+  _minShootForce: 0.7
+  _maxShootForce: 1
+  _minSpawnRate: 0
+  _maxSpawnRate: 0

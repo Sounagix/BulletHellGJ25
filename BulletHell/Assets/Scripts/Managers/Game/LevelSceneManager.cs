@@ -56,6 +56,7 @@ public class LevelSceneManager : MonoBehaviour
     public void DeactiveTutorial()
     {
         _activateTutorial = false;
+        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.OST, transform);
     }
 
     public Level GetCurrentLevel()
@@ -90,5 +91,25 @@ public class LevelSceneManager : MonoBehaviour
     public bool CanSpawnCustomer()
     {
         return _currentNumOfClientsServed < _currentLevel._numOfCLientsToServe;
+    }
+
+    public void ResetCurrentLevel()
+    {
+        _currentNumOfClientsServed = 0;
+    }
+
+    public float GetShootRate()
+    {
+        return UnityEngine.Random.Range(_currentLevel._minShootRate, _currentLevel._maxShootRate);
+    }
+
+    public float GetShootForce()
+    {
+        return UnityEngine.Random.Range(_currentLevel._minShootForce, _currentLevel._maxShootForce);
+    }
+
+    public float GetSpawnRate()
+    {
+        return UnityEngine.Random.Range(_currentLevel._minSpawnRate, _currentLevel._maxSpawnRate);
     }
 }

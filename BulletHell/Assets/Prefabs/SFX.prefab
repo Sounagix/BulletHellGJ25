@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6874888553088963018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5203580643654839648}
+  - component: {fileID: 739558735725636163}
+  - component: {fileID: 835100035155803441}
+  m_Layer: 0
+  m_Name: SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5203580643654839648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874888553088963018}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739558735725636163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874888553088963018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
+--- !u!114 &835100035155803441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874888553088963018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055d494b6d48d3a4296dc2cde6734b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolSize: 100
+  _emitterPrefab: {fileID: 752029301955851636, guid: fd1f2e5cce63b864c80907bcbdf245b6, type: 3}
+  _dashSound:
+    Guid:
+      Data1: -322985322
+      Data2: 1319978358
+      Data3: 1643250339
+      Data4: -770078783
+    Path: event:/Player/Dash
+  _takeDamage:
+    Guid:
+      Data1: 1748741217
+      Data2: 1191088386
+      Data3: -343413067
+      Data4: 2098216277
+    Path: event:/Player/Hurt
+  _newClientSound:
+    Guid:
+      Data1: 2128838577
+      Data2: 1124518700
+      Data3: 2107996820
+      Data4: -1030025752
+    Path: event:/Clients/NewClient
+  _correctDeliverySound:
+    Guid:
+      Data1: 832694495
+      Data2: 1085610776
+      Data3: -777621876
+      Data4: -746903924
+    Path: event:/Clients/Served
+  _incorrectDeliverySound:
+    Guid:
+      Data1: -181210805
+      Data2: 1199594849
+      Data3: -79640701
+      Data4: -1090941398
+    Path: event:/Clients/IncorrectFood
+  _bounceSound:
+    Guid:
+      Data1: 1261939754
+      Data2: 1177029389
+      Data3: 280957066
+      Data4: 1497641717
+    Path: event:/Throweable/Bounce
+  _throw:
+    Guid:
+      Data1: -1854093174
+      Data2: 1077478812
+      Data3: -1514230651
+      Data4: -393128834
+    Path: event:/Throweable/Throw
+  _pick:
+    Guid:
+      Data1: 1628839664
+      Data2: 1266259942
+      Data3: 644952761
+      Data4: 138599502
+    Path: event:/Throweable/Pick
+  _pop:
+    Guid:
+      Data1: -146839072
+      Data2: 1082436939
+      Data3: 1534910375
+      Data4: -1162286180
+    Path: event:/Throweable/Pop
+  _ostSong:
+    Guid:
+      Data1: 1094037823
+      Data2: 1293526161
+      Data3: -2063572801
+      Data4: -560862290
+    Path: event:/OST/GamePlay
+  _mainMenuSong:
+    Guid:
+      Data1: 703421914
+      Data2: 1268108483
+      Data3: 1330555547
+      Data4: -189321265
+    Path: event:/OST/MainMenu
+  _gameOverSong:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _tutorialSong:
+    Guid:
+      Data1: -1590378995
+      Data2: 1192426489
+      Data3: 1326159496
+      Data4: 1630455636
+    Path: event:/OST/Tutorial

@@ -29,6 +29,14 @@ public enum THROWEABLE_SOUND : int
     POP,
 }
 
+public enum OST_SOUND : int
+{
+    OST,
+    MAIN_MENU,
+    TUTORIAL,
+    GAME_OVER,
+}
+
 public class MasterAudioManager : MonoBehaviour
 {
     public static MasterAudioManager Instance;
@@ -56,7 +64,12 @@ public class MasterAudioManager : MonoBehaviour
 
     [Header("OST")]
     [SerializeField]
-    private EventReference _ostSong, _mainMenuSong, _gameOverSong;
+    private EventReference _ostSong, _mainMenuSong, _gameOverSong, _tutorialSong;
+
+    private FMODAudioEmitter _gameplaySongEmmiter;
+    private FMODAudioEmitter _mainMenuSongEmmiter;
+    private FMODAudioEmitter _gameoverEmmiter;
+    private FMODAudioEmitter _tutorialEmmiter;
 
     private void Awake()
     {
@@ -78,7 +91,7 @@ public class MasterAudioManager : MonoBehaviour
 
         for (int i = 0; i < _poolSize; i++)
         {
-            GameObject emitterObj = Instantiate(_emitterPrefab, transform);
+            GameObject emitterObj = Instantiate(_emitterPrefab, null);
             var emitter = emitterObj.GetComponent<FMODAudioEmitter>();
             if (emitter == null)
                 emitter = emitterObj.AddComponent<FMODAudioEmitter>();
@@ -111,6 +124,115 @@ public class MasterAudioManager : MonoBehaviour
                 break;
         }
         emitter.Play(eventReference, target.position);
+    }
+
+    public void PlayOneShot(OST_SOUND oST_SOUND, Transform target)
+    {
+        FMODAudioEmitter emitter = GetNextAvailableEmitter();
+        EventReference eventReference = new EventReference();
+        switch (oST_SOUND)
+        {
+            case OST_SOUND.OST:
+                if (_gameplaySongEmmiter) break;
+                StopOtherOST(OST_SOUND.OST);
+                eventReference = _ostSong;
+                _gameplaySongEmmiter = emitter;
+                break;
+            case OST_SOUND.MAIN_MENU:
+                if (_mainMenuSongEmmiter) break;
+                StopOtherOST(OST_SOUND.MAIN_MENU);
+                _mainMenuSongEmmiter = emitter;
+                eventReference = _mainMenuSong;
+                break;
+            case OST_SOUND.TUTORIAL:
+                if (_tutorialEmmiter) break;
+                StopOtherOST(OST_SOUND.TUTORIAL);
+                _tutorialEmmiter = emitter;
+                eventReference = _tutorialSong;
+                break;
+            case OST_SOUND.GAME_OVER:
+                if (_gameoverEmmiter) break;
+                StopOtherOST(OST_SOUND.GAME_OVER);
+                _gameoverEmmiter = emitter;
+                eventReference = _gameOverSong;
+                break;
+        }
+        emitter.Play(eventReference, target.position);
+    }
+
+    private void StopOtherOST(OST_SOUND oST_SOUND)
+    {
+        switch (oST_SOUND)
+        {
+            case OST_SOUND.OST:
+                if (_mainMenuSongEmmiter)
+                {
+                    _mainMenuSongEmmiter.Stop();
+                    _mainMenuSongEmmiter = null;
+                }
+                else if (_gameoverEmmiter)
+                {
+                    _gameoverEmmiter.Stop();
+                    _gameoverEmmiter = null;
+                }
+                else if (_tutorialEmmiter)
+                {
+                    _tutorialEmmiter.Stop();
+                    _tutorialEmmiter = null;
+                }
+                    break;
+            case OST_SOUND.MAIN_MENU:
+                if (_gameplaySongEmmiter)
+                {
+                    _gameplaySongEmmiter.Stop();
+                    _gameplaySongEmmiter = null;
+                }
+                else if (_gameoverEmmiter)
+                {
+                    _gameoverEmmiter.Stop();
+                    _gameoverEmmiter = null;
+                }
+                else if (_tutorialEmmiter)
+                {
+                    _tutorialEmmiter.Stop();
+                    _tutorialEmmiter = null;
+                }
+                break;
+            case OST_SOUND.TUTORIAL:
+                if (_gameplaySongEmmiter)
+                {
+                    _gameplaySongEmmiter.Stop();
+                    _gameplaySongEmmiter = null;
+                }
+                else if (_gameoverEmmiter)
+                {
+                    _gameoverEmmiter.Stop();
+                    _gameoverEmmiter = null;
+                }
+                else if (_mainMenuSongEmmiter)
+                {
+                    _mainMenuSongEmmiter.Stop();
+                    _mainMenuSongEmmiter = null;
+                }
+                break;
+            case OST_SOUND.GAME_OVER:
+                if (_gameplaySongEmmiter)
+                {
+                    _gameplaySongEmmiter.Stop();
+                    _gameplaySongEmmiter = null;
+                }
+                else if (_tutorialEmmiter)
+                {
+                    _tutorialEmmiter.Stop();
+                    _tutorialEmmiter = null;
+                }
+                else if (_mainMenuSongEmmiter)
+                {
+                    _mainMenuSongEmmiter.Stop();
+                    _mainMenuSongEmmiter = null;
+                }
+                break;
+        }
     }
 
     public void PlayOneShot(THROWEABLE_SOUND cLIENT_SOUND, Transform target)
@@ -159,6 +281,24 @@ public class MasterAudioManager : MonoBehaviour
                 break;
         }
         emitter.Play(eventReference, target.position);
+    }
+
+    public void GamePlaySongNextLevel()
+    {
+        if (_gameoverEmmiter && _gameplaySongEmmiter.IsPlaying())
+        {
+            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndSlowLoop", 1);
+            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndFastLoop", 0);
+        }
+    }
+
+    public void GamePlaySongLowLevel()
+    {
+        if (_gameoverEmmiter && _gameplaySongEmmiter.IsPlaying())
+        {
+            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndSlowLoop", 0);
+            _gameplaySongEmmiter.GetEventReference().setParameterByName("EndFastLoop", 1);
+        }
     }
 
     //public void PlayOneShotAttached(EventReference sound, GameObject target)

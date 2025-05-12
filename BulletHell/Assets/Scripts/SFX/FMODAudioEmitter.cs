@@ -14,6 +14,29 @@ public class FMODAudioEmitter : MonoBehaviour
         instance.release();
     }
 
+    public void Stop()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
+    }
+
+    private void OnDestroy()
+    {
+        Stop();
+    }
+
+    public bool IsPlaying()
+    {
+        instance.getPlaybackState(out PLAYBACK_STATE state);
+        return state == PLAYBACK_STATE.PLAYING;
+    }
+
+    public EventInstance GetEventReference()
+    {
+        return instance;
+    }
+
+
     //public void PlayAttached(EventReference sound, GameObject target)
     //{
     //    instance = RuntimeManager.CreateInstance(sound);

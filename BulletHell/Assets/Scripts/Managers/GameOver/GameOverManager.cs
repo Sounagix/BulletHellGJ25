@@ -23,6 +23,7 @@ public class GameOverManager : MonoBehaviour
     {
         _playerAgaiButton.onClick.AddListener(() =>
         {
+            LevelSceneManager.Instance.ResetCurrentLevel();
             GameManager.Instance.ChangeScene((int)SceneID.Game);
         });
 
