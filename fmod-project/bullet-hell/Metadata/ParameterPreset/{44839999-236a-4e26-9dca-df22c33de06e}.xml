@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="ParameterPreset" id="{306e201b-63f7-4023-b3a1-d2795e1698df}">
+	<object class="ParameterPreset" id="{44839999-236a-4e26-9dca-df22c33de06e}">
 		<property name="name">
-			<value>EndSlowLoop</value>
+			<value>FastLoop</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5eb7385e-9b29-4395-8de9-26c5c3691b34}</destination>
 		</relationship>
 		<relationship name="parameter">
-			<destination>{cf12242c-2de6-43ab-aa7b-1f9ffe209de1}</destination>
+			<destination>{7b1f437b-8693-49e7-b0c9-e2271405c681}</destination>
 		</relationship>
 	</object>
-	<object class="GameParameter" id="{cf12242c-2de6-43ab-aa7b-1f9ffe209de1}">
+	<object class="GameParameter" id="{7b1f437b-8693-49e7-b0c9-e2271405c681}">
 		<property name="parameterType">
 			<value>1</value>
 		</property>

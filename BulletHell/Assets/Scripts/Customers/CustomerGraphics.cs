@@ -16,6 +16,9 @@ public class CustomerGraphics : MonoBehaviour
     private SpriteRenderer _highlightedRenderer;
 
     [SerializeField]
+    private SpriteRenderer _unstableRenderer;
+
+    [SerializeField]
     private Slider _patienceSlider;
 
     [Header("Increase Size Animation")]
@@ -26,10 +29,10 @@ public class CustomerGraphics : MonoBehaviour
     private float _increaseInThisSeconds;
 
     //private CustomerRenderer _currentCustomerRenderer;
-
     private Vector3 _originalScale;
     private Color _originalColor;
     private CustomerController _customerController;
+    
 
     public void SetUp(CustomerController controller)
     {
@@ -39,16 +42,28 @@ public class CustomerGraphics : MonoBehaviour
 
     public void ResetCustomer(/*CustomerRenderer customerRenderer,*/ Sprite food, float maxPatience) 
     {
-        _highlightedRenderer.sprite = _renderer.sprite;
         _highlightedRenderer.gameObject.SetActive(false);
+        _unstableRenderer.gameObject.SetActive(false);
         _foodSprite.sprite = food;
         _patienceSlider.maxValue = maxPatience;
         _patienceSlider.value = maxPatience;
     }
 
+    private void Update()
+    {
+        if(_customerController)
+            ControlHighLight();
+    }
+
+    private void ControlHighLight()
+    {
+        _highlightedRenderer.sprite = _renderer.sprite;
+        _unstableRenderer.sprite = _renderer.sprite;
+    }
+
     public void TurnUnstable()
     {
-        //_highlightedRenderer.sprite = _renderer.sprite = _currentCustomerRenderer.UnstableState;
+        _unstableRenderer.gameObject.SetActive(true);
         _patienceSlider.gameObject.SetActive(false);
         StartCoroutine(IncreaseSize(_customerController.transform.localScale * _sizeIncrease, _increaseInThisSeconds));
     }

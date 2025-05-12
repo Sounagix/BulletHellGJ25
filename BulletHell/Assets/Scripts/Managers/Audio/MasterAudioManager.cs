@@ -107,6 +107,23 @@ public class MasterAudioManager : MonoBehaviour
         return emitter;
     }
 
+    public void ActiveFastLoop()
+    {
+        if (_gameplaySongEmmiter && _gameplaySongEmmiter.IsPlaying())
+        {
+            _gameplaySongEmmiter.GetEventReference().setParameterByName("FastLoop", 1);
+        }
+    }
+
+    public void DeactiveFastLoop()
+    {
+        if (_gameplaySongEmmiter && _gameplaySongEmmiter.IsPlaying())
+        {
+            _gameplaySongEmmiter.GetEventReference().setParameterByName("FastLoop", 0);
+
+        }
+    }
+
     public void PlayOneShot(CLIENT_SOUND cLIENT_SOUND, Transform target)
     {
         FMODAudioEmitter emitter = GetNextAvailableEmitter();

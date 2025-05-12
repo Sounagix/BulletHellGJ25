@@ -30,6 +30,9 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     private RangeFloat _projectileForceRange;
 
+    [SerializeField]
+    private Animator _animator;
+
     // Transform
     private Quaternion _originalRotation;
     private Vector3 _originalScale;
@@ -66,12 +69,6 @@ public class CustomerController : MonoBehaviour
         _rb.linearVelocity = movementStats.MovementDir * movementStats.MovementForce;
     }
 
-    private void Update()
-    {
-        HandlePatience(Time.deltaTime);
-        HandleMoveDir();
-    }
-
     private void OnEnable()
     {
         InventoryManager.OnInventoryUpdated += OnHighlightCustomer;
@@ -81,6 +78,18 @@ public class CustomerController : MonoBehaviour
     {
         InventoryManager.OnInventoryUpdated -= OnHighlightCustomer;
     }
+
+    private void Update()
+    {
+        HandlePatience(Time.deltaTime);
+        HandleMoveDir();
+        if (_animator)
+        {
+            _animator.SetFloat("x", _rb.linearVelocityX);
+            _animator.SetFloat("y", _rb.linearVelocityY);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_currentState == CustomerState.Spawned && _spotToWait != null && other.transform == _spotToWait)
@@ -157,6 +166,7 @@ public class CustomerController : MonoBehaviour
         // Update State
         _customerGraphics.TurnUnstable();
         _currentState = CustomerState.Unstable;
+        CustomersManager.OnCustomerUnstableActived?.Invoke();
         // Update Movement
         UpdateTargetPos(_currentWayPoint.position);
         // Invoke Callbacks
@@ -189,6 +199,7 @@ public class CustomerController : MonoBehaviour
             // Walk away
             Vector2 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
             UpdateTargetPos(randomDir);
+            CustomersManager.OnCustomerUnstableDeactivated?.Invoke();
         }
         else if (_currentState.Equals(CustomerState.Normal))
         {

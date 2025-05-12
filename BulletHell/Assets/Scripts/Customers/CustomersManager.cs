@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomersManager : Manager
 {
+    public static Action OnCustomerUnstableActived;
+
+    public static Action OnCustomerUnstableDeactivated;
+
     [Header("Customer Pool")]
     [SerializeField]
     private CustomerPool _customerPool;
@@ -34,6 +39,10 @@ public class CustomersManager : Manager
 
     [SerializeField]
     private InteractablePool _weaponPool;
+
+    [SerializeField]
+    private int _numOfCustomerUnstableToActiveFastLoop;
+
     public GameSceneManager GameSceneManager { set { _gameSceneManager = value; } }
     private Queue<GameObject> _freeSpots = new();
 
@@ -47,6 +56,8 @@ public class CustomersManager : Manager
     private FoodType _currentInventoryType = FoodType.None;
 
     private int _numOfCustomersToServe = 0;
+
+    private int _numOfCustomersUnstableActive = 0;
 
     public override void Initialize()
     {
@@ -78,14 +89,18 @@ public class CustomersManager : Manager
         CustomerController.OnCustomerFinished += ReleaseCustomer;
         CustomerController.OnReleaseSpot += OnReleaseSpot;
         InventoryManager.OnInventoryUpdated += OnInventoryUpdated;
-
+        OnCustomerUnstableActived += OnCustomerUnstable;
+        OnCustomerUnstableDeactivated += OnCustomerUnstableDeactived;
     }
+
 
     private void OnDisable()
     {
         CustomerController.OnCustomerFinished -= ReleaseCustomer;
         CustomerController.OnReleaseSpot -= OnReleaseSpot;
         InventoryManager.OnInventoryUpdated -= OnInventoryUpdated;
+        OnCustomerUnstableActived -= OnCustomerUnstable;
+        OnCustomerUnstableDeactivated -= OnCustomerUnstableDeactived;
     }
 
     private void Update()
@@ -140,5 +155,23 @@ public class CustomersManager : Manager
     private void OnInventoryUpdated(FoodType foodType)
     {
         _currentInventoryType = foodType;
+    }
+
+    private void OnCustomerUnstable()
+    {
+        _numOfCustomersUnstableActive++;
+        if (_numOfCustomersUnstableActive >= _numOfCustomerUnstableToActiveFastLoop)
+        {
+            MasterAudioManager.Instance.ActiveFastLoop();
+        }
+    }
+
+    public void OnCustomerUnstableDeactived()
+    {
+        _numOfCustomersUnstableActive--;
+        if (_numOfCustomersUnstableActive < _numOfCustomerUnstableToActiveFastLoop)
+        {
+            MasterAudioManager.Instance.DeactiveFastLoop();
+        }
     }
 }

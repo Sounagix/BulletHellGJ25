@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolSize: 100
-  _emitterPrefab: {fileID: 1154537318162615791, guid: 7fc86f699a70ff54c8b1f721d4554cd4, type: 3}
+  _emitterPrefab: {fileID: 752029301955851636, guid: fd1f2e5cce63b864c80907bcbdf245b6, type: 3}
   _dashSound:
     Guid:
       Data1: -322985322
@@ -1473,18 +1473,18 @@ MonoBehaviour:
     Path: event:/Throweable/Pop
   _ostSong:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1094037823
+      Data2: 1293526161
+      Data3: -2063572801
+      Data4: -560862290
+    Path: event:/OST/GamePlay
   _mainMenuSong:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 703421914
+      Data2: 1268108483
+      Data3: 1330555547
+      Data4: -189321265
+    Path: event:/OST/MainMenu
   _gameOverSong:
     Guid:
       Data1: 0
@@ -1492,6 +1492,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  _tutorialSong:
+    Guid:
+      Data1: -1590378995
+      Data2: 1192426489
+      Data3: 1326159496
+      Data4: 1630455636
+    Path: event:/OST/Tutorial
 --- !u!114 &416814119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5712,6 +5719,7 @@ MonoBehaviour:
   _customerSpotPrefab: {fileID: 613850517814334784, guid: a9c0e0ddcd10ea74ba11b58d43690e7d, type: 3}
   _spotsToCreate: 10
   _weaponPool: {fileID: 1596449794}
+  _numOfCustomerUnstableToActiveFastLoop: 3
 --- !u!4 &1386490421
 Transform:
   m_ObjectHideFlags: 0

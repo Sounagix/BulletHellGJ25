@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: ff7cdf461306bd64099a86256fb49d67
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4162864869386391128
+    second: customerAimationSheet_0
+  - first:
+      213: -564205381162572558
+    second: customerAimationSheet_1
+  - first:
+      213: 957409021794530981
+    second: customerAimationSheet_2
+  - first:
+      213: 3012063420328048205
+    second: customerAimationSheet_3
+  - first:
+      213: 8442592651561449951
+    second: customerAimationSheet_4
+  - first:
+      213: -5330837467500493164
+    second: customerAimationSheet_5
+  - first:
+      213: -5724442489502769098
+    second: customerAimationSheet_6
+  - first:
+      213: -390798683398324666
+    second: customerAimationSheet_7
+  - first:
+      213: 5282173119152721410
+    second: customerAimationSheet_8
+  - first:
+      213: -3539317974533905954
+    second: customerAimationSheet_9
+  - first:
+      213: 4206227344461686433
+    second: customerAimationSheet_10
+  - first:
+      213: 47838718965375002
+    second: customerAimationSheet_11
+  - first:
+      213: -4203410726378601455
+    second: customerAimationSheet_12
+  - first:
+      213: -979750055627953911
+    second: customerAimationSheet_13
+  - first:
+      213: 5702887564548265280
+    second: customerAimationSheet_14
+  - first:
+      213: 9081433780088653500
+    second: customerAimationSheet_15
+  - first:
+      213: 8861953482609341471
+    second: customerAimationSheet_16
+  - first:
+      213: -2666533345264574
+    second: customerAimationSheet_17
+  - first:
+      213: 7198455524463664480
+    second: customerAimationSheet_18
+  - first:
+      213: 551638853179272953
+    second: customerAimationSheet_19
+  - first:
+      213: -2967165277704028007
+    second: customerAimationSheet_20
+  - first:
+      213: -5318012509822745464
+    second: customerAimationSheet_21
+  - first:
+      213: 772016149883415910
+    second: customerAimationSheet_22
+  - first:
+      213: -9215753458449818113
+    second: customerAimationSheet_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: customerAimationSheet_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 479
+        width: 44
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85e8abbfa8775c930800000000000000
+      internalID: 4162864869386391128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 480
+        width: 56
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4e073f13a8b28f0800000000000000
+      internalID: -564205381162572558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_2
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 479
+        width: 55
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a631d8ce66694d00800000000000000
+      internalID: 957409021794530981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_3
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 479
+        width: 44
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46f991e8bffcc920800000000000000
+      internalID: 3012063420328048205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_4
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 480
+        width: 56
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd9b4ab294d1a2570800000000000000
+      internalID: 8442592651561449951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_5
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 479
+        width: 55
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4964a4a319f0506b0800000000000000
+      internalID: -5330837467500493164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_6
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 319
+        width: 44
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 630e80c92e1be80b0800000000000000
+      internalID: -5724442489502769098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_7
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 320
+        width: 56
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64e3a510baa939af0800000000000000
+      internalID: -390798683398324666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 319
+        width: 55
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e0739377c0e4940800000000000000
+      internalID: 5282173119152721410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_9
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 319
+        width: 44
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed160c4ed01d1eec0800000000000000
+      internalID: -3539317974533905954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_10
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 320
+        width: 56
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a66c27fb758f5a30800000000000000
+      internalID: 4206227344461686433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_11
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 319
+        width: 55
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10e07abf05f9a000800000000000000
+      internalID: 47838718965375002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_12
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 158
+        width: 41
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1140329073c7aa5c0800000000000000
+      internalID: -4203410726378601455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_13
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 161
+        width: 72
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90960ade38a3762f0800000000000000
+      internalID: -979750055627953911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_14
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 159
+        width: 65
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04554e6560ab42f40800000000000000
+      internalID: 5702887564548265280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_15
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 159
+        width: 41
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb6ca6158ebb70e70800000000000000
+      internalID: 9081433780088653500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_16
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 161
+        width: 67
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1437f26dbbfbfa70800000000000000
+      internalID: 8861953482609341471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_17
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 159
+        width: 63
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c7c235dc686fff0800000000000000
+      internalID: -2666533345264574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_18
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 41
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06dda13192d06e360800000000000000
+      internalID: 7198455524463664480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_19
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 72
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9feed004d90d7a700800000000000000
+      internalID: 551638853179272953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_20
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 0
+        width: 65
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990049096e282d6d0800000000000000
+      internalID: -2967165277704028007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_21
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 0
+        width: 41
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8848ee06ccf9236b0800000000000000
+      internalID: -5318012509822745464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_22
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1
+        width: 67
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d6aa61990c6ba00800000000000000
+      internalID: 772016149883415910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: customerAimationSheet_23
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 63
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd55838e011b1080800000000000000
+      internalID: -9215753458449818113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      customerAimationSheet_0: 4162864869386391128
+      customerAimationSheet_1: -564205381162572558
+      customerAimationSheet_10: 4206227344461686433
+      customerAimationSheet_11: 47838718965375002
+      customerAimationSheet_12: -4203410726378601455
+      customerAimationSheet_13: -979750055627953911
+      customerAimationSheet_14: 5702887564548265280
+      customerAimationSheet_15: 9081433780088653500
+      customerAimationSheet_16: 8861953482609341471
+      customerAimationSheet_17: -2666533345264574
+      customerAimationSheet_18: 7198455524463664480
+      customerAimationSheet_19: 551638853179272953
+      customerAimationSheet_2: 957409021794530981
+      customerAimationSheet_20: -2967165277704028007
+      customerAimationSheet_21: -5318012509822745464
+      customerAimationSheet_22: 772016149883415910
+      customerAimationSheet_23: -9215753458449818113
+      customerAimationSheet_3: 3012063420328048205
+      customerAimationSheet_4: 8442592651561449951
+      customerAimationSheet_5: -5330837467500493164
+      customerAimationSheet_6: -5724442489502769098
+      customerAimationSheet_7: -390798683398324666
+      customerAimationSheet_8: 5282173119152721410
+      customerAimationSheet_9: -3539317974533905954
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
