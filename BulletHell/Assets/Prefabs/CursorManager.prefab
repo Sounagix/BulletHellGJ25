@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UITexture: {fileID: 2800000, guid: 4eb690e8d9b9666438fc409e3c9eff14, type: 3}
-  gameTexture: {fileID: 2800000, guid: 01b6002479bb9804eb3da85109b71582, type: 3}
+  gameTexture: {fileID: 2800000, guid: 24f70ade9ed748b4798556fa94d8dec8, type: 3}

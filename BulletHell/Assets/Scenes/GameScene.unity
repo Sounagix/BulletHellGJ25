@@ -1456,11 +1456,11 @@ MonoBehaviour:
     Path: event:/OST/MainMenu
   _gameOverSong:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1858940239
+      Data2: 1251856198
+      Data3: 725381261
+      Data4: -151890846
+    Path: event:/OST/GameOver
   _tutorialSong:
     Guid:
       Data1: -1590378995
@@ -2718,23 +2718,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2379873143618561567, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2379873143618561567, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2379873143618561567, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4405192081281765193, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4405192081281765193, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5699715484873911381, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_Pivot.x
@@ -2818,23 +2818,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6026151175952504847, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6026151175952504847, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6026151175952504847, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7316292084413275978, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7316292084413275978, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9049499789853203918, guid: 0519d421215cc784fa4cb2f9e5b4f5dc, type: 3}
       propertyPath: m_Name
@@ -5276,7 +5276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9061451, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88951,7 +88951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2090980504
 MonoBehaviour:
   m_ObjectHideFlags: 0
