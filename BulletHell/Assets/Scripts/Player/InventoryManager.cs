@@ -38,7 +38,8 @@ public class InventoryManager : MonoBehaviour
             _foodStack.Push(throweableFood);
             OnInventoryUpdated?.Invoke(throweableFood.FoodType);
             GlowOnPick.OnGlowActive?.Invoke();
-            TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.COLLECT_FOOD);
+            if (GameManager.IsTutorialActive)
+                TutorialManager.OnSkipTutorialPhase?.Invoke(TutorialPhase.COLLECT_FOOD);
             StatisticsManager.OnPlayerPickFood?.Invoke(throweableFood.FoodType);
             MasterAudioManager.Instance.PlayOneShot(THROWEABLE_SOUND.PICK, transform);
         }

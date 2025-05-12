@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
             return;
 
         _movementStats.MovementDir = value.ReadValue<Vector2>();
-        TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.MOVEMENT);
+        if (GameManager.IsTutorialActive)
+            TutorialManager.OnSkipTutorialPhase?.Invoke(TutorialPhase.MOVEMENT);
     }
 
     public void OnMouseLeftDown(CallbackContext value)
@@ -135,7 +136,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_dashCooldown);
         _dashCoroutine = null;
         _trailRenderer.emitting = false;
-        TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.DASH);
+        if (GameManager.IsTutorialActive)
+            TutorialManager.OnSkipTutorialPhase?.Invoke(TutorialPhase.DASH);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

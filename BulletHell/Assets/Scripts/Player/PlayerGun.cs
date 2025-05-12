@@ -59,6 +59,8 @@ public class PlayerGun : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         food.UpdateTargetPosition(mousePos);
         food.UpdateProjectileForce(_projectileForce);
-        TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.ATTACK);
+
+        if (GameManager.IsTutorialActive)
+            TutorialManager.OnSkipTutorialPhase?.Invoke(TutorialPhase.ATTACK);
     }
 }

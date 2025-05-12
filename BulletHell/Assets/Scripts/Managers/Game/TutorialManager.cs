@@ -1,40 +1,28 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public enum TUTORIAL
+public enum TutorialPhase
 {
-    ENTER,
     MOVEMENT,
     DASH,
     COLLECT_FOOD,
     ATTACK,
     FEED_CUSTOMER,
-    END,
-    NULL,
 }
 
 public class TutorialManager : MonoBehaviour
 {
-    public static Action<TUTORIAL> OnTutorialUpdate;
-
-    [SerializeField]
-    private HUDManager _hudManager;
+    public static Action<TutorialPhase> OnSkipTutorialPhase;
 
     [SerializeField]
     private GameObject _tutorialPanel;
 
+    [Header("Text to display")]
     [SerializeField]
-    private TMPro.TextMeshProUGUI _tutorialText;
-
-    [SerializeField]
-    private Button _aceptButton;
-
-    [SerializeField]
-    private Button _cancelButton;
-
-    [SerializeField]
-    private string _tutorialEnterText;
+    private TextMeshProUGUI _tutorialText;
 
     [SerializeField]
     private string _tutorialMovementText;
@@ -51,97 +39,142 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private string _tutorialFeedCustomerText;
 
+
+    [Header("Tutorial Effects")]
     [SerializeField]
-    private string _tutorialEndText;
+    private float _timePerTutorial = 3f;
 
     [SerializeField]
-    private float _endTime;
+    private float _tutorialFadeDuration = 1f;
 
-    private TUTORIAL tUTORIAL_PHASE = TUTORIAL.ENTER;
+    [SerializeField] 
+    private float _delayBetweenTutorials = 1f;
 
+
+    private Dictionary<TutorialPhase, bool> _tutorialPhases;
+    private Color _originalTextColor;
+    private TutorialPhase _currentTutorialPhase;
+    private bool _skipCurrentTutorial = false;
 
     private void OnEnable()
     {
-        OnTutorialUpdate += UpdateTutorial;
+        OnSkipTutorialPhase += OnTutorialPhaseSkipped;
     }
 
     private void OnDisable()
     {
-        OnTutorialUpdate -= UpdateTutorial;
+        OnSkipTutorialPhase -= OnTutorialPhaseSkipped;
     }
 
 
     private void Start()
     {
-        if (LevelSceneManager.Instance.IsTutorialActive())
-        {
-            MasterAudioManager.Instance.PlayOneShot(OST_SOUND.TUTORIAL, transform);
-            _tutorialPanel.SetActive(true);
-            _tutorialText.text = _tutorialEnterText;
-            SetUpButton();
-        }
-        else
-        {
-            MasterAudioManager.Instance.PlayOneShot(OST_SOUND.OST, transform);
-        }
+        _originalTextColor = _tutorialText.color;
+        bool isTutorialActive = GameManager.IsTutorialActive;
+        _tutorialPhases = new Dictionary<TutorialPhase, bool>();
+        foreach (TutorialPhase phase in Enum.GetValues(typeof(TutorialPhase)))
+            _tutorialPhases[phase] = isTutorialActive;
+        _tutorialPanel.SetActive(isTutorialActive);
+
+        if (isTutorialActive)
+            StartCoroutine(DisplayTutorial());
     }
 
-    private void SetUpButton()
+    private void Update()
     {
-        _aceptButton.onClick.AddListener(
-            delegate ()
-            {
-                tUTORIAL_PHASE = TUTORIAL.MOVEMENT;
-                _tutorialText.text = _tutorialMovementText;
-                _aceptButton.gameObject.SetActive(false);
-                _cancelButton.gameObject.SetActive(false);
-            });
-        _cancelButton.onClick.AddListener(
-            delegate ()
-            {
-                _tutorialText.transform.parent.gameObject.SetActive(false);
-                LevelSceneManager.Instance.DeactiveTutorial();
-                _hudManager.ShowIndicationsTextInHUD();
-            });
-    }
-
-    private void UpdateTutorial(TUTORIAL tUTORIAL)
-    {
-        if (!tUTORIAL_PHASE.Equals(tUTORIAL))
+        if (!GameManager.IsTutorialActive)
             return;
 
-        switch (tUTORIAL)
+        DisplayTutorial();
+    }
+
+
+    private IEnumerator DisplayTutorial()
+    {
+        Color transparentColor = _originalTextColor;
+        transparentColor.a = 0f;
+
+        foreach (TutorialPhase phase in Enum.GetValues(typeof(TutorialPhase)))
         {
-            case TUTORIAL.ENTER:
+            bool isPhaseActive = _tutorialPhases[phase];
+            if (isPhaseActive)
+            {
+                _currentTutorialPhase = phase;
+                _skipCurrentTutorial = false;
+
+                UpdateTutorial(phase);
+                _tutorialText.color = transparentColor;
+
+                // Fade in
+                float elapsed = 0f;
+                while (elapsed < _tutorialFadeDuration)
+                {
+                    _tutorialText.color = Color.Lerp(transparentColor, _originalTextColor, elapsed / _tutorialFadeDuration);
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+                _tutorialText.color = _originalTextColor;
+
+                float showElapsed = 0f;
+                while (showElapsed < _timePerTutorial && !_skipCurrentTutorial)
+                {
+                    showElapsed += Time.deltaTime;
+                    yield return null;
+                }
+
+                // Fade out
+                elapsed = 0f;
+                while (elapsed < _tutorialFadeDuration)
+                {
+                    _tutorialText.color = Color.Lerp(_originalTextColor, transparentColor, elapsed / _tutorialFadeDuration);
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+                _tutorialText.color = transparentColor;
+
+                yield return new WaitForSeconds(_delayBetweenTutorials);
+            }
+        }
+
+        EndOfTutorial();
+    }
+
+
+    private void OnTutorialPhaseSkipped(TutorialPhase tutorialPhaseTriggered)
+    {
+        if (_currentTutorialPhase == tutorialPhaseTriggered)
+            _skipCurrentTutorial = true;
+
+        _tutorialPhases[tutorialPhaseTriggered] = false;
+    }
+
+    private void UpdateTutorial(TutorialPhase phase)
+    {
+        switch (phase)
+        {
+            case TutorialPhase.MOVEMENT:
+                _tutorialText.text = _tutorialMovementText;
                 break;
-            case TUTORIAL.MOVEMENT:
+            case TutorialPhase.DASH:
                 _tutorialText.text = _tutorialDashText;
                 break;
-            case TUTORIAL.DASH:
+            case TutorialPhase.COLLECT_FOOD:
                 _tutorialText.text = _tutorialCollectFood;
                 break;
-            case TUTORIAL.COLLECT_FOOD:
+            case TutorialPhase.ATTACK:
                 _tutorialText.text = _tutorialAttackText;
                 break;
-            case TUTORIAL.ATTACK:
+            case TutorialPhase.FEED_CUSTOMER:
                 _tutorialText.text = _tutorialFeedCustomerText;
                 break;
-            case TUTORIAL.FEED_CUSTOMER:
-                _tutorialText.text = _tutorialEndText;
-                Invoke(nameof(EndOfTutorial), _endTime);
-                break;
-            case TUTORIAL.END:
-                break;
-            case TUTORIAL.NULL:
-                break;
         }
-        tUTORIAL_PHASE++;
+
+        _tutorialPhases[phase] = false;
     }
 
     private void EndOfTutorial()
     {
-        _tutorialText.transform.parent.gameObject.SetActive(false);
-        LevelSceneManager.Instance.DeactiveTutorial();
-        _hudManager.ShowIndicationsTextInHUD();
+        _tutorialPanel.SetActive(false);
+        GameManager.IsTutorialActive = false;
     }
 }

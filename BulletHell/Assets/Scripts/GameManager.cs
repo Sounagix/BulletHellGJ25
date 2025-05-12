@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
 
     private SceneID _initialScene = SceneID.LoadingScene;
 
+    private static bool _isTutorialActive = true;
+    public static bool IsTutorialActive { get { return _isTutorialActive; } set { _isTutorialActive = value; } }
+
     #endregion
 
     public void Awake()
@@ -62,7 +65,6 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
             OnEditorDetermineInitialScene();
 #endif
-
             InitializeGame();
             DontDestroyOnLoad(gameObject);
         }
@@ -100,6 +102,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void InitializeGame()
     {
+        ChangeCursorTexture(GameState.Opening);
+
         if (_initialScene != SceneID.LoadingScene)
             return;
 

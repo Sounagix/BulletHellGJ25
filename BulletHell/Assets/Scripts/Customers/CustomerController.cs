@@ -189,9 +189,14 @@ public class CustomerController : MonoBehaviour
         {
             if (_spotToWait)
                 OnReleaseSpot?.Invoke(_spotToWait.gameObject);
-            TutorialManager.OnTutorialUpdate?.Invoke(TUTORIAL.FEED_CUSTOMER);
+            // Tutorial
+            if (GameManager.IsTutorialActive)
+                TutorialManager.OnSkipTutorialPhase?.Invoke(TutorialPhase.FEED_CUSTOMER);
+            // Music
             MasterAudioManager.Instance.PlayOneShot(CLIENT_SOUND.CORRECT_DELIVERY, transform);
+            //Stats
             StatisticsManager.OnPlayerDeliverFood?.Invoke(foodType);
+            // Customer Attributes
             _currentState = CustomerState.Served;
             if (IsInvoking(nameof(ThrowProjectile)))
                 CancelInvoke(nameof(ThrowProjectile));

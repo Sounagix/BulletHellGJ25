@@ -12,12 +12,9 @@ public class LevelSceneManager : MonoBehaviour
 
     private int _currentNumOfClientsServed = 0;
 
-    private bool _activateTutorial = true;
-
     private int _index = 0;
 
     public static LevelSceneManager Instance;
-
 
     private void OnEnable()
     {
@@ -41,22 +38,6 @@ public class LevelSceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public bool ActivateTutorial()
-    {
-        return _activateTutorial;
-    }
-
-    public bool IsTutorialActive()
-    {
-        return _activateTutorial;
-    }
-
-    public void DeactiveTutorial()
-    {
-        _activateTutorial = false;
-        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.OST, transform);
     }
 
     public Level GetCurrentLevel()

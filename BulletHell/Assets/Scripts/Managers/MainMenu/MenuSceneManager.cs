@@ -1,5 +1,7 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MenuSceneManager : Manager
@@ -20,6 +22,15 @@ public class MenuSceneManager : Manager
 
     [SerializeField]
     private Button quitGameButton;
+
+    [SerializeField]
+    private Button _tutorialButton;
+
+    [SerializeField]
+    private TextMeshProUGUI _tutorialText;
+
+    [SerializeField]
+    private Color[] _tutorialTextColors;
 
     #endregion
 
@@ -44,6 +55,8 @@ public class MenuSceneManager : Manager
         UIHelper.AddListenerToButton(startGameButton, StartGameButtonAction);
 
         UIHelper.AddListenerToButton(settingsButton, SettingsButtonAction);
+
+        StartTutorialButton();
 
 #if UNITY_WEBGL
         if (quitGameButton)
@@ -124,10 +137,32 @@ public class MenuSceneManager : Manager
         }
 
         _settingsManager.ToggleSettings(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void QuitGameButtonAction()
     {
         _gameManager.QuitGame();
+    }
+
+    private void StartTutorialButton()
+    {
+        UIHelper.AddListenerToButton(_tutorialButton, ToggleBetweenTutorialOnOff);
+
+        bool isTutorialActive = GameManager.IsTutorialActive;
+
+        _tutorialText.text = isTutorialActive ? "Tutorial is enabled" : "Tutorial is disabled";
+        _tutorialText.color = isTutorialActive ? _tutorialTextColors[0] : _tutorialTextColors[1];
+    }
+
+    public void ToggleBetweenTutorialOnOff()
+    {
+        bool isTutorialActive = !GameManager.IsTutorialActive;
+
+        _tutorialText.text = isTutorialActive ? "Tutorial is enabled" : "Tutorial is disabled";
+        _tutorialText.color = isTutorialActive ? _tutorialTextColors[0] : _tutorialTextColors[1];
+
+        GameManager.IsTutorialActive = isTutorialActive;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }
