@@ -109,7 +109,6 @@ public class MenuSceneManager : Manager
             _settingsManager.Initialize();
     }
 
-    
 
     private void StartGameButtonAction()
     {

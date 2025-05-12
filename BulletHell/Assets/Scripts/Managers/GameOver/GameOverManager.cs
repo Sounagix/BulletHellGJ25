@@ -34,6 +34,9 @@ public class GameOverManager : MonoBehaviour
         });
 
         var statistics = StatisticsManager.Instance;
+        if (!statistics)
+            return;
+
         _presicionText.text = $"{statistics.GetPresicion()}%";
         _totalDishesDeliveredCorrectlyText.text = statistics.GetTotalDishesDeliveredCorrectly().ToString();
         _totalIngredientCollectedText.text = statistics.GetTotalIngredientCollected().ToString();
