@@ -93,7 +93,7 @@ public class TutorialManager : MonoBehaviour
     {
         Color transparentColor = _originalTextColor;
         transparentColor.a = 0f;
-
+        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.TUTORIAL, transform);
         foreach (TutorialPhase phase in Enum.GetValues(typeof(TutorialPhase)))
         {
             bool isPhaseActive = _tutorialPhases[phase];
@@ -175,6 +175,8 @@ public class TutorialManager : MonoBehaviour
     private void EndOfTutorial()
     {
         _tutorialPanel.SetActive(false);
+        MasterAudioManager.Instance.PlayOneShot(OST_SOUND.OST, transform);
+
         GameManager.IsTutorialActive = false;
     }
 }
