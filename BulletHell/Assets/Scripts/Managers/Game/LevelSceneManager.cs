@@ -47,6 +47,9 @@ public class LevelSceneManager : MonoBehaviour
 
     private void OnPlayerDeliverFood(FoodType type)
     {
+        if (_currentLevel._numOfCLientsToServe == -1)
+            return;
+
         _currentNumOfClientsServed++;
         if (_currentNumOfClientsServed >= _currentLevel._numOfCLientsToServe)
         {
@@ -71,7 +74,7 @@ public class LevelSceneManager : MonoBehaviour
 
     public bool CanSpawnCustomer()
     {
-        return _currentNumOfClientsServed < _currentLevel._numOfCLientsToServe;
+        return  _currentLevel._numOfCLientsToServe == -1 || _currentNumOfClientsServed < _currentLevel._numOfCLientsToServe;
     }
 
     public void ResetCurrentLevel()
@@ -87,10 +90,5 @@ public class LevelSceneManager : MonoBehaviour
     public float GetShootForce()
     {
         return UnityEngine.Random.Range(_currentLevel._minShootForce, _currentLevel._maxShootForce);
-    }
-
-    public float GetSpawnRate()
-    {
-        return UnityEngine.Random.Range(_currentLevel._minSpawnRate, _currentLevel._maxSpawnRate);
     }
 }

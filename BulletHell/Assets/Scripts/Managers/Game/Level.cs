@@ -16,8 +16,4 @@ public class Level : ScriptableObject
     public float _minShootForce;
 
     public float _maxShootForce;
-
-    public float _minSpawnRate;
-
-    public float _maxSpawnRate;
 }

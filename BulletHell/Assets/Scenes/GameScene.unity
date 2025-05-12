@@ -347,10 +347,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelData:
   - {fileID: 11400000, guid: e461d12c1cccf824882092513ef6f268, type: 2}
+  - {fileID: 11400000, guid: bef74f65313b70a44a510311f0085bb5, type: 2}
   - {fileID: 11400000, guid: 4cd5cee3979187b4a9751f44e9730118, type: 2}
   - {fileID: 11400000, guid: 1115db5e53e1ef64480b8ff888120fb9, type: 2}
   - {fileID: 11400000, guid: efb894a2452ae9e4981092961cff3825, type: 2}
-  - {fileID: 11400000, guid: bef74f65313b70a44a510311f0085bb5, type: 2}
 --- !u!4 &61816858
 Transform:
   m_ObjectHideFlags: 0
@@ -88417,7 +88417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10/10
+  m_text: "\u221E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ddb82dafc8727340ae584451dd98828, type: 2}
   m_sharedMaterial: {fileID: 675668143623490772, guid: 0ddb82dafc8727340ae584451dd98828, type: 2}
@@ -88444,7 +88444,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.9
+  m_fontSize: 74.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -88482,7 +88482,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 7.05809, y: 12.70459, z: 7.058136, w: 7.763794}
+  m_margin: {x: 7.05809, y: -10.016846, z: 7.058136, w: -6.5422974}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -21,6 +21,8 @@ public class HUDManager : Manager
     private PlayerManager _player;
     public PlayerManager Player { set { _player = value; } }
 
+    private bool _isLastLevel = false;
+
     private void OnEnable()
     {
         StatisticsManager.OnPlayerDeliverFood += OnUpdateCustomersCounter;
@@ -41,11 +43,14 @@ public class HUDManager : Manager
         _timeHUD.SetUp();
 
         _isInitialized = true;
-
     }
 
     private void Start()
     {
+        _isLastLevel = LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe == -1;
+        if (_isLastLevel)
+            return;
+
         _currentCustomersCounter = 0;
         _customersCounter.text = _currentCustomersCounter.ToString() + "/" + LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe.ToString();
     }
@@ -63,6 +68,9 @@ public class HUDManager : Manager
 
     private void OnUpdateCustomersCounter(FoodType type)
     {
+        if (_isLastLevel)
+            return;
+
         _currentCustomersCounter++;
         _customersCounter.text = _currentCustomersCounter.ToString() + "/" + LevelSceneManager.Instance.GetCurrentLevel()._numOfCLientsToServe.ToString();
     }

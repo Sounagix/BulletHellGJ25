@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level5
   m_EditorClassIdentifier: 
   _maxFoodsToSpawn: 8
-  _numOfCLientsToServe: 1000000
+  _numOfCLientsToServe: -1
   _custumerSpawnRate:
     serializedVersion: 2
     m_Curve:
@@ -42,5 +42,3 @@ MonoBehaviour:
   _maxShootRate: 1
   _minShootForce: 1
   _maxShootForce: 1.25
-  _minSpawnRate: 0
-  _maxSpawnRate: 0

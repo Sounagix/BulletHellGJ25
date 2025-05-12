@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Legacy;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
